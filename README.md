@@ -1,8 +1,6 @@
+# Personal Portfolio
 
-https://ansh-patoliya.vercel.app/
-  ## Running the code
-
-  Run `npm i` to install the dependencies.
+Live: https://ansh-patoliya.vercel.app/
 
   Run `npm run dev` to start the development server.
 
