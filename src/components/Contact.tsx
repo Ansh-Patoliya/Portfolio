@@ -4,10 +4,10 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
+import {
+  Mail,
+  Phone,
+  MapPin,
   Send,
   Github,
   Linkedin,
@@ -15,6 +15,8 @@ import {
   Globe
 } from "lucide-react";
 import { useState } from "react";
+import { ScrollReveal } from "./effects/ScrollReveal";
+import { Magnetic } from "./effects/Magnetic";
 
 const contactInfo = [
   {
@@ -84,22 +86,22 @@ export function Contact() {
         `Hi Ansh,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\nBest regards,\n${formData.name}`
       );
       const mailtoLink = `mailto:anshpatoliya1408@gmail.com?subject=${subject}&body=${body}`;
-      
+
       // Store the contact in localStorage for potential future use
       const contactData = {
         ...formData,
         timestamp: new Date().toISOString(),
         id: Date.now().toString()
       };
-      
+
       const existingContacts = JSON.parse(localStorage.getItem('portfolio-contacts') || '[]');
       existingContacts.push(contactData);
       localStorage.setItem('portfolio-contacts', JSON.stringify(existingContacts));
-      
+
       // Open email client
       window.open(mailtoLink, '_blank');
       setEmailOpened(true);
-      
+
       setSubmitStatus('success');
       setFormData({ name: "", email: "", message: "" });
       console.log('Contact form processed successfully');
@@ -122,13 +124,7 @@ export function Contact() {
   return (
     <section id="contact" className="py-20 bg-gradient-to-b from-accent/5 to-background">
       <div className="container px-6 max-w-6xl mx-auto">
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
+        <ScrollReveal className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl mb-4 bg-gradient-to-r from-foreground to-chart-1 bg-clip-text text-transparent">
             Let's Work Together
           </h2>
@@ -136,16 +132,11 @@ export function Contact() {
           <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto">
             Have a project in mind? I'd love to hear about it. Send me a message and let's create something amazing together.
           </p>
-        </motion.div>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
+          <ScrollReveal y={22} className="will-change-transform">
             <Card className="bg-card/50 backdrop-blur border-border/50 rounded-xl">
               <CardHeader>
                 <CardTitle className="text-2xl flex items-center gap-3">
@@ -169,7 +160,7 @@ export function Contact() {
                       className="bg-input-background border-border/50 focus:border-chart-1 transition-colors"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
                     <Input
@@ -183,7 +174,7 @@ export function Contact() {
                       className="bg-input-background border-border/50 focus:border-chart-1 transition-colors"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="message">Message</Label>
                     <Textarea
@@ -197,19 +188,21 @@ export function Contact() {
                       className="bg-input-background border-border/50 focus:border-chart-1 transition-colors resize-none"
                     />
                   </div>
-                  
-                  <Button 
-                    type="submit" 
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-chart-1 to-chart-2 hover:from-chart-2 hover:to-chart-1 text-white border-0 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                  >
-                    <Send className="w-5 h-5 mr-2" />
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </Button>
-                  
+
+                  <Magnetic>
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-chart-1 to-chart-2 hover:from-chart-2 hover:to-chart-1 text-white border-0 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.03] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                    >
+                      <Send className="w-5 h-5 mr-2" />
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                    </Button>
+                  </Magnetic>
+
                   {/* Status Messages */}
                   {submitStatus === 'success' && (
-                    <motion.div 
+                    <motion.div
                       className="text-green-400 text-center p-4 bg-green-500/10 rounded-lg border border-green-500/20"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -219,16 +212,16 @@ export function Contact() {
                         <span>Message Sent!</span>
                       </div>
                       <p className="text-sm">
-                        {emailOpened 
-                          ? "Your email client should open with a pre-filled message. I'll get back to you soon!" 
+                        {emailOpened
+                          ? "Your email client should open with a pre-filled message. I'll get back to you soon!"
                           : "Thank you for your message! I'll get back to you soon!"
                         }
                       </p>
                     </motion.div>
                   )}
-                  
+
                   {submitStatus === 'error' && (
-                    <motion.div 
+                    <motion.div
                       className="text-red-400 text-center p-3 bg-red-500/10 rounded-lg border border-red-500/20"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -239,16 +232,10 @@ export function Contact() {
                 </form>
               </CardContent>
             </Card>
-          </motion.div>
+          </ScrollReveal>
 
           {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
+          <ScrollReveal y={22} delay={0.08} className="space-y-8">
             {/* Contact Details */}
             <Card className="bg-card/50 backdrop-blur border-border/50 rounded-xl">
               <CardHeader>
@@ -303,7 +290,7 @@ export function Contact() {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </ScrollReveal>
         </div>
       </div>
     </section>
