@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { ScrollReveal } from "./effects/ScrollReveal";
-import { Magnetic } from "./effects/Magnetic";
 
 const contactInfo = [
   {
@@ -189,16 +188,14 @@ export function Contact() {
                     />
                   </div>
 
-                  <Magnetic>
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-chart-1 to-chart-2 hover:from-chart-2 hover:to-chart-1 text-white border-0 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.03] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                    >
-                      <Send className="w-5 h-5 mr-2" />
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
-                    </Button>
-                  </Magnetic>
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-chart-1 to-chart-2 hover:from-chart-2 hover:to-chart-1 text-white border-0 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.03] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  >
+                    <Send className="w-5 h-5 mr-2" />
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                  </Button>
 
                   {/* Status Messages */}
                   {submitStatus === 'success' && (

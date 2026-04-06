@@ -1,7 +1,6 @@
 import { Button } from "./ui/button";
 import { motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
-import { Magnetic } from "./effects/Magnetic";
 import { Typewriter } from "./effects/Typewriter";
 
 export function Hero() {
@@ -54,25 +53,21 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <Magnetic>
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-chart-1 to-chart-2 hover:from-chart-2 hover:to-chart-1 text-white border-0 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.03]"
-                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                View My Work
-              </Button>
-            </Magnetic>
-            <Magnetic>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-2 border-chart-1/30 hover:border-chart-1 text-foreground hover:bg-chart-1/10 px-8 py-6 rounded-xl transition-all duration-300"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Get In Touch
-              </Button>
-            </Magnetic>
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-chart-1 to-chart-2 hover:from-chart-2 hover:to-chart-1 text-white border-0 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.03]"
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              View My Work
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-2 border-chart-1/30 hover:border-chart-1 text-foreground hover:bg-chart-1/10 px-8 py-6 rounded-xl transition-all duration-300"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Get In Touch
+            </Button>
           </motion.div>
         </motion.div>
       </div>
