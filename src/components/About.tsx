@@ -1,6 +1,5 @@
 import React from "react";
 import { ScrollReveal } from "./effects/ScrollReveal";
-import { TiltCard } from "./effects/TiltCard";
 
 export function About() {
   const profilePhoto = new URL("../assets/photo.jpg", import.meta.url).href;
@@ -51,18 +50,16 @@ export function About() {
           </ScrollReveal>
 
           <ScrollReveal className="order-1 lg:order-2 flex justify-center" delay={0.12}>
-            <TiltCard>
-              <div className="relative group neon-border rounded-2xl">
-                <div className="absolute inset-0 bg-gradient-to-r from-chart-1 to-chart-2 rounded-2xl transform rotate-6 group-hover:rotate-12 transition-transform duration-300 opacity-75" />
-                <div className="relative bg-card rounded-2xl p-2 shadow-2xl overflow-hidden">
-                  <img
-                    src={profilePhoto}
-                    alt="Profile"
-                    className="w-80 h-80 object-cover rounded-[20px] transform group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
+            <div className="relative group neon-border rounded-2xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-chart-1 to-chart-2 rounded-2xl transform rotate-6 group-hover:rotate-12 transition-transform duration-300 opacity-75" />
+              <div className="relative bg-card rounded-2xl p-2 shadow-2xl overflow-hidden">
+                <img
+                  src={profilePhoto}
+                  alt="Profile"
+                  className="w-80 h-80 object-cover rounded-[20px] transform group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
-            </TiltCard>
+            </div>
           </ScrollReveal>
         </div>
       </div>

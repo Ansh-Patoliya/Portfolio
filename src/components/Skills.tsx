@@ -11,7 +11,6 @@ import {
   GitBranch
 } from "lucide-react";
 import { ScrollReveal } from "./effects/ScrollReveal";
-import { TiltCard } from "./effects/TiltCard";
 
 const skillCategories = [
   {
@@ -72,39 +71,37 @@ export function Skills() {
               key={category.title}
               delay={categoryIndex * 0.06}
             >
-              <TiltCard>
-                <Card className="neon-border bg-card/50 backdrop-blur border-border/50 rounded-xl hover:shadow-lg transition-all duration-300">
-                  <CardHeader className="pb-4">
-                    <CardTitle className="flex items-center gap-3 text-xl">
-                      <div className="p-2 bg-gradient-to-r from-chart-1 to-chart-2 rounded-lg">
-                        <category.icon className="w-5 h-5 text-white" />
+              <Card className="neon-border bg-card/50 backdrop-blur border-border/50 rounded-xl hover:shadow-lg transition-all duration-300">
+                <CardHeader className="pb-4">
+                  <CardTitle className="flex items-center gap-3 text-xl">
+                    <div className="p-2 bg-gradient-to-r from-chart-1 to-chart-2 rounded-lg">
+                      <category.icon className="w-5 h-5 text-white" />
+                    </div>
+                    {category.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {category.skills.map((skill, skillIndex) => (
+                    <div key={skill.name} className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-foreground">{skill.name}</span>
+                        <span className="text-sm text-muted-foreground">{skill.level}%</span>
                       </div>
-                      {category.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    {category.skills.map((skill, skillIndex) => (
-                      <div key={skill.name} className="space-y-2">
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm text-foreground">{skill.name}</span>
-                          <span className="text-sm text-muted-foreground">{skill.level}%</span>
-                        </div>
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: "100%" }}
-                          transition={{ duration: 1, delay: (categoryIndex * 0.08) + (skillIndex * 0.08) }}
-                          viewport={{ once: true }}
-                        >
-                          <Progress
-                            value={skill.level}
-                            className="h-2 bg-accent"
-                          />
-                        </motion.div>
-                      </div>
-                    ))}
-                  </CardContent>
-                </Card>
-              </TiltCard>
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: "100%" }}
+                        transition={{ duration: 1, delay: (categoryIndex * 0.08) + (skillIndex * 0.08) }}
+                        viewport={{ once: true }}
+                      >
+                        <Progress
+                          value={skill.level}
+                          className="h-2 bg-accent"
+                        />
+                      </motion.div>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
             </ScrollReveal>
           ))}
         </div>
@@ -120,23 +117,21 @@ export function Skills() {
                 key={tool.name}
                 delay={index * 0.05}
               >
-                <TiltCard>
-                  <Card className="neon-border text-center p-6 bg-card/30 backdrop-blur border-border/30 rounded-xl hover:shadow-lg hover:bg-card/50 transition-all duration-300">
-                    <div className="flex flex-col items-center space-y-4">
-                      <div className="p-3 bg-gradient-to-r from-chart-1 to-chart-2 rounded-xl">
-                        <tool.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <h4 className="text-lg text-foreground">{tool.name}</h4>
-                      <div className="space-y-1">
-                        {tool.items.map((item) => (
-                          <p key={item} className="text-sm text-muted-foreground">
-                            {item}
-                          </p>
-                        ))}
-                      </div>
+                <Card className="neon-border text-center p-6 bg-card/30 backdrop-blur border-border/30 rounded-xl hover:shadow-lg hover:bg-card/50 transition-all duration-300">
+                  <div className="flex flex-col items-center space-y-4">
+                    <div className="p-3 bg-gradient-to-r from-chart-1 to-chart-2 rounded-xl">
+                      <tool.icon className="w-6 h-6 text-white" />
                     </div>
-                  </Card>
-                </TiltCard>
+                    <h4 className="text-lg text-foreground">{tool.name}</h4>
+                    <div className="space-y-1">
+                      {tool.items.map((item) => (
+                        <p key={item} className="text-sm text-muted-foreground">
+                          {item}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                </Card>
               </ScrollReveal>
             ))}
           </div>
