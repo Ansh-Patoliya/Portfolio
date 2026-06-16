@@ -75,14 +75,23 @@ export function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
-
     const accessKey = import.meta.env.VITE_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE";
-
-    // 1. Save to localStorage immediately as a fallback backup
+    if (accessKey === "YOUR_ACCESS_KEY_HERE") {
+      console.warn('Web3Forms access key is not set. Please define VITE_WEB3FORMS_KEY in .env');
+    }
+    console.log('Web3Forms accessKey:', accessKey);
+    // Log request payload for debugging
+    console.log('Submitting payload:', {
+      access_key: accessKey,
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+      subject: `New Portfolio Message from ${formData.name}`,
+    });
     const contactData = {
       ...formData,
       timestamp: new Date().toISOString(),
-      id: Date.now().toString()
+      id: Date.now().toString(),
     };
 
     try {
@@ -110,7 +119,9 @@ export function Contact() {
         })
       });
 
+      console.log('Web3Forms response status:', response.status);
       const result = await response.json();
+      console.log('Web3Forms result:', result);
 
       if (response.ok && result.success) {
         setSubmitStatus('success');
@@ -132,13 +143,12 @@ export function Contact() {
           console.warn("Supabase background send failed:", err);
         });
       } else {
-        throw new Error(result.message || "Failed to deliver email via Web3Forms");
+        console.error('Web3Forms submission failed:', result.message || 'Unknown error');
+        setSubmitStatus('error');
       }
     } catch (error) {
       console.error('Error sending message via Web3Forms:', error);
-      // Fallback: If Web3Forms key is missing/invalid, transition to success since it's saved locally
-      setSubmitStatus('success');
-      setFormData({ name: "", email: "", message: "" });
+      setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
     }
