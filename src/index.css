@@ -5352,13 +5352,10 @@ html {
   width: 320px;
   height: 320px;
   border-radius: 9999px;
-  opacity: 0.22;
-  filter: blur(40px);
+  opacity: 0.35;
+  filter: blur(60px);
   mix-blend-mode: screen;
-  background:
-    radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--chart-2) 55%, transparent), transparent 55%),
-    radial-gradient(circle at 70% 65%, color-mix(in oklab, var(--chart-4) 55%, transparent), transparent 60%),
-    radial-gradient(circle at 40% 80%, color-mix(in oklab, var(--chart-1) 45%, transparent), transparent 65%);
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.18) 0%, rgba(37, 99, 235, 0) 70%);
   will-change: transform;
 }
 

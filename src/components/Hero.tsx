@@ -9,7 +9,7 @@ export function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-background via-background to-accent/5">
+    <section className="min-h-screen flex items-center justify-center relative bg-transparent">
       <div className="container px-6 text-center max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -17,8 +17,8 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <motion.h1
-            className="text-5xl md:text-7xl mb-4 bg-gradient-to-r from-foreground via-foreground to-chart-1 bg-clip-text text-transparent tracking-tight"
-            style={{ fontWeight: 800, lineHeight: 1.1 }}
+            className="text-5xl md:text-6xl lg:text-7xl mb-4 text-[#FAFAFA] tracking-tight font-semibold"
+            style={{ lineHeight: 1.1 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -27,8 +27,8 @@ export function Hero() {
           </motion.h1>
 
           <motion.h2
-            className="text-2xl md:text-5xl mb-8 text-muted-foreground tracking-tight"
-            style={{ fontWeight: 700, lineHeight: 1.15 }}
+            className="text-2xl md:text-3xl lg:text-4xl mb-8 text-[#A1A1AA] tracking-tight font-semibold"
+            style={{ lineHeight: 1.15 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
@@ -37,7 +37,7 @@ export function Hero() {
           </motion.h2>
 
           <motion.p
-            className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed text-center"
+            className="text-lg md:text-xl text-[#A1A1AA] mb-8 max-w-3xl mx-auto leading-relaxed text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -46,8 +46,8 @@ export function Hero() {
           </motion.p>
 
           <motion.div
-            className="text-base md:text-xl mb-10"
-            style={{ color: 'var(--foreground)', opacity: 0.8 }}
+            className="text-base md:text-xl mb-10 text-[#FAFAFA]"
+            style={{ opacity: 0.95 }}
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -72,7 +72,7 @@ export function Hero() {
           >
             <Button
               size="lg"
-              className="bg-gradient-to-r from-chart-1 to-chart-2 hover:from-chart-2 hover:to-chart-1 text-white border-0 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.03]"
+              className="bg-[#2563EB] hover:bg-gradient-to-r hover:from-[#2563EB] hover:to-[#3b82f6] text-[#FAFAFA] hover:shadow-[0_0_20px_rgba(37,99,235,0.45)] px-8 py-6 rounded-full transition-all duration-300 transform hover:scale-[1.03] border-0"
               onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
             >
               View My Work
@@ -80,7 +80,7 @@ export function Hero() {
             <Button
               variant="outline"
               size="lg"
-              className="border-2 border-chart-1/30 hover:border-chart-1 text-foreground hover:bg-chart-1/10 px-8 py-6 rounded-xl transition-all duration-300"
+              className="border-2 border-[#2563EB] text-[#2563EB] hover:bg-[#2563EB]/10 px-8 py-6 rounded-full transition-all duration-300"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Get In Touch

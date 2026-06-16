@@ -75,7 +75,7 @@ function ProjectModal({
 
 			{/* Modal content */}
 			<motion.div
-				className="relative w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl shadow-2xl flex flex-col border border-border/60 bg-card"
+				className="relative w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl shadow-2xl flex flex-col border border-[#262626] bg-[#111111]"
 				initial={{ scale: 0.95, opacity: 0, y: 20 }}
 				animate={{ scale: 1, opacity: 1, y: 0 }}
 				exit={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -101,13 +101,13 @@ function ProjectModal({
 						className="w-full h-48 sm:h-64 object-cover"
 						loading="lazy"
 					/>
-					<div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/35 to-transparent opacity-90" />
+					<div className="absolute inset-0 bg-[#111111]/50" />
 				</div>
 
 				{/* Content Body */}
 				<div className="px-6 pb-6 sm:px-8 sm:pb-8 -mt-6 sm:-mt-10 relative flex-grow flex flex-col z-10">
 					{/* Title */}
-					<h3 className="text-2xl sm:text-3xl font-bold mb-4 bg-gradient-to-r from-foreground to-chart-1 bg-clip-text text-transparent">
+					<h3 className="text-2xl sm:text-3xl font-bold mb-4 text-[#FAFAFA]">
 						{project.title}
 					</h3>
 
@@ -117,7 +117,7 @@ function ProjectModal({
 							<Badge
 								key={tag}
 								variant="secondary"
-								className="bg-chart-1/10 text-chart-1 border border-chart-1/20 px-3 py-1 text-sm rounded-md"
+								className="bg-[#161616] text-[#2563EB] border border-[#262626] px-3 py-1 text-sm rounded-md"
 							>
 								{tag}
 							</Badge>
@@ -125,14 +125,14 @@ function ProjectModal({
 					</div>
 
 					{/* Divider */}
-					<div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent mb-6" />
+					<div className="w-full h-px bg-[#262626] mb-6" />
 
 					{/* Description */}
 					<div className="mb-8">
 						<h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
 							About this project
 						</h4>
-						<p className="text-foreground/80 leading-relaxed text-base">
+						<p className="text-[#FAFAFA]/80 leading-relaxed text-base">
 							{project.description}
 						</p>
 					</div>
@@ -142,7 +142,7 @@ function ProjectModal({
 					{/* Action buttons */}
 					<div className="flex flex-col sm:flex-row gap-3">
 						<Button
-							className="flex-1 bg-gradient-to-r from-chart-1 to-chart-2 hover:from-chart-2 hover:to-chart-1 text-white border-0 rounded-xl py-6 shadow-lg hover:shadow-xl transition-all duration-300 text-base"
+							className="flex-1 bg-[#2563EB] hover:bg-gradient-to-r hover:from-[#2563EB] hover:to-[#3b82f6] text-[#FAFAFA] hover:shadow-[0_0_15px_rgba(37,99,235,0.4)] px-8 py-6 rounded-full transition-all duration-300 text-base border-0"
 							asChild
 						>
 							<a
@@ -156,7 +156,7 @@ function ProjectModal({
 						</Button>
 						<Button
 							variant="outline"
-							className="border-border hover:border-chart-1 hover:bg-chart-1/10 text-foreground rounded-xl py-6 px-6 transition-all duration-300"
+							className="border-[#262626] hover:border-[#2563EB] hover:bg-[#2563EB]/10 text-[#FAFAFA] rounded-full py-6 px-6 transition-all duration-300"
 							asChild
 						>
 							<a
@@ -170,9 +170,6 @@ function ProjectModal({
 						</Button>
 					</div>
 				</div>
-
-				{/* Bottom gradient accent line */}
-				<div className="h-1 w-full shrink-0 bg-gradient-to-r from-chart-1 to-chart-2" />
 			</motion.div>
 		</motion.div>,
 		document.body
@@ -191,7 +188,7 @@ function ProjectCard({
 }) {
 	return (
 		<div
-			className="group neon-border relative bg-card/50 backdrop-blur border border-border/50 rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-chart-1/10 hover:-translate-y-1.5 h-full flex flex-col cursor-pointer"
+			className="group relative bg-[#111111] border border-[#262626] hover:border-[#3b82f6]/40 hover:-translate-y-1 transition-all duration-300 rounded-2xl overflow-hidden h-full flex flex-col cursor-pointer shadow-lg hover:shadow-2xl"
 			onClick={onSelect}
 			role="button"
 			tabIndex={0}
@@ -209,12 +206,8 @@ function ProjectCard({
 				<img
 					src={project.image}
 					alt={project.title}
-					className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+					className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
 					loading="lazy"
-				/>
-				<div
-					className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-					style={{ pointerEvents: "none" }}
 				/>
 
 				{/* "More info" hint on hover */}
@@ -222,8 +215,8 @@ function ProjectCard({
 					className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0"
 					style={{ pointerEvents: "none" }}
 				>
-					<div className="flex items-center gap-1.5 bg-background/90 backdrop-blur-sm text-foreground text-xs font-medium px-3 py-1.5 rounded-full border border-border/50">
-						<Info className="w-3 h-3" />
+					<div className="flex items-center gap-1.5 bg-[#0A0A0A]/90 backdrop-blur-sm text-[#FAFAFA] text-xs font-medium px-3 py-1.5 rounded-full border border-[#262626]">
+						<Info className="w-3 h-3 text-[#2563EB]" />
 						Click for details
 					</div>
 				</div>
@@ -232,7 +225,7 @@ function ProjectCard({
 			{/* Card body */}
 			<div className="p-5 flex flex-col flex-grow">
 				{/* Title */}
-				<h3 className="text-lg font-semibold mb-3 group-hover:text-chart-1 transition-colors duration-300 line-clamp-1">
+				<h3 className="text-lg font-semibold mb-3 text-[#FAFAFA] group-hover:text-[#2563EB] transition-colors duration-300 line-clamp-1">
 					{project.title}
 				</h3>
 
@@ -242,7 +235,7 @@ function ProjectCard({
 						<Badge
 							key={tag}
 							variant="secondary"
-							className="bg-accent/50 text-accent-foreground group-hover:bg-chart-1/15 group-hover:text-chart-1 transition-colors duration-300 text-xs px-2.5 py-0.5"
+							className="bg-[#161616] text-[#A1A1AA] border border-[#262626] group-hover:border-[#A1A1AA]/30 transition-colors duration-300 text-xs px-2.5 py-0.5 rounded-md"
 						>
 							{tag}
 						</Badge>
@@ -255,7 +248,7 @@ function ProjectCard({
 				{/* View Project button */}
 				<Button
 					size="sm"
-					className="w-full bg-gradient-to-r from-chart-1 to-chart-2 hover:from-chart-2 hover:to-chart-1 text-white border-0 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+					className="w-full bg-[#2563EB] hover:bg-gradient-to-r hover:from-[#2563EB] hover:to-[#3b82f6] text-[#FAFAFA] hover:shadow-[0_0_15px_rgba(37,99,235,0.4)] transition-all duration-300 rounded-lg border-0"
 					asChild
 				>
 					<a
@@ -270,12 +263,6 @@ function ProjectCard({
 					</a>
 				</Button>
 			</div>
-
-			{/* Bottom accent line */}
-			<div
-				className="h-0.5 bg-gradient-to-r from-chart-1 to-chart-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-				style={{ pointerEvents: "none" }}
-			/>
 		</div>
 	);
 }
@@ -295,13 +282,13 @@ export function Projects() {
 	});
 
 	return (
-		<section id="projects" className="py-20 bg-gradient-to-b from-accent/5 to-background">
+		<section id="projects" className="py-20 bg-[#0D0D0D]">
 			<div className="container px-6 max-w-6xl mx-auto">
 				<ScrollReveal className="text-center mb-16">
-					<h2 className="text-4xl md:text-5xl mb-4 bg-gradient-to-r from-foreground to-chart-1 bg-clip-text text-transparent">
+					<h2 className="text-4xl md:text-5xl mb-4 text-[#FAFAFA] font-semibold tracking-tight">
 						Featured Projects
 					</h2>
-					<div className="w-24 h-1 bg-gradient-to-r from-chart-1 to-chart-2 mx-auto rounded-full" />
+					<div className="w-24 h-1 bg-[#2563EB] mx-auto rounded-full" />
 					<p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto">
 						Here are some of my recent projects that showcase my skills and passion for creating innovative
 						solutions.

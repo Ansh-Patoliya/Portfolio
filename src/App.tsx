@@ -5,13 +5,13 @@ import { Projects } from "./components/Projects";
 import { Skills } from "./components/Skills";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
-import { ParticleBackground } from "./components/ParticleBackground";
+import { FloatingLinesBackground } from "./components/effects/FloatingLinesBackground";
 import { CursorGlow } from "./components/effects/CursorGlow";
 
 export default function App() {
   return (
     <div className="min-h-screen bg-background text-foreground relative isolate">
-      <ParticleBackground />
+      <FloatingLinesBackground />
       <CursorGlow />
       <div className="relative z-10 pointer-events-auto">
         <Navigation />

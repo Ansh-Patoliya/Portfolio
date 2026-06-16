@@ -40,7 +40,7 @@ export function Navigation() {
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? "bg-background/80 backdrop-blur-lg border-b border-border/50 shadow-lg" 
+          ? "bg-background/80 backdrop-blur-lg border-b border-[#262626] shadow-lg" 
           : "bg-transparent"
       }`}
       initial={{ y: -100 }}
@@ -51,7 +51,7 @@ export function Navigation() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <motion.div
-            className="text-xl md:text-2xl bg-gradient-to-r from-chart-1 to-chart-2 bg-clip-text text-transparent cursor-pointer"
+            className="text-xl md:text-2xl text-[#FAFAFA] hover:text-[#2563EB] transition-colors cursor-pointer font-semibold"
             whileHover={{ scale: 1.05 }}
             onClick={() => scrollToSection("#hero")}
           >
@@ -63,42 +63,18 @@ export function Navigation() {
             {navItems.map((item) => (
               <motion.button
                 key={item.name}
-                className="text-foreground hover:text-chart-1 transition-colors relative group"
+                className="text-foreground hover:text-chart-1 transition-colors relative group font-medium"
                 onClick={() => scrollToSection(item.href)}
                 whileHover={{ scale: 1.05 }}
               >
                 {item.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-chart-1 to-chart-2 group-hover:w-full transition-all duration-300" />
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2563EB] group-hover:w-full transition-all duration-300" />
               </motion.button>
             ))}
-
-            {/* Theme Toggle Button for Desktop */}
-            <motion.div whileHover={{ scale: 1.05 }} className="ml-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleTheme}
-                className="rounded-full w-9 h-9 p-0 flex items-center justify-center"
-                aria-label="Toggle theme"
-              >
-                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </Button>
-            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
-            {/* Theme Toggle Button for Mobile */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleTheme}
-              className="rounded-full w-9 h-9 p-0 flex items-center justify-center"
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </Button>
-
             <Button
               variant="ghost"
               size="sm"
@@ -113,7 +89,7 @@ export function Navigation() {
         {/* Mobile Navigation */}
         {isOpen && (
           <motion.div
-            className="md:hidden bg-background/95 backdrop-blur-lg border-t border-border/50"
+            className="md:hidden bg-background/95 backdrop-blur-lg border-t border-border"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}

@@ -74,14 +74,14 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="py-20 bg-gradient-to-b from-background to-accent/5"
+      className="py-20 bg-[#0A0A0A]"
     >
       <div className="container px-6 max-w-6xl mx-auto">
         <ScrollReveal className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl mb-4 bg-gradient-to-r from-foreground to-chart-1 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl mb-4 text-[#FAFAFA] font-semibold tracking-tight">
             Skills & Expertise
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-chart-1 to-chart-2 mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-[#2563EB] mx-auto rounded-full" />
           <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto">
             Passionate about turning data into insights and building intelligent
             systems — here's my current toolkit.
@@ -92,10 +92,10 @@ export function Skills() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {skillCategories.map((category, categoryIndex) => (
             <ScrollReveal key={category.title} delay={categoryIndex * 0.06}>
-              <Card className="neon-border bg-card/50 backdrop-blur border-border/50 rounded-xl hover:shadow-lg transition-all duration-300 h-full">
+              <Card className="bg-[#111111] border border-[#262626] rounded-xl hover:shadow-lg hover:border-[#3b82f6]/40 hover:-translate-y-1 transition-all duration-300 h-full">
                 <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-3 text-xl">
-                    <div className="p-2 bg-gradient-to-r from-chart-1 to-chart-2 rounded-lg">
+                  <CardTitle className="flex items-center gap-3 text-xl text-[#FAFAFA]">
+                    <div className="p-2 bg-[#2563EB] rounded-lg">
                       <category.icon className="w-5 h-5 text-white" />
                     </div>
                     <div>
@@ -113,7 +113,7 @@ export function Skills() {
                     {category.skills.map((skill, skillIndex) => (
                       <motion.span
                         key={skill}
-                        className="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium bg-accent/60 text-foreground border border-border/40 hover:border-chart-1/50 hover:bg-chart-1/10 hover:text-chart-1 transition-all duration-300 cursor-default"
+                        className="inline-flex items-center px-4 py-2 bg-[#161616] text-[#FAFAFA] border border-[#262626] rounded-full text-sm font-medium hover:border-[#2563EB] hover:text-[#2563EB] transition-colors duration-300 cursor-default"
                         initial={{ opacity: 0, scale: 0.85 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{
@@ -135,15 +135,15 @@ export function Skills() {
 
         {/* Tools & Technologies */}
         <ScrollReveal>
-          <h3 className="text-2xl md:text-3xl text-center mb-8 text-foreground">
+          <h3 className="text-2xl md:text-3xl text-center mb-8 text-[#FAFAFA]">
             Tools & Technologies
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {tools.map((tool, index) => (
               <ScrollReveal key={tool.name} delay={index * 0.05}>
-                <Card className="neon-border text-center p-6 bg-card/30 backdrop-blur border-border/30 rounded-xl hover:shadow-lg hover:bg-card/50 transition-all duration-300">
+                <Card className="text-center p-6 bg-[#111111] border border-[#262626] rounded-xl hover:shadow-lg hover:border-[#3b82f6]/40 hover:-translate-y-1 transition-all duration-300">
                   <div className="flex flex-col items-center space-y-4">
-                    <div className="p-3 bg-gradient-to-r from-chart-1 to-chart-2 rounded-xl">
+                    <div className="p-3 bg-[#2563EB] rounded-xl">
                       <tool.icon className="w-6 h-6 text-white" />
                     </div>
                     <h4 className="text-lg text-foreground">{tool.name}</h4>
