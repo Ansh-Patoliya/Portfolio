@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useIsCoarsePointer, usePrefersReducedMotion } from "./usePrefersReducedMotion";
 
 type CursorGlowProps = {
@@ -8,8 +8,18 @@ type CursorGlowProps = {
 export function CursorGlow({ className }: CursorGlowProps) {
   const reduceMotion = usePrefersReducedMotion();
   const coarse = useIsCoarsePointer();
+  const [isDesktop, setIsDesktop] = useState(true);
 
-  const enabled = useMemo(() => !reduceMotion && !coarse, [reduceMotion, coarse]);
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
+  const enabled = useMemo(() => !reduceMotion && !coarse && isDesktop, [reduceMotion, coarse, isDesktop]);
 
   const ref = useRef<HTMLDivElement | null>(null);
   const raf = useRef<number | null>(null);

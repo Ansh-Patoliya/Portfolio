@@ -5,60 +5,57 @@ export function About() {
   const profilePhoto = new URL("../assets/photo.jpg", import.meta.url).href;
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-background to-accent/5">
+    <section id="about" className="py-20 bg-[#0A0A0A]">
       <div className="container px-6 max-w-6xl mx-auto">
         <ScrollReveal className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl mb-4 bg-gradient-to-r from-foreground to-chart-1 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl mb-4 text-[#FAFAFA] font-semibold tracking-tight">
             About Me
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-chart-1 to-chart-2 mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-[#2563EB] mx-auto rounded-full" />
         </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <ScrollReveal className="order-2 lg:order-1" delay={0.05}>
             <div className="space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Hi! I'm a 2nd-year Computer Engineering student with a passion for web development.
-                I enjoy designing and coding websites that bring ideas to life while growing my skills every day.
+                Hi! I'm a 2nd-year Computer Engineering student with a passion for data analytics and AI/ML.
+                I enjoy uncovering patterns in data, building insightful dashboards, and growing my skills in machine learning every day.
               </p>
 
               <p className="text-lg text-muted-foreground leading-relaxed">
-                When I'm not coding, you'll find me exploring new technologies, contributing to
-                open source projects, or hiking in the mountains. I believe in continuous learning
-                and staying current with the ever-evolving tech landscape.
+                When I'm not analyzing datasets, you'll find me exploring new technologies, learning
+                machine learning algorithms, or working on open source projects. I believe in continuous learning
+                and staying current with the ever-evolving data science landscape.
               </p>
 
               <div className="grid grid-cols-2 gap-6 pt-6">
                 <div className="space-y-2">
-                  <h4 className="text-chart-1">Location</h4>
+                  <h4 className="text-chart-1 font-medium">Location</h4>
                   <p className="text-muted-foreground">Ahmedabad ,Gujrat</p>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-chart-1">Experience</h4>
+                  <h4 className="text-chart-1 font-medium">Experience</h4>
                   <p className="text-muted-foreground">6+ Projects</p>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-chart-1">Availability</h4>
+                  <h4 className="text-chart-1 font-medium">Availability</h4>
                   <p className="text-muted-foreground">Open to opportunities</p>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-chart-1">Focus</h4>
-                  <p className="text-muted-foreground">Full-Stack Development</p>
+                  <h4 className="text-chart-1 font-medium">Focus</h4>
+                  <p className="text-muted-foreground">Data Analytics & AI/ML</p>
                 </div>
               </div>
             </div>
           </ScrollReveal>
 
           <ScrollReveal className="order-1 lg:order-2 flex justify-center" delay={0.12}>
-            <div className="relative group neon-border rounded-2xl">
-              <div className="absolute inset-0 bg-gradient-to-r from-chart-1 to-chart-2 rounded-2xl transform rotate-6 group-hover:rotate-12 transition-transform duration-300 opacity-75" />
-              <div className="relative bg-card rounded-2xl p-2 shadow-2xl overflow-hidden">
-                <img
-                  src={profilePhoto}
-                  alt="Profile"
-                  className="w-80 h-80 object-cover rounded-[20px] transform group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
+            <div className="relative bg-[#111111] border border-[#262626] hover:border-[#3b82f6]/40 hover:-translate-y-1 transition-all duration-300 rounded-2xl p-2 shadow-2xl overflow-hidden max-w-sm">
+              <img
+                src={profilePhoto}
+                alt="Profile"
+                className="w-80 h-80 object-cover rounded-[14px] transition-transform duration-500"
+              />
             </div>
           </ScrollReveal>
         </div>

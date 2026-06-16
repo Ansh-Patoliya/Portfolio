@@ -11,63 +11,15 @@ import { ScrollReveal } from "./effects/ScrollReveal";
 /* ------------------------------------------------------------------ */
 const projects = [
 	{
-		title: "CampusConnect",
-		createdAt: "2025-09-01",
+		title: "IPL Analytics Dashboard",
+		createdAt: "2026-06-01",
+		priority: 15,
 		description:
-			"CampusConnect is a modern, feature-rich campus event management system designed to streamline the organization and participation of campus activities. Built with JavaFX and PostgreSQL, it provides a robust platform for students, club members, and administrators to collaborate effectively.",
+			"An interactive Power BI dashboard analyzing IPL player and team performances using historical tournament data. Features include Most Runs Scored (top batsmen analysis), Most Wickets Taken (top bowlers analysis), player performance comparison, team-wise statistics, match results analysis, and interactive filters with KPI cards for dynamic data exploration.",
 		image:
-			"https://images.unsplash.com/photo-1675095904077-600d903942da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1bml2ZXJzaXR5JTIwY2FtcHVzJTIwbWFuYWdlbWVudCUyMHBsYXRmb3JtfGVufDF8fHx8MTc1NzMxNjQyNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-		tags: ["Java", "JavaFX", "PostgreSQL"],
-		githubUrl: "https://github.com/Ansh-Patoliya/CampusConnect",
-	},
-	{
-		title: "Stock Market Simulator",
-		createdAt: "2025-07-01",
-		description:
-			"A real-time stock trading simulator built with Java and JavaFX. It allows users to register, log in, add wallet balance, and simulate buying/selling of stocks with dynamic price updates using multithreading.",
-		image: "https://cdn.pixabay.com/photo/2021/08/08/15/06/stock-market-6531146_1280.jpg",
-		tags: ["Java", "JavaFX", "MySQL"],
-		githubUrl: "https://github.com/Ansh-Patoliya/Stock-Market-Simulator",
-	},
-	{
-		title: "Employee Management System",
-		createdAt: "2025-05-01",
-		description:
-			"The Employee Management System is a Java-based application designed to manage employee details, salaries, leave requests, and approvals efficiently. It includes role-based access for employees and managers, providing features such as profile management, salary details, leave applications, and manager approvals.",
-		image:
-			"https://www.sourcecodester.com/sites/default/files/images/oretnom23/employee-management-system-home-page.png",
-		tags: ["Java"],
-		githubUrl: "https://github.com/Ansh-Patoliya/Sem-1-Project-EmpoyeeManagement",
-	},
-	{
-		title: "Online Banking System",
-		createdAt: "2025-03-01",
-		description:
-			"The Online Banking System is a Java-based application that provides users with various banking services, including account management, loan management, fixed deposits, and transaction history. It enables users to register, log in, add wallet balance, and perform banking operations efficiently.",
-		image:
-			"https://as1.ftcdn.net/v2/jpg/04/87/53/72/1000_F_487537248_CR9mdE7w7aToWazXOYzbA0aRhqKi8Xp7.jpg",
-		tags: ["Java"],
-		githubUrl: "https://github.com/Ansh-Patoliya/sem-1-project-OnlineBankingSystem",
-	},
-	{
-		title: "Stocxsim",
-		createdAt: "2026-04-06",
-		priority: 10,
-		description:
-			"A full-stack paper trading simulator to practice stock trading with virtual money using live market data, real-time dashboards, and portfolio tracking.",
-		image: "https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=1400&q=80",
-		tags: ["Python", "Flask", "PostgreSQL", "Socket.IO"],
-		githubUrl: "https://github.com/Stocxsim/stocxsim",
-	},
-	{
-		title: "HackHub",
-		createdAt: "2026-04-06",
-		priority: 9,
-		description:
-			"A hackathon/team hub web app for managing teams, submissions, and QR-based flows—built with Flask and a relational database.",
-		image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80",
-		tags: ["Python", "Flask", "HTML/CSS", "JavaScript"],
-		githubUrl: "https://github.com/Tech-Wizards-1331/HackHub",
+			"https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1400&q=80",
+		tags: ["Power BI", "Data Analytics", "EDA", "SQL"],
+		githubUrl: "https://github.com/Ansh-Patoliya",
 	},
 ];
 
@@ -123,7 +75,7 @@ function ProjectModal({
 
 			{/* Modal content */}
 			<motion.div
-				className="relative w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl shadow-2xl flex flex-col border border-border/60 bg-card"
+				className="relative w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl shadow-2xl flex flex-col border border-[#262626] bg-[#111111]"
 				initial={{ scale: 0.95, opacity: 0, y: 20 }}
 				animate={{ scale: 1, opacity: 1, y: 0 }}
 				exit={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -149,13 +101,13 @@ function ProjectModal({
 						className="w-full h-48 sm:h-64 object-cover"
 						loading="lazy"
 					/>
-					<div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/35 to-transparent opacity-90" />
+					<div className="absolute inset-0 bg-[#111111]/50" />
 				</div>
 
 				{/* Content Body */}
 				<div className="px-6 pb-6 sm:px-8 sm:pb-8 -mt-6 sm:-mt-10 relative flex-grow flex flex-col z-10">
 					{/* Title */}
-					<h3 className="text-2xl sm:text-3xl font-bold mb-4 bg-gradient-to-r from-foreground to-chart-1 bg-clip-text text-transparent">
+					<h3 className="text-2xl sm:text-3xl font-bold mb-4 text-[#FAFAFA]">
 						{project.title}
 					</h3>
 
@@ -165,7 +117,7 @@ function ProjectModal({
 							<Badge
 								key={tag}
 								variant="secondary"
-								className="bg-chart-1/10 text-chart-1 border border-chart-1/20 px-3 py-1 text-sm rounded-md"
+								className="bg-[#161616] text-[#2563EB] border border-[#262626] px-3 py-1 text-sm rounded-md"
 							>
 								{tag}
 							</Badge>
@@ -173,14 +125,14 @@ function ProjectModal({
 					</div>
 
 					{/* Divider */}
-					<div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent mb-6" />
+					<div className="w-full h-px bg-[#262626] mb-6" />
 
 					{/* Description */}
 					<div className="mb-8">
 						<h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
 							About this project
 						</h4>
-						<p className="text-foreground/80 leading-relaxed text-base">
+						<p className="text-[#FAFAFA]/80 leading-relaxed text-base">
 							{project.description}
 						</p>
 					</div>
@@ -190,7 +142,7 @@ function ProjectModal({
 					{/* Action buttons */}
 					<div className="flex flex-col sm:flex-row gap-3">
 						<Button
-							className="flex-1 bg-gradient-to-r from-chart-1 to-chart-2 hover:from-chart-2 hover:to-chart-1 text-white border-0 rounded-xl py-6 shadow-lg hover:shadow-xl transition-all duration-300 text-base"
+							className="flex-1 bg-[#2563EB] hover:bg-gradient-to-r hover:from-[#2563EB] hover:to-[#3b82f6] text-[#FAFAFA] hover:shadow-[0_0_15px_rgba(37,99,235,0.4)] px-8 py-6 rounded-full transition-all duration-300 text-base border-0"
 							asChild
 						>
 							<a
@@ -204,7 +156,7 @@ function ProjectModal({
 						</Button>
 						<Button
 							variant="outline"
-							className="border-border hover:border-chart-1 hover:bg-chart-1/10 text-foreground rounded-xl py-6 px-6 transition-all duration-300"
+							className="border-[#262626] hover:border-[#2563EB] hover:bg-[#2563EB]/10 text-[#FAFAFA] rounded-full py-6 px-6 transition-all duration-300"
 							asChild
 						>
 							<a
@@ -218,9 +170,6 @@ function ProjectModal({
 						</Button>
 					</div>
 				</div>
-
-				{/* Bottom gradient accent line */}
-				<div className="h-1 w-full shrink-0 bg-gradient-to-r from-chart-1 to-chart-2" />
 			</motion.div>
 		</motion.div>,
 		document.body
@@ -239,7 +188,7 @@ function ProjectCard({
 }) {
 	return (
 		<div
-			className="group neon-border relative bg-card/50 backdrop-blur border border-border/50 rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-chart-1/10 hover:-translate-y-1.5 h-full flex flex-col cursor-pointer"
+			className="group relative bg-[#111111] border border-[#262626] hover:border-[#3b82f6]/40 hover:-translate-y-1 transition-all duration-300 rounded-2xl overflow-hidden h-full flex flex-col cursor-pointer shadow-lg hover:shadow-2xl"
 			onClick={onSelect}
 			role="button"
 			tabIndex={0}
@@ -257,12 +206,8 @@ function ProjectCard({
 				<img
 					src={project.image}
 					alt={project.title}
-					className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+					className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
 					loading="lazy"
-				/>
-				<div
-					className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-					style={{ pointerEvents: "none" }}
 				/>
 
 				{/* "More info" hint on hover */}
@@ -270,8 +215,8 @@ function ProjectCard({
 					className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0"
 					style={{ pointerEvents: "none" }}
 				>
-					<div className="flex items-center gap-1.5 bg-background/90 backdrop-blur-sm text-foreground text-xs font-medium px-3 py-1.5 rounded-full border border-border/50">
-						<Info className="w-3 h-3" />
+					<div className="flex items-center gap-1.5 bg-[#0A0A0A]/90 backdrop-blur-sm text-[#FAFAFA] text-xs font-medium px-3 py-1.5 rounded-full border border-[#262626]">
+						<Info className="w-3 h-3 text-[#2563EB]" />
 						Click for details
 					</div>
 				</div>
@@ -280,7 +225,7 @@ function ProjectCard({
 			{/* Card body */}
 			<div className="p-5 flex flex-col flex-grow">
 				{/* Title */}
-				<h3 className="text-lg font-semibold mb-3 group-hover:text-chart-1 transition-colors duration-300 line-clamp-1">
+				<h3 className="text-lg font-semibold mb-3 text-[#FAFAFA] group-hover:text-[#2563EB] transition-colors duration-300 line-clamp-1">
 					{project.title}
 				</h3>
 
@@ -290,7 +235,7 @@ function ProjectCard({
 						<Badge
 							key={tag}
 							variant="secondary"
-							className="bg-accent/50 text-accent-foreground group-hover:bg-chart-1/15 group-hover:text-chart-1 transition-colors duration-300 text-xs px-2.5 py-0.5"
+							className="bg-[#161616] text-[#A1A1AA] border border-[#262626] group-hover:border-[#A1A1AA]/30 transition-colors duration-300 text-xs px-2.5 py-0.5 rounded-md"
 						>
 							{tag}
 						</Badge>
@@ -303,7 +248,7 @@ function ProjectCard({
 				{/* View Project button */}
 				<Button
 					size="sm"
-					className="w-full bg-gradient-to-r from-chart-1 to-chart-2 hover:from-chart-2 hover:to-chart-1 text-white border-0 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+					className="w-full bg-[#2563EB] hover:bg-gradient-to-r hover:from-[#2563EB] hover:to-[#3b82f6] text-[#FAFAFA] hover:shadow-[0_0_15px_rgba(37,99,235,0.4)] transition-all duration-300 rounded-lg border-0"
 					asChild
 				>
 					<a
@@ -318,12 +263,6 @@ function ProjectCard({
 					</a>
 				</Button>
 			</div>
-
-			{/* Bottom accent line */}
-			<div
-				className="h-0.5 bg-gradient-to-r from-chart-1 to-chart-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-				style={{ pointerEvents: "none" }}
-			/>
 		</div>
 	);
 }
@@ -343,13 +282,13 @@ export function Projects() {
 	});
 
 	return (
-		<section id="projects" className="py-20 bg-gradient-to-b from-accent/5 to-background">
+		<section id="projects" className="py-20 bg-[#0D0D0D]">
 			<div className="container px-6 max-w-6xl mx-auto">
 				<ScrollReveal className="text-center mb-16">
-					<h2 className="text-4xl md:text-5xl mb-4 bg-gradient-to-r from-foreground to-chart-1 bg-clip-text text-transparent">
+					<h2 className="text-4xl md:text-5xl mb-4 text-[#FAFAFA] font-semibold tracking-tight">
 						Featured Projects
 					</h2>
-					<div className="w-24 h-1 bg-gradient-to-r from-chart-1 to-chart-2 mx-auto rounded-full" />
+					<div className="w-24 h-1 bg-[#2563EB] mx-auto rounded-full" />
 					<p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto">
 						Here are some of my recent projects that showcase my skills and passion for creating innovative
 						solutions.

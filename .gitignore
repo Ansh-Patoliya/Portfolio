@@ -116,7 +116,19 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.cursor/
+.claude/
+.code-review-graph/
+.kiro/
+.gemini/
+
+# Python Virtual Environments
+crg-env/
+venv/
+.venv/
+env/
 
 # Build output
 dist/
 build/
+
