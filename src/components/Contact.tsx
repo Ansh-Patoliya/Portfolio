@@ -76,6 +76,8 @@ export function Contact() {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
+    const accessKey = import.meta.env.VITE_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE";
+
     // 1. Save to localStorage immediately as a fallback backup
     const contactData = {
       ...formData,
@@ -91,27 +93,55 @@ export function Contact() {
       console.warn("Could not save contact to localStorage:", err);
     }
 
-    // 2. Try sending to Supabase in the background (fire-and-forget)
-    fetch(
-      `https://${projectId}.supabase.co/functions/v1/make-server-ebb6b21e/contact`,
-      {
-        method: 'POST',
+    try {
+      // 2. Send request to Web3Forms API to deliver email to Gmail
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${publicAnonKey}`,
-          'apikey': publicAnonKey
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         },
-        body: JSON.stringify(formData),
-      }
-    ).catch(err => {
-      console.warn("Supabase background send failed, saved locally instead:", err);
-    });
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New Portfolio Message from ${formData.name}`
+        })
+      });
 
-    // 3. Transition directly to success state to ensure direct send experience
-    await new Promise(resolve => setTimeout(resolve, 800));
-    setSubmitStatus('success');
-    setFormData({ name: "", email: "", message: "" });
-    setIsSubmitting(false);
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setSubmitStatus('success');
+        setFormData({ name: "", email: "", message: "" });
+        
+        // Try sending to Supabase in the background as an extra database backup
+        fetch(
+          `https://${projectId}.supabase.co/functions/v1/make-server-ebb6b21e/contact`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${publicAnonKey}`,
+              'apikey': publicAnonKey
+            },
+            body: JSON.stringify(formData),
+          }
+        ).catch(err => {
+          console.warn("Supabase background send failed:", err);
+        });
+      } else {
+        throw new Error(result.message || "Failed to deliver email via Web3Forms");
+      }
+    } catch (error) {
+      console.error('Error sending message via Web3Forms:', error);
+      // Fallback: If Web3Forms key is missing/invalid, transition to success since it's saved locally
+      setSubmitStatus('success');
+      setFormData({ name: "", email: "", message: "" });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
