@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { ScrollReveal } from "./effects/ScrollReveal";
+import { projectId, publicAnonKey } from "../utils/supabase/info";
 
 const contactInfo = [
   {
@@ -75,36 +76,37 @@ export function Contact() {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    // Simulate processing time for better UX
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
     try {
-      // Create a mailto link with pre-filled information
-      const subject = encodeURIComponent(`Portfolio Contact: ${formData.name}`);
-      const body = encodeURIComponent(
-        `Hi Ansh,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\nBest regards,\n${formData.name}`
+      const response = await fetch(
+        `https://${projectId}.supabase.co/functions/v1/make-server-ebb6b21e/contact`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${publicAnonKey}`,
+          },
+          body: JSON.stringify(formData),
+        }
       );
-      const mailtoLink = `mailto:anshpatoliya1408@gmail.com?subject=${subject}&body=${body}`;
 
-      // Store the contact in localStorage for potential future use
-      const contactData = {
-        ...formData,
-        timestamp: new Date().toISOString(),
-        id: Date.now().toString()
-      };
+      if (response.ok) {
+        // Store in localStorage for potential future use / fallback backup
+        const contactData = {
+          ...formData,
+          timestamp: new Date().toISOString(),
+          id: Date.now().toString()
+        };
 
-      const existingContacts = JSON.parse(localStorage.getItem('portfolio-contacts') || '[]');
-      existingContacts.push(contactData);
-      localStorage.setItem('portfolio-contacts', JSON.stringify(existingContacts));
+        const existingContacts = JSON.parse(localStorage.getItem('portfolio-contacts') || '[]');
+        existingContacts.push(contactData);
+        localStorage.setItem('portfolio-contacts', JSON.stringify(existingContacts));
 
-      // Open email client
-      window.open(mailtoLink, '_blank');
-      setEmailOpened(true);
-
-      setSubmitStatus('success');
-      setFormData({ name: "", email: "", message: "" });
-      console.log('Contact form processed successfully');
-
+        setSubmitStatus('success');
+        setFormData({ name: "", email: "", message: "" });
+        console.log('Contact form processed successfully');
+      } else {
+        throw new Error('Server responded with error status');
+      }
     } catch (error) {
       console.error('Error processing contact form:', error);
       setSubmitStatus('error');
