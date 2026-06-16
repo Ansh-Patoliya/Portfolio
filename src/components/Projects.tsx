@@ -11,63 +11,15 @@ import { ScrollReveal } from "./effects/ScrollReveal";
 /* ------------------------------------------------------------------ */
 const projects = [
 	{
-		title: "CampusConnect",
-		createdAt: "2025-09-01",
+		title: "IPL Analytics Dashboard",
+		createdAt: "2026-06-01",
+		priority: 15,
 		description:
-			"CampusConnect is a modern, feature-rich campus event management system designed to streamline the organization and participation of campus activities. Built with JavaFX and PostgreSQL, it provides a robust platform for students, club members, and administrators to collaborate effectively.",
+			"An interactive Power BI dashboard analyzing IPL player and team performances using historical tournament data. Features include Most Runs Scored (top batsmen analysis), Most Wickets Taken (top bowlers analysis), player performance comparison, team-wise statistics, match results analysis, and interactive filters with KPI cards for dynamic data exploration.",
 		image:
-			"https://images.unsplash.com/photo-1675095904077-600d903942da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1bml2ZXJzaXR5JTIwY2FtcHVzJTIwbWFuYWdlbWVudCUyMHBsYXRmb3JtfGVufDF8fHx8MTc1NzMxNjQyNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-		tags: ["Java", "JavaFX", "PostgreSQL"],
-		githubUrl: "https://github.com/Ansh-Patoliya/CampusConnect",
-	},
-	{
-		title: "Stock Market Simulator",
-		createdAt: "2025-07-01",
-		description:
-			"A real-time stock trading simulator built with Java and JavaFX. It allows users to register, log in, add wallet balance, and simulate buying/selling of stocks with dynamic price updates using multithreading.",
-		image: "https://cdn.pixabay.com/photo/2021/08/08/15/06/stock-market-6531146_1280.jpg",
-		tags: ["Java", "JavaFX", "MySQL"],
-		githubUrl: "https://github.com/Ansh-Patoliya/Stock-Market-Simulator",
-	},
-	{
-		title: "Employee Management System",
-		createdAt: "2025-05-01",
-		description:
-			"The Employee Management System is a Java-based application designed to manage employee details, salaries, leave requests, and approvals efficiently. It includes role-based access for employees and managers, providing features such as profile management, salary details, leave applications, and manager approvals.",
-		image:
-			"https://www.sourcecodester.com/sites/default/files/images/oretnom23/employee-management-system-home-page.png",
-		tags: ["Java"],
-		githubUrl: "https://github.com/Ansh-Patoliya/Sem-1-Project-EmpoyeeManagement",
-	},
-	{
-		title: "Online Banking System",
-		createdAt: "2025-03-01",
-		description:
-			"The Online Banking System is a Java-based application that provides users with various banking services, including account management, loan management, fixed deposits, and transaction history. It enables users to register, log in, add wallet balance, and perform banking operations efficiently.",
-		image:
-			"https://as1.ftcdn.net/v2/jpg/04/87/53/72/1000_F_487537248_CR9mdE7w7aToWazXOYzbA0aRhqKi8Xp7.jpg",
-		tags: ["Java"],
-		githubUrl: "https://github.com/Ansh-Patoliya/sem-1-project-OnlineBankingSystem",
-	},
-	{
-		title: "Stocxsim",
-		createdAt: "2026-04-06",
-		priority: 10,
-		description:
-			"A full-stack paper trading simulator to practice stock trading with virtual money using live market data, real-time dashboards, and portfolio tracking.",
-		image: "https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=1400&q=80",
-		tags: ["Python", "Flask", "PostgreSQL", "Socket.IO"],
-		githubUrl: "https://github.com/Stocxsim/stocxsim",
-	},
-	{
-		title: "HackHub",
-		createdAt: "2026-04-06",
-		priority: 9,
-		description:
-			"A hackathon/team hub web app for managing teams, submissions, and QR-based flows—built with Flask and a relational database.",
-		image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80",
-		tags: ["Python", "Flask", "HTML/CSS", "JavaScript"],
-		githubUrl: "https://github.com/Tech-Wizards-1331/HackHub",
+			"https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1400&q=80",
+		tags: ["Power BI", "Data Analytics", "EDA", "SQL"],
+		githubUrl: "https://github.com/Ansh-Patoliya",
 	},
 ];
 

@@ -18,14 +18,14 @@ export function About() {
           <ScrollReveal className="order-2 lg:order-1" delay={0.05}>
             <div className="space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Hi! I'm a 2nd-year Computer Engineering student with a passion for web development.
-                I enjoy designing and coding websites that bring ideas to life while growing my skills every day.
+                Hi! I'm a 2nd-year Computer Engineering student with a passion for data analytics and AI/ML.
+                I enjoy uncovering patterns in data, building insightful dashboards, and growing my skills in machine learning every day.
               </p>
 
               <p className="text-lg text-muted-foreground leading-relaxed">
-                When I'm not coding, you'll find me exploring new technologies, contributing to
-                open source projects, or hiking in the mountains. I believe in continuous learning
-                and staying current with the ever-evolving tech landscape.
+                When I'm not analyzing datasets, you'll find me exploring new technologies, learning
+                machine learning algorithms, or working on open source projects. I believe in continuous learning
+                and staying current with the ever-evolving data science landscape.
               </p>
 
               <div className="grid grid-cols-2 gap-6 pt-6">
@@ -43,7 +43,7 @@ export function About() {
                 </div>
                 <div className="space-y-2">
                   <h4 className="text-chart-1">Focus</h4>
-                  <p className="text-muted-foreground">Full-Stack Development</p>
+                  <p className="text-muted-foreground">Data Analytics & AI/ML</p>
                 </div>
               </div>
             </div>

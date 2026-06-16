@@ -17,33 +17,50 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <motion.h1
-            className="text-5xl md:text-7xl mb-6 bg-gradient-to-r from-foreground via-foreground to-chart-1 bg-clip-text text-transparent"
+            className="text-5xl md:text-7xl mb-4 bg-gradient-to-r from-foreground via-foreground to-chart-1 bg-clip-text text-transparent tracking-tight"
+            style={{ fontWeight: 800, lineHeight: 1.1 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Creative Developer
+            Data Analyst
           </motion.h1>
 
-          <motion.p
-            className="text-lg md:text-xl text-muted-foreground mb-4 max-w-2xl mx-auto leading-relaxed"
+          <motion.h2
+            className="text-2xl md:text-5xl mb-8 text-muted-foreground tracking-tight"
+            style={{ fontWeight: 700, lineHeight: 1.15 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.35 }}
           >
-            I love making websites that turn ideas into reality. Simple design, clean code, and a bit of creativity make each project special.
-          </motion.p>
+            Aspiring AI/ML Engineer
+          </motion.h2>
 
-          <motion.div
-            className="text-base md:text-lg text-foreground/80 mb-8"
-            initial={{ opacity: 0, y: 14 }}
+          <motion.p
+            className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed text-center"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
+            Transforming raw data into actionable insights through analytics, visualization, and data-driven problem solving while building expertise in Artificial Intelligence and Machine Learning.
+          </motion.p>
+
+          <motion.div
+            className="text-base md:text-xl mb-10"
+            style={{ color: 'var(--foreground)', opacity: 0.8 }}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
             <Typewriter
               prefix="I am a"
-              words={["Developer", "Designer", "Problem Solver"]}
-              className="tracking-tight"
+              words={[
+                "Data Analyst",
+                "Power BI Developer",
+                "SQL Enthusiast",
+                "Future AI/ML Engineer"
+              ]}
+              className="tracking-tight font-medium"
             />
           </motion.div>
 
@@ -51,7 +68,7 @@ export function Hero() {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
           >
             <Button
               size="lg"

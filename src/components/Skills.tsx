@@ -1,58 +1,81 @@
 import React from "react";
 import { motion } from "motion/react";
-import { Progress } from "./ui/progress";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import {
-  Code,
+  BarChart3,
+  BrainCircuit,
   Database,
-  Palette,
-  Server,
   Globe,
-  GitBranch
+  GitBranch,
+  LayoutDashboard,
+  Terminal,
 } from "lucide-react";
 import { ScrollReveal } from "./effects/ScrollReveal";
 
 const skillCategories = [
   {
-    title: "Frontend",
-    icon: Code,
+    title: "Data Analytics",
+    icon: BarChart3,
     skills: [
-      { name: "HTML", level: 78 },
-      { name: "CSS/Tailwind", level: 65 },
-      { name: "JavaScript", level: 80 },
-      { name: "Bootstrap", level: 57 }
-    ]
+      "Exploratory Data Analysis (EDA)",
+      "Microsoft Excel",
+      "Power BI",
+      "SQL",
+      "Data Cleaning & Wrangling",
+      "Statistical Analysis",
+    ],
   },
   {
-    title: "Backend",
-    icon: Server,
+    title: "AI & Machine Learning",
+    subtitle: "Learning & Building",
+    icon: BrainCircuit,
     skills: [
-      { name: "Java", level: 92 },
-      { name: "Python", level: 98 },
-      { name: "Flask", level: 79 },
-      { name: "Django", level: 46 }
-    ]
+      "Python (Pandas / NumPy)",
+      "Matplotlib / Seaborn",
+      "Scikit-learn",
+      "Data Preprocessing",
+      "ML Algorithms",
+      "TensorFlow / PyTorch (Basics)",
+    ],
   },
   {
-    title: "Database",
+    title: "Backend & Databases",
     icon: Database,
     skills: [
-      { name: "PostgreSQL", level: 88 },
-      { name: "MySql", level: 80 },
-      { name: "Supabase", level: 17 }
-    ]
-  }
+      "Java",
+      "Python",
+      "Flask",
+      "PostgreSQL",
+      "MySQL",
+    ],
+  },
 ];
 
 const tools = [
-  { name: "Design", icon: Palette, items: ["Figma", "Stitch"] },
-  { name: "Web", icon: Globe, items: ["Webpack", "Vite", "Vercel"] },
-  { name: "Version Control", icon: GitBranch, items: ["Git", "GitHub", "GitLab"] }
+  {
+    name: "Analytics",
+    icon: LayoutDashboard,
+    items: ["Power BI", "Jupyter Notebook", "Excel"],
+  },
+  { name: "Web", icon: Globe, items: ["Vite", "Vercel"] },
+  {
+    name: "Version Control",
+    icon: GitBranch,
+    items: ["Git", "GitHub", "GitLab"],
+  },
+  {
+    name: "Dev Environment",
+    icon: Terminal,
+    items: ["VS Code", "PyCharm", "Anaconda"],
+  },
 ];
 
 export function Skills() {
   return (
-    <section id="skills" className="py-20 bg-gradient-to-b from-background to-accent/5">
+    <section
+      id="skills"
+      className="py-20 bg-gradient-to-b from-background to-accent/5"
+    >
       <div className="container px-6 max-w-6xl mx-auto">
         <ScrollReveal className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl mb-4 bg-gradient-to-r from-foreground to-chart-1 bg-clip-text text-transparent">
@@ -60,46 +83,50 @@ export function Skills() {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-chart-1 to-chart-2 mx-auto rounded-full" />
           <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto">
-            I'm passionate about staying current with the latest technologies and continuously expanding my skill set.
+            Passionate about turning data into insights and building intelligent
+            systems — here's my current toolkit.
           </p>
         </ScrollReveal>
 
         {/* Technical Skills */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {skillCategories.map((category, categoryIndex) => (
-            <ScrollReveal
-              key={category.title}
-              delay={categoryIndex * 0.06}
-            >
-              <Card className="neon-border bg-card/50 backdrop-blur border-border/50 rounded-xl hover:shadow-lg transition-all duration-300">
+            <ScrollReveal key={category.title} delay={categoryIndex * 0.06}>
+              <Card className="neon-border bg-card/50 backdrop-blur border-border/50 rounded-xl hover:shadow-lg transition-all duration-300 h-full">
                 <CardHeader className="pb-4">
                   <CardTitle className="flex items-center gap-3 text-xl">
                     <div className="p-2 bg-gradient-to-r from-chart-1 to-chart-2 rounded-lg">
                       <category.icon className="w-5 h-5 text-white" />
                     </div>
-                    {category.title}
+                    <div>
+                      {category.title}
+                      {category.subtitle && (
+                        <span className="block text-xs text-muted-foreground font-normal mt-0.5">
+                          {category.subtitle}
+                        </span>
+                      )}
+                    </div>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div key={skill.name} className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-foreground">{skill.name}</span>
-                        <span className="text-sm text-muted-foreground">{skill.level}%</span>
-                      </div>
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: "100%" }}
-                        transition={{ duration: 1, delay: (categoryIndex * 0.08) + (skillIndex * 0.08) }}
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {category.skills.map((skill, skillIndex) => (
+                      <motion.span
+                        key={skill}
+                        className="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium bg-accent/60 text-foreground border border-border/40 hover:border-chart-1/50 hover:bg-chart-1/10 hover:text-chart-1 transition-all duration-300 cursor-default"
+                        initial={{ opacity: 0, scale: 0.85 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{
+                          duration: 0.4,
+                          delay:
+                            categoryIndex * 0.06 + skillIndex * 0.05,
+                        }}
                         viewport={{ once: true }}
                       >
-                        <Progress
-                          value={skill.level}
-                          className="h-2 bg-accent"
-                        />
-                      </motion.div>
-                    </div>
-                  ))}
+                        {skill}
+                      </motion.span>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             </ScrollReveal>
@@ -113,10 +140,7 @@ export function Skills() {
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {tools.map((tool, index) => (
-              <ScrollReveal
-                key={tool.name}
-                delay={index * 0.05}
-              >
+              <ScrollReveal key={tool.name} delay={index * 0.05}>
                 <Card className="neon-border text-center p-6 bg-card/30 backdrop-blur border-border/30 rounded-xl hover:shadow-lg hover:bg-card/50 transition-all duration-300">
                   <div className="flex flex-col items-center space-y-4">
                     <div className="p-3 bg-gradient-to-r from-chart-1 to-chart-2 rounded-xl">
@@ -125,7 +149,10 @@ export function Skills() {
                     <h4 className="text-lg text-foreground">{tool.name}</h4>
                     <div className="space-y-1">
                       {tool.items.map((item) => (
-                        <p key={item} className="text-sm text-muted-foreground">
+                        <p
+                          key={item}
+                          className="text-sm text-muted-foreground"
+                        >
                           {item}
                         </p>
                       ))}
