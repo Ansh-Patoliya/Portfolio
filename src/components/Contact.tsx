@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { ScrollReveal } from "./effects/ScrollReveal";
+import { projectId, publicAnonKey } from "../utils/supabase/info";
 
 const contactInfo = [
   {
@@ -74,39 +75,79 @@ export function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
-
-    // Simulate processing time for better UX
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const accessKey = import.meta.env.VITE_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE";
+    if (accessKey === "YOUR_ACCESS_KEY_HERE") {
+      console.warn('Web3Forms access key is not set. Please define VITE_WEB3FORMS_KEY in .env');
+    }
+    console.log('Web3Forms accessKey:', accessKey);
+    // Log request payload for debugging
+    console.log('Submitting payload:', {
+      access_key: accessKey,
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+      subject: `New Portfolio Message from ${formData.name}`,
+    });
+    const contactData = {
+      ...formData,
+      timestamp: new Date().toISOString(),
+      id: Date.now().toString(),
+    };
 
     try {
-      // Create a mailto link with pre-filled information
-      const subject = encodeURIComponent(`Portfolio Contact: ${formData.name}`);
-      const body = encodeURIComponent(
-        `Hi Ansh,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\nBest regards,\n${formData.name}`
-      );
-      const mailtoLink = `mailto:anshpatoliya1408@gmail.com?subject=${subject}&body=${body}`;
-
-      // Store the contact in localStorage for potential future use
-      const contactData = {
-        ...formData,
-        timestamp: new Date().toISOString(),
-        id: Date.now().toString()
-      };
-
       const existingContacts = JSON.parse(localStorage.getItem('portfolio-contacts') || '[]');
       existingContacts.push(contactData);
       localStorage.setItem('portfolio-contacts', JSON.stringify(existingContacts));
+    } catch (err) {
+      console.warn("Could not save contact to localStorage:", err);
+    }
 
-      // Open email client
-      window.open(mailtoLink, '_blank');
-      setEmailOpened(true);
+    try {
+      // 2. Send request to Web3Forms API to deliver email to Gmail
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New Portfolio Message from ${formData.name}`
+        })
+      });
 
-      setSubmitStatus('success');
-      setFormData({ name: "", email: "", message: "" });
-      console.log('Contact form processed successfully');
+      console.log('Web3Forms response status:', response.status);
+      const result = await response.json();
+      console.log('Web3Forms result:', result);
 
+      if (response.ok && result.success) {
+        setSubmitStatus('success');
+        setFormData({ name: "", email: "", message: "" });
+        
+        // Try sending to Supabase in the background as an extra database backup
+        fetch(
+          `https://${projectId}.supabase.co/functions/v1/make-server-ebb6b21e/contact`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${publicAnonKey}`,
+              'apikey': publicAnonKey
+            },
+            body: JSON.stringify(formData),
+          }
+        ).catch(err => {
+          console.warn("Supabase background send failed:", err);
+        });
+      } else {
+        console.error('Web3Forms submission failed:', result.message || 'Unknown error');
+        setSubmitStatus('error');
+      }
     } catch (error) {
-      console.error('Error processing contact form:', error);
+      console.error('Error sending message via Web3Forms:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
