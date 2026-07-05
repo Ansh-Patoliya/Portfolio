@@ -71,6 +71,14 @@ export function Navigation() {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2563EB] group-hover:w-full transition-all duration-300" />
               </motion.button>
             ))}
+            <Button
+              className="nav-resume-btn cursor-pointer"
+              asChild
+            >
+              <a href="/Ansh_Patoliya_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                Resume
+              </a>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -95,17 +103,27 @@ export function Navigation() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="py-4 space-y-2">
-              {navItems.map((item) => (
-                <motion.button
-                  key={item.name}
-                  className="block w-full text-left px-4 py-3 text-foreground hover:text-chart-1 hover:bg-accent/50 transition-colors rounded-lg"
-                  onClick={() => scrollToSection(item.href)}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {item.name}
-                </motion.button>
-              ))}
+            <div className="py-4 space-y-4 px-4">
+              <div className="space-y-2">
+                {navItems.map((item) => (
+                  <motion.button
+                    key={item.name}
+                    className="block w-full text-left py-3 text-foreground hover:text-chart-1 hover:bg-accent/50 transition-colors rounded-lg"
+                    onClick={() => scrollToSection(item.href)}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {item.name}
+                  </motion.button>
+                ))}
+              </div>
+              <Button
+                className="nav-resume-btn-mobile cursor-pointer"
+                asChild
+              >
+                <a href="/Ansh_Patoliya_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                  Resume
+                </a>
+              </Button>
             </div>
           </motion.div>
         )}
