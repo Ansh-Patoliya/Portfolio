@@ -71,16 +71,21 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.7 }}
           >
             <Button
-              size="lg"
-              className="bg-[#2563EB] hover:bg-gradient-to-r hover:from-[#2563EB] hover:to-[#3b82f6] text-[#FAFAFA] hover:shadow-[0_0_20px_rgba(37,99,235,0.45)] px-8 py-6 rounded-full transition-all duration-300 transform hover:scale-[1.03] border-0"
+              className="hero-btn-primary cursor-pointer"
               onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
             >
               View My Work
             </Button>
             <Button
-              variant="outline"
-              size="lg"
-              className="border-2 border-[#2563EB] text-[#2563EB] hover:bg-[#2563EB]/10 px-8 py-6 rounded-full transition-all duration-300"
+              className="hero-btn-secondary cursor-pointer"
+              asChild
+            >
+              <a href="/Ansh_Patoliya_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                Resume
+              </a>
+            </Button>
+            <Button
+              className="hero-btn-tertiary cursor-pointer"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Get In Touch

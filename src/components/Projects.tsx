@@ -15,15 +15,46 @@ const projects = [
 		createdAt: "2026-06-01",
 		priority: 15,
 		description:
-			"An interactive Power BI dashboard analyzing IPL player and team performances using historical tournament data. Features include Most Runs Scored (top batsmen analysis), Most Wickets Taken (top bowlers analysis), player performance comparison, team-wise statistics, match results analysis, and interactive filters with KPI cards for dynamic data exploration.",
+			"An interactive and dynamic **Power BI Dashboard** that provides comprehensive insights into Indian Premier League (IPL) matches, team performances, and player statistics across multiple seasons.\n\n" +
+			"This dashboard is designed to analyze IPL historical data to help cricket enthusiasts, analysts, and franchise managers gain deep insights into match trends, player profiles, and team statistics.\n\n" +
+			"The dashboard leverages **Power Query** for data transformation, **DAX (Data Analysis Expressions)** for advanced calculations/measures, and modern **Power BI visuals** for interactive storytelling.",
 		image:
 			"https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1400&q=80",
 		tags: ["Power BI", "Data Analytics", "EDA", "SQL"],
-		githubUrl: "https://github.com/Ansh-Patoliya",
+		githubUrl: "https://github.com/Ansh-Patoliya/IPL-Dashboard",
+	},
+	{
+		title: "Stock Market Analytics Dashboard",
+		createdAt: "2026-06-15",
+		priority: 16,
+		description:
+			"The **Stock Market Analytics Dashboard** is a comprehensive, interactive Power BI suite designed to analyze stock market behavior. Utilizing **5-minute OHLCV (Open, High, Low, Close, Volume)** historical data, it computes and visualizes trend metrics, momentum indicators, volatility indices, and key candlestick statistical behaviors to empower traders and analysts with actionable market insights.\n\n" +
+			"Key Objectives:\n" +
+			"* **Price Analysis**: Track intraday trend cycles and micro-movements.\n" +
+			"* **Trend Detection**: Highlight market directions using multi-interval Moving Averages and Cross-over markers.\n" +
+			"* **Momentum Monitoring**: Gauge oversold and overbought conditions.\n" +
+			"* **Volatility Analysis**: Quantify risk parameters using price deviations.\n" +
+			"* **Candlestick Statistics**: Measure structural candle configurations (wicks, body proportions).\n" +
+			"* **Interactive Design**: Deliver a modern dashboard optimized for performance.",
+		image:
+			"https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1400&q=80",
+		tags: ["Power BI", "Python", "Data Analytics", "Finance", "SQL"],
+		githubUrl: "https://github.com/Ansh-Patoliya/Stock-Market-Analytics-Dashboard",
 	},
 ];
 
 type Project = (typeof projects)[number];
+
+/* Helper to parse bold markdown tags (**text**) into <strong> components */
+function formatBoldText(text: string) {
+	const parts = text.split(/\*\*([^*]+)\*\*/g);
+	return parts.map((part, i) => {
+		if (i % 2 === 1) {
+			return <strong key={i} className="font-semibold text-[#FAFAFA]">{part}</strong>;
+		}
+		return part;
+	});
+}
 
 /* ------------------------------------------------------------------ */
 /*  Project Detail Modal                                               */
@@ -75,7 +106,8 @@ function ProjectModal({
 
 			{/* Modal content */}
 			<motion.div
-				className="relative w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl shadow-2xl flex flex-col border border-[#262626] bg-[#111111]"
+				className="relative w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col border border-[#262626] live-blue-glow"
+				style={{ maxHeight: "85vh", backgroundColor: "#111111" }}
 				initial={{ scale: 0.95, opacity: 0, y: 20 }}
 				animate={{ scale: 1, opacity: 1, y: 0 }}
 				exit={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -87,87 +119,110 @@ function ProjectModal({
 				{/* Close button */}
 				<button
 					onClick={onClose}
-					className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:bg-black/60 transition-all duration-200 cursor-pointer"
+					className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:bg-black/80 transition-all duration-200 cursor-pointer"
 					aria-label="Close modal"
 				>
 					<X className="w-5 h-5" />
 				</button>
 
-				{/* Image Header */}
-				<div className="relative shrink-0 w-full overflow-hidden">
-					<img
-						src={project.image}
-						alt={project.title}
-						className="w-full h-48 sm:h-64 object-cover"
-						loading="lazy"
-					/>
-					<div className="absolute inset-0 bg-[#111111]/50" />
-				</div>
-
-				{/* Content Body */}
-				<div className="px-6 pb-6 sm:px-8 sm:pb-8 -mt-6 sm:-mt-10 relative flex-grow flex flex-col z-10">
-					{/* Title */}
-					<h3 className="text-2xl sm:text-3xl font-bold mb-4 text-[#FAFAFA]">
-						{project.title}
-					</h3>
-
-					{/* Tech stack */}
-					<div className="flex flex-wrap gap-2 mb-6">
-						{project.tags.map((tag) => (
-							<Badge
-								key={tag}
-								variant="secondary"
-								className="bg-[#161616] text-[#2563EB] border border-[#262626] px-3 py-1 text-sm rounded-md"
-							>
-								{tag}
-							</Badge>
-						))}
+				{/* Scrollable Container */}
+				<div className="w-full overflow-y-auto flex-grow rounded-2xl">
+					{/* Image Header */}
+					<div className="relative shrink-0 w-full overflow-hidden">
+						<img
+							src={project.image}
+							alt={project.title}
+							className="w-full h-48 sm:h-64 object-cover"
+							loading="lazy"
+						/>
+						<div className="absolute inset-0 bg-[#111111]/40" />
 					</div>
 
-					{/* Divider */}
-					<div className="w-full h-px bg-[#262626] mb-6" />
+					{/* Content Body */}
+					<div className="px-6 pt-6 pb-6 sm:px-8 sm:pt-8 sm:pb-8 relative z-10">
+						{/* Title */}
+						<h3 className="text-2xl sm:text-3xl font-bold mb-4 text-[#FAFAFA]">
+							{project.title}
+						</h3>
 
-					{/* Description */}
-					<div className="mb-8">
-						<h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-							About this project
-						</h4>
-						<p className="text-[#FAFAFA]/80 leading-relaxed text-base">
-							{project.description}
-						</p>
-					</div>
+						{/* Tech stack */}
+						<div className="flex flex-wrap gap-2 mb-6">
+							{project.tags.map((tag) => (
+								<Badge
+									key={tag}
+									variant="secondary"
+									className="bg-[#161616] text-[#2563EB] border border-[#262626] px-3 py-1 text-sm rounded-md"
+								>
+									{tag}
+								</Badge>
+							))}
+						</div>
 
-					<div className="mt-auto pt-2" />
+						{/* Divider */}
+						<div className="w-full h-px bg-[#262626] mb-6" />
 
-					{/* Action buttons */}
-					<div className="flex flex-col sm:flex-row gap-3">
-						<Button
-							className="flex-1 bg-[#2563EB] hover:bg-gradient-to-r hover:from-[#2563EB] hover:to-[#3b82f6] text-[#FAFAFA] hover:shadow-[0_0_15px_rgba(37,99,235,0.4)] px-8 py-6 rounded-full transition-all duration-300 text-base border-0"
-							asChild
-						>
-							<a
-								href={project.githubUrl}
-								target="_blank"
-								rel="noopener noreferrer"
+						{/* Description */}
+						<div className="mb-8">
+							<h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+								About this project
+							</h4>
+							<div className="text-[#FAFAFA]/80 leading-relaxed text-base space-y-3">
+								{project.description.split("\n").map((line, idx) => {
+									const trimmed = line.trim();
+									if (trimmed.startsWith("*") || trimmed.startsWith("-")) {
+										return (
+											<div key={idx} className="flex items-start gap-2 pl-4">
+												<span className="text-[#2563EB] mt-1.5">•</span>
+												<span>{formatBoldText(trimmed.substring(1).trim())}</span>
+											</div>
+										);
+									}
+									if (trimmed === "") {
+										return <div key={idx} className="h-2" />;
+									}
+									return (
+										<p key={idx}>
+											{formatBoldText(trimmed)}
+										</p>
+									);
+								})}
+							</div>
+						</div>
+
+						{/* Divider before buttons */}
+						<div className="w-full h-px bg-[#262626] mb-6" />
+
+						{/* Action buttons */}
+						<div className="flex flex-col sm:flex-row gap-3">
+							<Button
+								className="modal-btn-primary flex-grow cursor-pointer"
+								asChild
 							>
-								<ExternalLink className="w-5 h-5 mr-2" />
-								View Project
-							</a>
-						</Button>
-						<Button
-							variant="outline"
-							className="border-[#262626] hover:border-[#2563EB] hover:bg-[#2563EB]/10 text-[#FAFAFA] rounded-full py-6 px-6 transition-all duration-300"
-							asChild
-						>
-							<a
-								href={project.githubUrl}
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label={`View ${project.title} on GitHub`}
+								<a
+									href={project.githubUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<ExternalLink className="w-5 h-5 mr-2" />
+									View Project
+								</a>
+							</Button>
+							<Button
+								className="modal-btn-secondary cursor-pointer"
+								asChild
 							>
-								<Github className="w-5 h-5" />
-							</a>
-						</Button>
+								<a
+									href={project.githubUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={`View ${project.title} on GitHub`}
+								>
+									<Github className="w-5 h-5" />
+								</a>
+							</Button>
+						</div>
+						{/* Spacer to prevent browser scroll padding cutoffs */}
+						<div className="h-6" />
 					</div>
 				</div>
 			</motion.div>
@@ -188,7 +243,7 @@ function ProjectCard({
 }) {
 	return (
 		<div
-			className="group relative bg-[#111111] border border-[#262626] hover:border-[#3b82f6]/40 hover:-translate-y-1 transition-all duration-300 rounded-2xl overflow-hidden h-full flex flex-col cursor-pointer shadow-lg hover:shadow-2xl"
+			className="group relative live-blue-glow-card overflow-hidden h-full flex flex-col cursor-pointer rounded-2xl"
 			onClick={onSelect}
 			role="button"
 			tabIndex={0}

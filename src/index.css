@@ -85,6 +85,44 @@
 
   :root,
   :host {
+    --font-size: 16px;
+    --background: #0A0A0A;
+    --foreground: #FAFAFA;
+    --card: #111111;
+    --card-foreground: #FAFAFA;
+    --popover: #111111;
+    --popover-foreground: #FAFAFA;
+    --primary: #2563EB;
+    --primary-foreground: #FAFAFA;
+    --secondary: #111111;
+    --secondary-foreground: #FAFAFA;
+    --muted: #111111;
+    --muted-foreground: #A1A1AA;
+    --accent: #161616;
+    --accent-foreground: #2563EB;
+    --destructive: oklch(0.396 0.141 25.723);
+    --destructive-foreground: #ffffff;
+    --border: #262626;
+    --input: transparent;
+    --input-background: #161616;
+    --switch-background: #262626;
+    --font-weight-medium: 500;
+    --font-weight-normal: 400;
+    --ring: #2563EB;
+    --chart-1: #2563EB;
+    --chart-2: #3b82f6;
+    --chart-3: #a1a1aa;
+    --chart-4: #fafafa;
+    --chart-5: #111111;
+    --radius: 0.625rem;
+    --sidebar: #0A0A0A;
+    --sidebar-foreground: #FAFAFA;
+    --sidebar-primary: #2563EB;
+    --sidebar-primary-foreground: #FAFAFA;
+    --sidebar-accent: #161616;
+    --sidebar-accent-foreground: #FAFAFA;
+    --sidebar-border: #262626;
+    --sidebar-ring: #2563EB;
     --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --color-red-400: oklch(.704 .191 22.216);
@@ -5425,4 +5463,211 @@ html {
   100% {
     background-position: 0% 50%;
   }
+}
+
+/* Custom premium buttons styling */
+.hero-btn-primary {
+  background-color: #2563EB !important;
+  color: #FAFAFA !important;
+  padding: 14px 32px !important;
+  border-radius: 9999px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border: none !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4) !important;
+  height: 48px !important;
+}
+.hero-btn-primary:hover {
+  background-color: #1d4ed8 !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5) !important;
+}
+.hero-btn-primary:active {
+  transform: translateY(0) scale(1);
+}
+
+.hero-btn-secondary {
+  background-color: transparent !important;
+  color: #2563EB !important;
+  border: 2px solid #2563EB !important;
+  padding: 14px 32px !important;
+  border-radius: 9999px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 48px !important;
+}
+.hero-btn-secondary:hover {
+  background-color: rgba(37, 99, 235, 0.1) !important;
+  transform: translateY(-2px) scale(1.02);
+}
+.hero-btn-secondary:active {
+  transform: translateY(0) scale(1);
+}
+
+.hero-btn-tertiary {
+  background-color: transparent !important;
+  color: #A1A1AA !important;
+  border: 2px solid #27272a !important;
+  padding: 14px 32px !important;
+  border-radius: 9999px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 48px !important;
+}
+.hero-btn-tertiary:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #FAFAFA !important;
+  border-color: #52525b !important;
+  transform: translateY(-2px) scale(1.02);
+}
+.hero-btn-tertiary:active {
+  transform: translateY(0) scale(1);
+}
+
+.nav-resume-btn {
+  background-color: transparent !important;
+  color: #2563EB !important;
+  border: 2px solid #2563EB !important;
+  padding: 0 16px !important;
+  border-radius: 9999px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 36px !important;
+}
+.nav-resume-btn:hover {
+  background-color: rgba(37, 99, 235, 0.1) !important;
+  transform: scale(1.03);
+}
+
+.nav-resume-btn-mobile {
+  background-color: transparent !important;
+  color: #2563EB !important;
+  border: 2px solid #2563EB !important;
+  padding: 0 24px !important;
+  border-radius: 8px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 48px !important;
+}
+.nav-resume-btn-mobile:hover {
+  background-color: rgba(37, 99, 235, 0.1) !important;
+}
+
+/* Custom Modal Buttons */
+.modal-btn-primary {
+  background-color: #2563EB !important;
+  color: #FAFAFA !important;
+  padding: 0 24px !important;
+  border-radius: 9999px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border: none !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 48px !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35) !important;
+}
+.modal-btn-primary:hover {
+  background-color: #1d4ed8 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.45) !important;
+}
+
+.modal-btn-secondary {
+  background-color: transparent !important;
+  color: #FAFAFA !important;
+  border: 2px solid #27272a !important;
+  padding: 0 !important;
+  border-radius: 9999px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 48px !important;
+  width: 48px !important;
+}
+.modal-btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: #52525b !important;
+}
+
+/* Live Pulsing Blue Glow Border Effect */
+.live-blue-glow {
+  position: relative;
+  border: 1px solid rgba(37, 99, 235, 0.5) !important;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.25) !important;
+  animation: live-glow-pulse 3s infinite alternate ease-in-out !important;
+}
+
+@keyframes live-glow-pulse {
+  0% {
+    border-color: rgba(37, 99, 235, 0.4) !important;
+    box-shadow: 0 0 8px rgba(37, 99, 235, 0.2) !important;
+  }
+  100% {
+    border-color: rgba(59, 130, 246, 0.8) !important;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.55), inset 0 0 10px rgba(37, 99, 235, 0.15) !important;
+  }
+}
+
+/* Page Glowing Frame */
+.page-glow-frame {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border: 1px solid rgba(37, 99, 235, 0.35);
+  box-shadow: inset 0 0 15px rgba(37, 99, 235, 0.2), 0 0 15px rgba(37, 99, 235, 0.2);
+  margin: 12px; /* Margin from screen edge for a floating frame look */
+  border-radius: 16px;
+  animation: page-glow-pulse 4s infinite alternate ease-in-out;
+}
+
+@keyframes page-glow-pulse {
+  0% {
+    border-color: rgba(37, 99, 235, 0.25);
+    box-shadow: inset 0 0 10px rgba(37, 99, 235, 0.15), 0 0 10px rgba(37, 99, 235, 0.15);
+  }
+  100% {
+    border-color: rgba(59, 130, 246, 0.65);
+    box-shadow: inset 0 0 25px rgba(37, 99, 235, 0.35), 0 0 25px rgba(37, 99, 235, 0.35);
+  }
+}
+
+/* Live Pulsing Blue Glow Card Effect */
+.live-blue-glow-card {
+  position: relative;
+  background-color: #111111 !important;
+  border: 1px solid rgba(37, 99, 235, 0.3) !important;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.05) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.live-blue-glow-card:hover {
+  border-color: rgba(37, 99, 235, 0.8) !important;
+  box-shadow: 0 0 25px rgba(37, 99, 235, 0.4), inset 0 0 10px rgba(37, 99, 235, 0.15) !important;
+  transform: translateY(-4px) !important;
 }

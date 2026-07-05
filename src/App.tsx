@@ -11,6 +11,7 @@ import { CursorGlow } from "./components/effects/CursorGlow";
 export default function App() {
   return (
     <div className="min-h-screen bg-background text-foreground relative isolate">
+      <div className="page-glow-frame" />
       <FloatingLinesBackground />
       <CursorGlow />
       <div className="relative z-10 pointer-events-auto">
