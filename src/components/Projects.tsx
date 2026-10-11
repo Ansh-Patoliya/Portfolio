@@ -191,7 +191,7 @@ function ProjectModal({
 								href={project.githubUrl}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="editorial-pill-btn flex-1 text-center justify-center bg-[#F4EFE4] !text-[#14130F] hover:!bg-[#1F5C45] hover:!text-[#F4EFE4]"
+								className="editorial-pill-btn editorial-pill-btn--light flex-1 text-center justify-center"
 							>
 								<ExternalLink className="w-4 h-4 mr-2" />
 								View Project
@@ -273,7 +273,7 @@ export function Projects() {
 								{/* Left: Text Panel (High contrast, clean hierarchy) */}
 								<div className="flex flex-col gap-5 relative z-10">
 									<div className="flex items-center gap-2">
-										<span className="font-mono text-xs uppercase tracking-[0.12em] text-[#1F5C45] bg-[#1F5C45]/15 px-3 py-1 rounded-full border border-[#1F5C45]/30">
+										<span className="font-mono text-xs uppercase tracking-[0.12em] text-[#F4EFE4] bg-[#1F5C45] px-3 py-1 rounded-full border border-[#1F5C45]">
 											Featured Work (01)
 										</span>
 									</div>
@@ -302,7 +302,7 @@ export function Projects() {
 									<div className="pt-3 flex flex-wrap items-center gap-4">
 										<button
 											type="button"
-											className="editorial-pill-btn bg-[#F4EFE4] !text-[#14130F] hover:!bg-[#1F5C45] hover:!text-[#F4EFE4] text-xs py-2.5 px-6"
+											className="editorial-pill-btn editorial-pill-btn--light cursor-pointer"
 											onClick={(e) => {
 												e.stopPropagation();
 												setSelectedProject(featuredProject);

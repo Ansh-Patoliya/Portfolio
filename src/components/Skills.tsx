@@ -119,16 +119,16 @@ export function Skills() {
                 <div>
                   <div className="flex flex-wrap items-center">
                     {category.skills.map((skill, sIdx) => (
-                      <React.Fragment key={skill}>
+                      <span key={skill} className="inline-flex items-center whitespace-nowrap">
                         <span className="font-serif text-2xl sm:text-3xl text-[#14130F] hover:text-[#1F5C45] transition-colors duration-200">
                           {skill}
                         </span>
                         {sIdx < category.skills.length - 1 && (
-                          <span className="skill-dot">
+                          <span className="skill-dot" aria-hidden="true">
                             ·
                           </span>
                         )}
-                      </React.Fragment>
+                      </span>
                     ))}
                   </div>
                 </div>

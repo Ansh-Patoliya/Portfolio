@@ -5437,6 +5437,21 @@ html {
   color: #F4EFE4 !important;
 }
 
+/* Light pill for use on dark surfaces (featured card, project modal) */
+.editorial-pill-btn--light {
+  background-color: #F4EFE4 !important;
+  color: #14130F !important;
+  border-color: #F4EFE4 !important;
+  padding: 11px 24px !important;
+  font-size: 0.875rem !important;
+}
+
+.editorial-pill-btn--light:hover {
+  background-color: #1F5C45 !important;
+  border-color: #1F5C45 !important;
+  color: #F4EFE4 !important;
+}
+
 /* Editorial Text Link */
 .editorial-text-link {
   font-family: 'Instrument Sans', sans-serif;

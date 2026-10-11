@@ -1,0 +1,17 @@
+/*
+ * Live Tailwind utilities.
+ *
+ * `index.css` is a pre-compiled Tailwind snapshot, so any utility class added to a
+ * component after that snapshot (gap-5, mb-20, py-2.5, line-clamp-3, bg-[#F4EFE4],
+ * md:flex-row ...) had no CSS and silently did nothing. This file generates utilities for
+ * every class found in the source so new classes always work.
+ *
+ * It must be imported AFTER index.css: responsive variants (md:flex-row) have to come
+ * later in the cascade than the base utilities (.flex-col) or they never apply.
+ * Unlayered custom rules in index.css (.editorial-*, .hero-*, ...) still beat these.
+ */
+@import "tailwindcss/theme.css" theme(reference);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+
+@source "./**/*.{ts,tsx}";
+@source "../index.html";
