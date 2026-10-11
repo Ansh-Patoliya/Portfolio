@@ -1,6 +1,4 @@
 import React from "react";
-import { motion } from "motion/react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import {
   BarChart3,
   BrainCircuit,
@@ -10,8 +8,10 @@ import {
   LayoutDashboard,
   Terminal,
 } from "lucide-react";
-import { ScrollReveal } from "./effects/ScrollReveal";
 
+/* ------------------------------------------------------------------ */
+/*  Skill Categories & Tools Data (verbatim)                          */
+/* ------------------------------------------------------------------ */
 const skillCategories = [
   {
     title: "Data Analytics",
@@ -72,97 +72,106 @@ const tools = [
 
 export function Skills() {
   return (
-    <section
-      id="skills"
-      className="py-20 bg-[#0A0A0A]"
-    >
-      <div className="container px-6 max-w-6xl mx-auto">
-        <ScrollReveal className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl mb-4 text-[#FAFAFA] font-semibold tracking-tight">
-            Skills & Expertise
-          </h2>
-          <div className="w-24 h-1 bg-[#2563EB] mx-auto rounded-full" />
-          <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto">
-            Passionate about turning data into insights and building intelligent
-            systems — here's my current toolkit.
+    <section id="skills" className="editorial-section">
+      <div className="section-container">
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-16 pb-6 border-b border-[#D9D2C0]">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45] block mb-2">
+              (03) SKILLS & EXPERTISE
+            </span>
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#14130F] font-normal tracking-tight">
+              Skills & Expertise
+            </h2>
+          </div>
+          <p className="font-sans text-sm sm:text-base text-[#6B665A] max-w-md text-left sm:text-right">
+            Passionate about turning data into insights and building intelligent systems — here's my current toolkit.
           </p>
-        </ScrollReveal>
-
-        {/* Technical Skills */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {skillCategories.map((category, categoryIndex) => (
-            <ScrollReveal key={category.title} delay={categoryIndex * 0.06}>
-              <Card className="bg-[#111111] border border-[#262626] rounded-xl hover:shadow-lg hover:border-[#3b82f6]/40 hover:-translate-y-1 transition-all duration-300 h-full">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-3 text-xl text-[#FAFAFA]">
-                    <div className="p-2 bg-[#2563EB] rounded-lg">
-                      <category.icon className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      {category.title}
-                      {category.subtitle && (
-                        <span className="block text-xs text-muted-foreground font-normal mt-0.5">
-                          {category.subtitle}
-                        </span>
-                      )}
-                    </div>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill, skillIndex) => (
-                      <motion.span
-                        key={skill}
-                        className="inline-flex items-center px-4 py-2 bg-[#161616] text-[#FAFAFA] border border-[#262626] rounded-full text-sm font-medium hover:border-[#2563EB] hover:text-[#2563EB] transition-colors duration-300 cursor-default"
-                        initial={{ opacity: 0, scale: 0.85 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{
-                          duration: 0.4,
-                          delay:
-                            categoryIndex * 0.06 + skillIndex * 0.05,
-                        }}
-                        viewport={{ once: true }}
-                      >
-                        {skill}
-                      </motion.span>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </ScrollReveal>
-          ))}
         </div>
 
-        {/* Tools & Technologies */}
-        <ScrollReveal>
-          <h3 className="text-2xl md:text-3xl text-center mb-8 text-[#FAFAFA]">
-            Tools & Technologies
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {tools.map((tool, index) => (
-              <ScrollReveal key={tool.name} delay={index * 0.05}>
-                <Card className="text-center p-6 bg-[#111111] border border-[#262626] rounded-xl hover:shadow-lg hover:border-[#3b82f6]/40 hover:-translate-y-1 transition-all duration-300">
-                  <div className="flex flex-col items-center space-y-4">
-                    <div className="p-3 bg-[#2563EB] rounded-xl">
-                      <tool.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <h4 className="text-lg text-foreground">{tool.name}</h4>
-                    <div className="space-y-1">
+        {/* Hairline Rows */}
+        <div className="border-t border-[#D9D2C0]">
+          {skillCategories.map((category, index) => {
+            const formattedIndex = String(index + 1).padStart(2, "0");
+            return (
+              <div
+                key={category.title}
+                className="skills-row"
+              >
+                {/* Left: Mono Label with Subtitle */}
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45]">
+                      ({formattedIndex})
+                    </span>
+                    <h3 className="font-mono text-xs uppercase tracking-[0.1em] text-[#14130F] font-semibold">
+                      {category.title}
+                    </h3>
+                  </div>
+                  {category.subtitle && (
+                    <span className="skill-subtitle">
+                      {category.subtitle}
+                    </span>
+                  )}
+                </div>
+
+                {/* Right: Skills with natural wrapping and " · " separator */}
+                <div>
+                  <div className="flex flex-wrap items-center">
+                    {category.skills.map((skill, sIdx) => (
+                      <React.Fragment key={skill}>
+                        <span className="font-serif text-2xl sm:text-3xl text-[#14130F] hover:text-[#1F5C45] transition-colors duration-200">
+                          {skill}
+                        </span>
+                        {sIdx < category.skills.length - 1 && (
+                          <span className="skill-dot">
+                            ·
+                          </span>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+
+          {/* Tools & Technologies Row */}
+          <div className="skills-row">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45]">
+                  (04)
+                </span>
+                <h3 className="font-mono text-xs uppercase tracking-[0.1em] text-[#14130F] font-semibold">
+                  Tools & Technologies
+                </h3>
+              </div>
+            </div>
+
+            <div>
+              <div className="tools-subgrid">
+                {tools.map((tool) => (
+                  <div key={tool.name} className="space-y-2.5">
+                    <h4 className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45]">
+                      {tool.name}
+                    </h4>
+                    <ul className="space-y-1">
                       {tool.items.map((item) => (
-                        <p
+                        <li
                           key={item}
-                          className="text-sm text-muted-foreground"
+                          className="font-serif text-xl sm:text-2xl text-[#14130F] hover:text-[#1F5C45] transition-colors"
                         >
                           {item}
-                        </p>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
-                </Card>
-              </ScrollReveal>
-            ))}
+                ))}
+              </div>
+            </div>
           </div>
-        </ScrollReveal>
+        </div>
       </div>
     </section>
   );

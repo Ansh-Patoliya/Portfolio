@@ -9,15 +9,14 @@ type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const theme: Theme = "dark";
+  const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
-    localStorage.setItem("theme", "dark");
-    document.documentElement.classList.add("dark");
+    document.documentElement.classList.remove("dark");
   }, []);
 
   const toggleTheme = () => {
-    // Force dark-only theme
+    // Single curated editorial theme
   };
 
   return (

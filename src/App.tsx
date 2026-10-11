@@ -5,28 +5,20 @@ import { Projects } from "./components/Projects";
 import { Skills } from "./components/Skills";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
-import { FloatingLinesBackground } from "./components/effects/FloatingLinesBackground";
-import { CursorGlow } from "./components/effects/CursorGlow";
+
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-background text-foreground relative isolate">
-      <div className="page-glow-frame" />
-      <FloatingLinesBackground />
-      <CursorGlow />
-      <div className="relative z-10 pointer-events-auto">
-        <Navigation />
-        <main>
-          <section id="hero">
-            <Hero />
-          </section>
-          <About />
-          <Projects />
-          <Skills />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
+    <div className="min-h-screen bg-[#F4EFE4] text-[#14130F] selection:bg-[#1F5C45] selection:text-[#F4EFE4] font-sans antialiased">
+      <Navigation />
+      <main className="site-main">
+        <Hero />
+        <About />
+        <Projects />
+        <Skills />
+        <Contact />
+      </main>
+      <Footer />
     </div>
   );
 }

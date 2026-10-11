@@ -1,38 +1,20 @@
+import React, { useState } from "react";
 import { motion } from "motion/react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
-import { Label } from "./ui/label";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  Github,
-  Linkedin,
-  Instagram,
-  Globe
-} from "lucide-react";
-import { useState } from "react";
-import { ScrollReveal } from "./effects/ScrollReveal";
+import { Send, Mail, CheckCircle2, AlertCircle } from "lucide-react";
 import { projectId, publicAnonKey } from "../utils/supabase/info";
 
 const contactInfo = [
   {
-    icon: Mail,
     label: "Email",
     value: "anshpatoliya1408@gmail.com",
     href: "mailto:anshpatoliya1408@gmail.com"
   },
   {
-    icon: Phone,
     label: "Phone",
     value: "+91 8160369100",
     href: "tel:+918160369100"
   },
   {
-    icon: MapPin,
     label: "Location",
     value: "Ahmedabad , Gujarat",
     href: "#"
@@ -41,22 +23,16 @@ const contactInfo = [
 
 const socialLinks = [
   {
-    icon: Github,
     label: "GitHub",
     href: "https://github.com/Ansh-Patoliya",
-    color: "hover:text-gray-400"
   },
   {
-    icon: Linkedin,
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/ansh-patoliya",
-    color: "hover:text-blue-400"
   },
   {
-    icon: Instagram,
     label: "Instagram",
     href: "https://www.instagram.com/_kano._148",
-    color: "hover:text-sky-400"
   }
 ];
 
@@ -69,25 +45,17 @@ export function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [emailOpened, setEmailOpened] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
+
     const accessKey = import.meta.env.VITE_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE";
     if (accessKey === "YOUR_ACCESS_KEY_HERE") {
       console.warn('Web3Forms access key is not set. Please define VITE_WEB3FORMS_KEY in .env');
     }
-    console.log('Web3Forms accessKey:', accessKey);
-    // Log request payload for debugging
-    console.log('Submitting payload:', {
-      access_key: accessKey,
-      name: formData.name,
-      email: formData.email,
-      message: formData.message,
-      subject: `New Portfolio Message from ${formData.name}`,
-    });
+
     const contactData = {
       ...formData,
       timestamp: new Date().toISOString(),
@@ -103,7 +71,7 @@ export function Contact() {
     }
 
     try {
-      // 2. Send request to Web3Forms API to deliver email to Gmail
+      // Send request to Web3Forms API
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
@@ -119,15 +87,13 @@ export function Contact() {
         })
       });
 
-      console.log('Web3Forms response status:', response.status);
       const result = await response.json();
-      console.log('Web3Forms result:', result);
 
       if (response.ok && result.success) {
         setSubmitStatus('success');
         setFormData({ name: "", email: "", message: "" });
         
-        // Try sending to Supabase in the background as an extra database backup
+        // Supabase background backup
         fetch(
           `https://${projectId}.supabase.co/functions/v1/make-server-ebb6b21e/contact`,
           {
@@ -162,173 +128,171 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-[#0D0D0D]">
-      <div className="container px-6 max-w-6xl mx-auto">
-        <ScrollReveal className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl mb-4 text-[#FAFAFA] font-semibold tracking-tight">
+    <section id="contact" className="editorial-section">
+      <div className="section-container">
+        {/* Section Number Header */}
+        <div className="mb-8">
+          <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45] block mb-3">
+            (04) CONTACT
+          </span>
+          {/* Giant Serif Line */}
+          <h2 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#14130F] font-normal tracking-tight leading-[0.98]">
             Let's Work Together
           </h2>
-          <div className="w-24 h-1 bg-[#2563EB] mx-auto rounded-full" />
-          <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto">
+          <p className="font-sans text-base sm:text-lg text-[#6B665A] mt-6 max-w-2xl leading-relaxed">
             Have a project in mind? I'd love to hear about it. Send me a message and let's create something amazing together.
           </p>
-        </ScrollReveal>
+        </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <ScrollReveal y={22} className="will-change-transform">
-            <Card className="bg-[#111111] border border-[#262626] rounded-xl hover:border-[#3b82f6]/40 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl">
-              <CardHeader>
-                <CardTitle className="text-2xl flex items-center gap-3 text-[#FAFAFA]">
-                  <div className="p-2 bg-[#2563EB] rounded-lg">
-                    <Send className="w-5 h-5 text-white" />
-                  </div>
-                  Send Message
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="name" className="text-[#FAFAFA]">Name</Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Your full name"
-                      required
-                      className="bg-[#161616] border border-[#262626] rounded-xl text-[#FAFAFA] focus:border-[#2563EB] focus:ring-[#2563EB] focus-visible:ring-[#2563EB] transition-colors"
-                    />
-                  </div>
+        {/* Large Underlined Email Link */}
+        <div className="py-6 sm:py-10 border-b border-[#D9D2C0]">
+          <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#6B665A] block mb-2">
+            Direct Email
+          </span>
+          <a
+            href="mailto:anshpatoliya1408@gmail.com"
+            className="font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-[#14130F] hover:text-[#1F5C45] underline underline-offset-8 decoration-[#D9D2C0] hover:decoration-[#1F5C45] transition-all break-all"
+          >
+            anshpatoliya1408@gmail.com
+          </a>
+        </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-[#FAFAFA]">Email</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="Your email id"
-                      required
-                      className="bg-[#161616] border border-[#262626] rounded-xl text-[#FAFAFA] focus:border-[#2563EB] focus:ring-[#2563EB] focus-visible:ring-[#2563EB] transition-colors"
-                    />
-                  </div>
+        {/* Small Mono Social Links & Direct Meta */}
+        <div className="py-8 flex flex-wrap items-center justify-between gap-6 border-b border-[#D9D2C0]">
+          <div className="flex flex-wrap items-center gap-6 sm:gap-8">
+            <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#6B665A]">
+              Connect:
+            </span>
+            {socialLinks.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-xs uppercase tracking-[0.1em] text-[#14130F] hover:text-[#1F5C45] transition-colors inline-flex items-center gap-1"
+              >
+                <span>{social.label}</span>
+                <span className="text-[10px]">↗</span>
+              </a>
+            ))}
+          </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="message" className="text-[#FAFAFA]">Message</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Tell me about your project..."
-                      rows={5}
-                      required
-                      className="bg-[#161616] border border-[#262626] rounded-xl text-[#FAFAFA] focus:border-[#2563EB] focus:ring-[#2563EB] focus-visible:ring-[#2563EB] transition-colors resize-none"
-                    />
-                  </div>
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 font-mono text-xs uppercase tracking-[0.1em] text-[#6B665A]">
+            <a href="tel:+918160369100" className="hover:text-[#14130F] transition-colors">
+              +91 8160369100
+            </a>
+            <span className="text-[#D9D2C0]">·</span>
+            <span>Ahmedabad , Gujarat</span>
+          </div>
+        </div>
 
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-[#2563EB] hover:bg-gradient-to-r hover:from-[#2563EB] hover:to-[#3b82f6] text-[#FAFAFA] hover:shadow-[0_0_15px_rgba(37,99,235,0.4)] px-8 py-6 rounded-full transition-all duration-300 transform hover:scale-[1.03] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none border-0"
-                  >
-                    <Send className="w-5 h-5 mr-2" />
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </Button>
+        {/* Minimal Editorial Message Form */}
+        <div className="mt-16 pt-6">
+          <div className="contact-grid">
+            <div className="space-y-4">
+              <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45] block">
+                Send a Message
+              </span>
+              <h3 className="font-serif text-3xl sm:text-4xl text-[#14130F] leading-tight">
+                Send Message
+              </h3>
+              <p className="font-sans text-sm text-[#6B665A] leading-relaxed">
+                Fill in your details below. Messages are delivered straight to my personal inbox.
+              </p>
+            </div>
 
-                  {/* Status Messages */}
-                  {submitStatus === 'success' && (
-                    <motion.div
-                      className="text-green-400 text-center p-4 bg-green-500/10 rounded-lg border border-green-500/20"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                    >
-                      <div className="flex items-center justify-center gap-2 mb-2">
-                        <Mail className="w-4 h-4" />
-                        <span>Message Sent!</span>
-                      </div>
-                      <p className="text-sm">
-                        {emailOpened
-                          ? "Your email client should open with a pre-filled message. I'll get back to you soon!"
-                          : "Thank you for your message! I'll get back to you soon!"
-                        }
-                      </p>
-                    </motion.div>
-                  )}
-
-                  {submitStatus === 'error' && (
-                    <motion.div
-                      className="text-red-400 text-center p-3 bg-red-500/10 rounded-lg border border-red-500/20"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                    >
-                      There was an error processing your message. Please try again or contact me directly at anshpatoliya1408@gmail.com.
-                    </motion.div>
-                  )}
-                </form>
-              </CardContent>
-            </Card>
-          </ScrollReveal>
-
-          {/* Contact Info */}
-          <ScrollReveal y={22} delay={0.08} className="space-y-8">
-            {/* Contact Details */}
-            <Card className="bg-[#111111] border border-[#262626] rounded-xl hover:border-[#3b82f6]/40 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#FAFAFA]">Get In Touch</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {contactInfo.map((info) => (
-                  <motion.a
-                    key={info.label}
-                    href={info.href}
-                    className="flex items-center gap-4 p-4 rounded-lg hover:bg-[#161616] transition-colors group"
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <div className="p-2 bg-[#2563EB] rounded-lg">
-                      <info.icon className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">{info.label}</p>
-                      <p className="text-[#FAFAFA] group-hover:text-[#2563EB] transition-colors">
-                        {info.value}
-                      </p>
-                    </div>
-                  </motion.a>
-                ))}
-              </CardContent>
-            </Card>
-
-            {/* Social Links */}
-            <Card className="bg-[#111111] border border-[#262626] rounded-xl hover:border-[#3b82f6]/40 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-2xl">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#FAFAFA]">Follow Me</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-4">
-                  {socialLinks.map((social) => (
-                    <motion.a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 rounded-lg hover:bg-[#161616] transition-colors group"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <social.icon className={`w-5 h-5 text-muted-foreground ${social.color} transition-colors`} />
-                      <span className="text-sm text-[#FAFAFA] group-hover:text-[#2563EB] transition-colors">
-                        {social.label}
-                      </span>
-                    </motion.a>
-                  ))}
+            <div>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="font-mono text-xs uppercase tracking-[0.1em] text-[#14130F] block">
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Your full name"
+                    required
+                    className="editorial-input w-full px-4 py-3 text-sm focus:outline-none"
+                  />
                 </div>
-              </CardContent>
-            </Card>
-          </ScrollReveal>
+
+                <div className="space-y-2">
+                  <label htmlFor="email" className="font-mono text-xs uppercase tracking-[0.1em] text-[#14130F] block">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Your email id"
+                    required
+                    className="editorial-input w-full px-4 py-3 text-sm focus:outline-none"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="message" className="font-mono text-xs uppercase tracking-[0.1em] text-[#14130F] block">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Tell me about your project..."
+                    rows={5}
+                    required
+                    className="editorial-input w-full px-4 py-3 text-sm focus:outline-none resize-none"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="editorial-pill-btn cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <Send className="w-4 h-4 mr-2" />
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </button>
+
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <motion.div
+                    className="p-4 rounded-lg border border-[#1F5C45]/30 bg-[#1F5C45]/10 text-[#1F5C45] flex items-center gap-3 text-sm font-sans"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    <CheckCircle2 className="w-5 h-5 shrink-0" />
+                    <div>
+                      <p className="font-medium">Message Sent!</p>
+                      <p className="text-xs opacity-90">Thank you for your message! I'll get back to you soon!</p>
+                    </div>
+                  </motion.div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <motion.div
+                    className="p-4 rounded-lg border border-red-300 bg-red-50 text-red-800 flex items-center gap-3 text-sm font-sans"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    <AlertCircle className="w-5 h-5 shrink-0 text-red-600" />
+                    <div>
+                      <p className="font-medium">Delivery Error</p>
+                      <p className="text-xs">
+                        There was an error processing your message. Please try again or contact me directly at anshpatoliya1408@gmail.com.
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </section>

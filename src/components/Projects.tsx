@@ -1,13 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { Button } from "./ui/button";
-import { Badge } from "./ui/badge";
-import { ExternalLink, Github, X, Info } from "lucide-react";
-import { ScrollReveal } from "./effects/ScrollReveal";
+import { ExternalLink, Github, X, ArrowUpRight } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/*  Project data                                                       */
+/*  Project data (verbatim)                                           */
 /* ------------------------------------------------------------------ */
 const projects = [
 	{
@@ -50,14 +47,18 @@ function formatBoldText(text: string) {
 	const parts = text.split(/\*\*([^*]+)\*\*/g);
 	return parts.map((part, i) => {
 		if (i % 2 === 1) {
-			return <strong key={i} className="font-semibold text-[#FAFAFA]">{part}</strong>;
+			return (
+				<strong key={i} className="font-semibold text-[#F4EFE4]">
+					{part}
+				</strong>
+			);
 		}
 		return part;
 	});
 }
 
 /* ------------------------------------------------------------------ */
-/*  Project Detail Modal                                               */
+/*  Editorial Project Detail Modal                                    */
 /* ------------------------------------------------------------------ */
 function ProjectModal({
 	project,
@@ -66,7 +67,6 @@ function ProjectModal({
 	project: Project;
 	onClose: () => void;
 }) {
-	// Close on Escape key
 	const handleKeyDown = useCallback(
 		(e: KeyboardEvent) => {
 			if (e.key === "Escape") onClose();
@@ -92,87 +92,82 @@ function ProjectModal({
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
-			transition={{ duration: 0.3 }}
+			transition={{ duration: 0.2 }}
 		>
-			{/* Backdrop – blur the page behind the modal */}
-			<motion.div
-				className="absolute inset-0 bg-black/45 backdrop-blur-lg"
+			{/* Backdrop */}
+			<div
+				className="absolute inset-0 bg-[#14130F]/70 backdrop-blur-sm"
 				onClick={onClose}
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				exit={{ opacity: 0 }}
-				transition={{ duration: 0.3 }}
 			/>
 
-			{/* Modal content */}
+			{/* Modal container */}
 			<motion.div
-				className="relative w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col border border-[#262626] live-blue-glow"
-				style={{ maxHeight: "85vh", backgroundColor: "#111111" }}
-				initial={{ scale: 0.95, opacity: 0, y: 20 }}
+				className="relative w-full max-w-3xl rounded-[24px] shadow-2xl flex flex-col border border-[#D9D2C0]/20 bg-[#14130F] text-[#F4EFE4] overflow-hidden z-10"
+				style={{ maxHeight: "88vh" }}
+				initial={{ scale: 0.96, opacity: 0, y: 16 }}
 				animate={{ scale: 1, opacity: 1, y: 0 }}
-				exit={{ scale: 0.95, opacity: 0, y: 20 }}
-				transition={{ type: "spring", damping: 25, stiffness: 300 }}
+				exit={{ scale: 0.96, opacity: 0, y: 16 }}
+				transition={{ duration: 0.25, ease: "easeOut" }}
 				role="dialog"
 				aria-modal="true"
 				aria-label={`${project.title} details`}
 			>
 				{/* Close button */}
 				<button
+					type="button"
 					onClick={onClose}
-					className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:bg-black/80 transition-all duration-200 cursor-pointer"
+					className="absolute top-5 right-5 z-20 w-9 h-9 rounded-full bg-[#14130F]/80 border border-[#D9D2C0]/30 flex items-center justify-center text-[#F4EFE4]/80 hover:text-[#F4EFE4] hover:bg-[#14130F] transition-colors cursor-pointer"
 					aria-label="Close modal"
 				>
-					<X className="w-5 h-5" />
+					<X className="w-4 h-4" />
 				</button>
 
 				{/* Scrollable Container */}
-				<div className="w-full overflow-y-auto flex-grow rounded-2xl">
-					{/* Image Header */}
-					<div className="relative shrink-0 w-full overflow-hidden">
+				<div className="w-full overflow-y-auto">
+					<div className="relative shrink-0 w-full h-56 sm:h-72 overflow-hidden border-b border-[#D9D2C0]/15">
 						<img
 							src={project.image}
 							alt={project.title}
-							className="w-full h-48 sm:h-64 object-cover"
+							className="w-full h-full object-cover opacity-85"
 							loading="lazy"
 						/>
-						<div className="absolute inset-0 bg-[#111111]/40" />
+						<div className="absolute inset-0 bg-gradient-to-t from-[#14130F] via-transparent to-transparent" />
 					</div>
 
-					{/* Content Body */}
-					<div className="px-6 pt-6 pb-6 sm:px-8 sm:pt-8 sm:pb-8 relative z-10">
-						{/* Title */}
-						<h3 className="text-2xl sm:text-3xl font-bold mb-4 text-[#FAFAFA]">
-							{project.title}
-						</h3>
+					<div className="p-6 sm:p-10 space-y-6">
+						<div>
+							<span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45] block mb-2">
+								PROJECT DETAILS
+							</span>
+							<h3 className="font-serif text-3xl sm:text-4xl text-[#F4EFE4] leading-tight">
+								{project.title}
+							</h3>
+						</div>
 
-						{/* Tech stack */}
-						<div className="flex flex-wrap gap-2 mb-6">
+						<div className="flex flex-wrap gap-2">
 							{project.tags.map((tag) => (
-								<Badge
+								<span
 									key={tag}
-									variant="secondary"
-									className="bg-[#161616] text-[#2563EB] border border-[#262626] px-3 py-1 text-sm rounded-md"
+									className="font-mono text-xs uppercase tracking-[0.08em] px-3 py-1 rounded-full border border-[#D9D2C0]/25 text-[#D9D2C0]"
 								>
 									{tag}
-								</Badge>
+								</span>
 							))}
 						</div>
 
-						{/* Divider */}
-						<div className="w-full h-px bg-[#262626] mb-6" />
+						<div className="w-full h-px bg-[#D9D2C0]/20" />
 
-						{/* Description */}
-						<div className="mb-8">
-							<h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+						<div className="space-y-4 font-sans text-base text-[#D9D2C0]/90 leading-relaxed">
+							<h4 className="font-mono text-xs uppercase tracking-[0.1em] text-[#6B665A]">
 								About this project
 							</h4>
-							<div className="text-[#FAFAFA]/80 leading-relaxed text-base space-y-3">
+							<div className="space-y-3">
 								{project.description.split("\n").map((line, idx) => {
 									const trimmed = line.trim();
 									if (trimmed.startsWith("*") || trimmed.startsWith("-")) {
 										return (
-											<div key={idx} className="flex items-start gap-2 pl-4">
-												<span className="text-[#2563EB] mt-1.5">•</span>
+											<div key={idx} className="flex items-start gap-2.5 pl-2">
+												<span className="text-[#1F5C45] font-serif text-lg leading-none mt-1">•</span>
 												<span>{formatBoldText(trimmed.substring(1).trim())}</span>
 											</div>
 										);
@@ -189,40 +184,29 @@ function ProjectModal({
 							</div>
 						</div>
 
-						{/* Divider before buttons */}
-						<div className="w-full h-px bg-[#262626] mb-6" />
+						<div className="w-full h-px bg-[#D9D2C0]/20 pt-2" />
 
-						{/* Action buttons */}
-						<div className="flex flex-col sm:flex-row gap-3">
-							<Button
-								className="modal-btn-primary flex-grow cursor-pointer"
-								asChild
+						<div className="flex flex-col sm:flex-row gap-3 pt-2">
+							<a
+								href={project.githubUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="editorial-pill-btn flex-1 text-center justify-center bg-[#F4EFE4] !text-[#14130F] hover:!bg-[#1F5C45] hover:!text-[#F4EFE4]"
 							>
-								<a
-									href={project.githubUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									<ExternalLink className="w-5 h-5 mr-2" />
-									View Project
-								</a>
-							</Button>
-							<Button
-								className="modal-btn-secondary cursor-pointer"
-								asChild
+								<ExternalLink className="w-4 h-4 mr-2" />
+								View Project
+							</a>
+							<a
+								href={project.githubUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label={`View ${project.title} on GitHub`}
+								className="px-5 py-3 rounded-full border border-[#D9D2C0]/30 hover:border-[#1F5C45] text-[#F4EFE4] hover:text-[#1F5C45] transition-colors flex items-center justify-center gap-2 font-mono text-xs uppercase tracking-[0.08em]"
 							>
-								<a
-									href={project.githubUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-									aria-label={`View ${project.title} on GitHub`}
-								>
-									<Github className="w-5 h-5" />
-								</a>
-							</Button>
+								<Github className="w-4 h-4" />
+								GitHub
+							</a>
 						</div>
-						{/* Spacer to prevent browser scroll padding cutoffs */}
-						<div className="h-6" />
 					</div>
 				</div>
 			</motion.div>
@@ -232,138 +216,200 @@ function ProjectModal({
 }
 
 /* ------------------------------------------------------------------ */
-/*  Project Card (simplified – no description)                         */
-/* ------------------------------------------------------------------ */
-function ProjectCard({
-	project,
-	onSelect,
-}: {
-	project: Project;
-	onSelect: () => void;
-}) {
-	return (
-		<div
-			className="group relative live-blue-glow-card overflow-hidden h-full flex flex-col cursor-pointer rounded-2xl"
-			onClick={onSelect}
-			role="button"
-			tabIndex={0}
-			aria-label={`View details for ${project.title}`}
-			onKeyDown={(e) => {
-				if (e.key === "Enter" || e.key === " ") {
-					e.preventDefault();
-					onSelect();
-				}
-			}}
-			style={{ position: "relative", zIndex: 2 }}
-		>
-			{/* Image */}
-			<div className="relative overflow-hidden">
-				<img
-					src={project.image}
-					alt={project.title}
-					className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-					loading="lazy"
-				/>
-
-				{/* "More info" hint on hover */}
-				<div
-					className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0"
-					style={{ pointerEvents: "none" }}
-				>
-					<div className="flex items-center gap-1.5 bg-[#0A0A0A]/90 backdrop-blur-sm text-[#FAFAFA] text-xs font-medium px-3 py-1.5 rounded-full border border-[#262626]">
-						<Info className="w-3 h-3 text-[#2563EB]" />
-						Click for details
-					</div>
-				</div>
-			</div>
-
-			{/* Card body */}
-			<div className="p-5 flex flex-col flex-grow">
-				{/* Title */}
-				<h3 className="text-lg font-semibold mb-3 text-[#FAFAFA] group-hover:text-[#2563EB] transition-colors duration-300 line-clamp-1">
-					{project.title}
-				</h3>
-
-				{/* Tech stack */}
-				<div className="flex flex-wrap gap-1.5 mb-5">
-					{project.tags.map((tag) => (
-						<Badge
-							key={tag}
-							variant="secondary"
-							className="bg-[#161616] text-[#A1A1AA] border border-[#262626] group-hover:border-[#A1A1AA]/30 transition-colors duration-300 text-xs px-2.5 py-0.5 rounded-md"
-						>
-							{tag}
-						</Badge>
-					))}
-				</div>
-
-				{/* Spacer */}
-				<div className="flex-grow" />
-
-				{/* View Project button */}
-				<Button
-					size="sm"
-					className="w-full bg-[#2563EB] hover:bg-gradient-to-r hover:from-[#2563EB] hover:to-[#3b82f6] text-[#FAFAFA] hover:shadow-[0_0_15px_rgba(37,99,235,0.4)] transition-all duration-300 rounded-lg border-0"
-					asChild
-				>
-					<a
-						href={project.githubUrl}
-						target="_blank"
-						rel="noopener noreferrer"
-						onClick={(e) => e.stopPropagation()}
-						style={{ position: "relative", zIndex: 5, pointerEvents: "auto" }}
-					>
-						<ExternalLink className="w-4 h-4 mr-2" />
-						View Project
-					</a>
-				</Button>
-			</div>
-		</div>
-	);
-}
-
-/* ------------------------------------------------------------------ */
-/*  Projects Section                                                   */
+/*  Projects Section                                                  */
 /* ------------------------------------------------------------------ */
 export function Projects() {
 	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
 	const orderedProjects = [...projects].sort((a, b) => {
-		// Higher priority first (optional)
 		const priorityDiff = (b.priority ?? 0) - (a.priority ?? 0);
 		if (priorityDiff !== 0) return priorityDiff;
-
-		// Newest first
 		return new Date(b.createdAt ?? 0).getTime() - new Date(a.createdAt ?? 0).getTime();
 	});
 
-	return (
-		<section id="projects" className="py-20 bg-[#0D0D0D]">
-			<div className="container px-6 max-w-6xl mx-auto">
-				<ScrollReveal className="text-center mb-16">
-					<h2 className="text-4xl md:text-5xl mb-4 text-[#FAFAFA] font-semibold tracking-tight">
-						Featured Projects
-					</h2>
-					<div className="w-24 h-1 bg-[#2563EB] mx-auto rounded-full" />
-					<p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto">
-						Here are some of my recent projects that showcase my skills and passion for creating innovative
-						solutions.
-					</p>
-				</ScrollReveal>
+	const featuredProject = orderedProjects[0];
+	const remainingProjects = orderedProjects.slice(1);
 
-				<div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
-					{orderedProjects.map((project, index) => (
-						<ScrollReveal
-							key={project.title}
-							delay={index * 0.06}
-							className="h-full"
-						>
-							<ProjectCard
-								project={project}
-								onSelect={() => setSelectedProject(project)}
-							/>
-						</ScrollReveal>
-					))}
+	const getShortDescription = (desc: string) => {
+		const firstParagraph = desc.split("\n\n")[0] || desc;
+		return firstParagraph.replace(/\*\*/g, "").replace(/\n/g, " ");
+	};
+
+	return (
+		<section id="projects" className="editorial-section">
+			<div className="section-container">
+				{/* Section Header */}
+				<div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-16 pb-6 border-b border-[#D9D2C0]">
+					<div>
+						<span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45] block mb-2">
+							(02) PROJECTS
+						</span>
+						<h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#14130F] font-normal tracking-tight">
+							Featured Projects
+						</h2>
+					</div>
+					<p className="font-sans text-sm sm:text-base text-[#6B665A] max-w-md text-left sm:text-right">
+						Here are some of my recent projects that showcase my skills and passion for creating innovative solutions.
+					</p>
 				</div>
+
+				{/* Featured / Main Project: Large Dark Card */}
+				{featuredProject && (
+					<div className="mb-20">
+						<div
+							className="editorial-dark-card cursor-pointer group"
+							onClick={() => setSelectedProject(featuredProject)}
+							role="button"
+							tabIndex={0}
+							aria-label={`View details for ${featuredProject.title}`}
+							onKeyDown={(e) => {
+								if (e.key === "Enter" || e.key === " ") {
+									e.preventDefault();
+									setSelectedProject(featuredProject);
+								}
+							}}
+						>
+							<div className="card-2col">
+								{/* Left: Text Panel (High contrast, clean hierarchy) */}
+								<div className="flex flex-col gap-5 relative z-10">
+									<div className="flex items-center gap-2">
+										<span className="font-mono text-xs uppercase tracking-[0.12em] text-[#1F5C45] bg-[#1F5C45]/15 px-3 py-1 rounded-full border border-[#1F5C45]/30">
+											Featured Work (01)
+										</span>
+									</div>
+
+									<h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#F4EFE4] leading-[1.1] font-normal">
+										{featuredProject.title}
+									</h3>
+
+									<p className="font-sans text-base sm:text-lg text-[#D9D2C0]/85 leading-relaxed line-clamp-3">
+										{getShortDescription(featuredProject.description)}
+									</p>
+
+									{/* Tech Tags */}
+									<div className="flex flex-wrap gap-2 pt-1">
+										{featuredProject.tags.map((tag) => (
+											<span
+												key={tag}
+												className="font-mono text-[11px] uppercase tracking-[0.08em] px-3 py-1 rounded-full border border-[#D9D2C0]/25 text-[#D9D2C0]"
+											>
+												{tag}
+											</span>
+										))}
+									</div>
+
+									{/* Action Bar */}
+									<div className="pt-3 flex flex-wrap items-center gap-4">
+										<button
+											type="button"
+											className="editorial-pill-btn bg-[#F4EFE4] !text-[#14130F] hover:!bg-[#1F5C45] hover:!text-[#F4EFE4] text-xs py-2.5 px-6"
+											onClick={(e) => {
+												e.stopPropagation();
+												setSelectedProject(featuredProject);
+											}}
+										>
+											View Project Details
+										</button>
+										<a
+											href={featuredProject.githubUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+											onClick={(e) => e.stopPropagation()}
+											className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.08em] text-[#D9D2C0] hover:text-[#F4EFE4] transition-colors py-2"
+										>
+											GitHub Repo <ArrowUpRight className="w-3.5 h-3.5" />
+										</a>
+									</div>
+								</div>
+
+								{/* Right: Visual Panel with Concentric Circles Strictly Contained */}
+								<div className="visual-panel shadow-xl">
+									{/* Decorative Concentric Circles inside the visual panel only */}
+									<svg
+										className="absolute -right-6 -top-6 w-56 h-56 opacity-20 pointer-events-none z-10"
+										viewBox="0 0 200 200"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<circle cx="100" cy="100" r="25" stroke="#F4EFE4" strokeWidth="0.75" />
+										<circle cx="100" cy="100" r="50" stroke="#F4EFE4" strokeWidth="0.75" />
+										<circle cx="100" cy="100" r="75" stroke="#F4EFE4" strokeWidth="0.75" />
+										<circle cx="100" cy="100" r="95" stroke="#F4EFE4" strokeWidth="0.75" />
+									</svg>
+
+									<img
+										src={featuredProject.image}
+										alt={featuredProject.title}
+										className="visual-img filter brightness-95 group-hover:scale-105 transition-transform duration-500"
+										loading="lazy"
+									/>
+									<div className="absolute inset-0 bg-gradient-to-t from-[#14130F]/50 via-transparent to-transparent pointer-events-none" />
+								</div>
+							</div>
+						</div>
+					</div>
+				)}
+
+				{/* Remaining Projects: Editorial List Rows */}
+				{remainingProjects.length > 0 && (
+					<div className="border-t border-[#D9D2C0]">
+						{remainingProjects.map((project, idx) => {
+							const formattedIndex = String(idx + 2).padStart(2, "0");
+							return (
+								<div
+									key={project.title}
+									onClick={() => setSelectedProject(project)}
+									role="button"
+									tabIndex={0}
+									aria-label={`View details for ${project.title}`}
+									onKeyDown={(e) => {
+										if (e.key === "Enter" || e.key === " ") {
+											e.preventDefault();
+											setSelectedProject(project);
+										}
+									}}
+									className="editorial-list-row cursor-pointer group px-3 sm:px-4 rounded-lg"
+								>
+									{/* Index & Title */}
+									<div className="project-row-left">
+										<span className="font-mono text-xs sm:text-sm uppercase tracking-[0.1em] text-[#1F5C45] shrink-0">
+											({formattedIndex})
+										</span>
+										<div>
+											<h3 className="font-serif text-2xl sm:text-3xl text-[#14130F] group-hover:text-[#1F5C45] transition-colors leading-snug">
+												{project.title}
+											</h3>
+										</div>
+									</div>
+
+									{/* Description Preview */}
+									<div className="project-row-mid">
+										<p className="font-sans text-sm text-[#6B665A] line-clamp-2 leading-relaxed">
+											{getShortDescription(project.description)}
+										</p>
+									</div>
+
+									{/* Categories and Arrow */}
+									<div className="project-row-right">
+										<div className="flex flex-wrap gap-1.5">
+											{project.tags.map((tag) => (
+												<span
+													key={tag}
+													className="font-mono text-[10px] uppercase tracking-[0.05em] px-2.5 py-0.5 rounded-full border border-[#D9D2C0] text-[#6B665A]"
+												>
+													{tag}
+												</span>
+											))}
+										</div>
+										<div className="w-10 h-10 rounded-full border border-[#D9D2C0] flex items-center justify-center shrink-0 group-hover:border-[#1F5C45] group-hover:bg-[#1F5C45] group-hover:text-[#F4EFE4] text-[#14130F] transition-all">
+											<ArrowUpRight className="w-4 h-4" />
+										</div>
+									</div>
+								</div>
+							);
+						})}
+					</div>
+				)}
 			</div>
 
 			{/* Modal */}
