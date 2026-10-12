@@ -5,9 +5,9 @@ const profilePhoto = new URL("../assets/photo.jpg", import.meta.url).href;
 
 const facts = [
   { label: "Location", value: "Ahmedabad ,Gujrat" },
-  { label: "Experience", value: "6+ Projects" },
+  { label: "Experience", value: "19+ Projects" },
   { label: "Availability", value: "Open to opportunities" },
-  { label: "Focus", value: "Data Analytics & AI/ML" },
+  { label: "Focus", value: "Full-stack, Data & AI/ML" },
 ];
 
 export function About() {
@@ -22,15 +22,14 @@ export function About() {
           {/* Text */}
           <ScrollReveal className="lg:col-span-7">
             <p className="font-serif text-2xl leading-snug text-ink sm:text-3xl md:text-[2.125rem]">
-              Hi! I'm a 2nd-year Computer Engineering student with a passion for data analytics and AI/ML. I enjoy
-              uncovering patterns in data, building insightful dashboards, and growing my skills in machine learning
-              every day.
+              Hi! I'm a 3rd-year Computer Engineering student who builds full-stack products and turns data into
+              insight. From hackathon platforms and trading simulators to Power BI dashboards and Gemini-powered AI
+              tools, I like shipping things people can actually use.
             </p>
 
             <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
-              When I'm not analyzing datasets, you'll find me exploring new technologies, learning machine learning
-              algorithms, or working on open source projects. I believe in continuous learning and staying current with
-              the ever-evolving data science landscape.
+              Right now I'm working across Django, Next.js and Flask on the web side, and Python, SQL and Power BI on
+              the data side, while going deeper into machine learning. I believe in learning by building.
             </p>
 
             <dl className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">

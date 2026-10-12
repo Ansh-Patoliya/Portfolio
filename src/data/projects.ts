@@ -36,8 +36,8 @@ export const categories: Category[] = [
   },
   {
     id: "apps",
-    label: "Desktop & Mobile Apps",
-    blurb: "Android and JavaFX applications.",
+    label: "Desktop Apps",
+    blurb: "JavaFX desktop applications.",
   },
   {
     id: "learning",
@@ -184,24 +184,8 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Ansh-Patoliya/Spinner",
     liveUrl: "https://spinner-three-kappa.vercel.app",
   },
-  {
-    title: "Board Parivar",
-    category: "web",
-    description: "A Django web project with a home page and content pages.",
-    tags: ["Django", "Python", "SQLite"],
-    isPrivate: true,
-  },
 
-  /* ------------------------------ Desktop & Mobile Apps ------------------------------ */
-  {
-    title: "Expense Tracker",
-    category: "apps",
-    description:
-      "An **offline-first Android expense tracker** with a dashboard summary, category analytics and local **Room** persistence.\n\n" +
-      "Built with **Kotlin** and **Jetpack Compose**.",
-    tags: ["Kotlin", "Jetpack Compose", "Room", "Android"],
-    isPrivate: true,
-  },
+  /* ------------------------------ Desktop Apps ------------------------------ */
   {
     title: "Stock Market Simulator",
     category: "apps",

@@ -4,42 +4,60 @@ import { ScrollReveal } from "./effects/ScrollReveal";
 
 const skillCategories = [
   {
+    title: "Web Development",
+    subtitle: "Syntra · HackHub · Stocxsim · Orbito",
+    icon: Globe,
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Django REST Framework",
+      "Flask",
+      "Node.js / Express",
+      "REST APIs",
+      "WebSockets",
+    ],
+  },
+  {
     title: "Data Analytics",
+    subtitle: "Stock & IPL Dashboards",
     icon: BarChart3,
     skills: [
-      "Exploratory Data Analysis (EDA)",
-      "Microsoft Excel",
       "Power BI",
       "SQL",
+      "Python (Pandas / NumPy)",
+      "Exploratory Data Analysis",
+      "Microsoft Excel",
       "Data Cleaning & Wrangling",
-      "Statistical Analysis",
     ],
   },
   {
-    title: "AI & Machine Learning",
-    subtitle: "Learning & Building",
+    title: "AI & ML",
+    subtitle: "Transcriber · OmniDoc AI · Mockly",
     icon: BrainCircuit,
     skills: [
-      "Python (Pandas / NumPy)",
-      "Matplotlib / Seaborn",
+      "Gemini API",
+      "Streamlit",
+      "FastAPI",
       "Scikit-learn",
-      "Data Preprocessing",
-      "ML Algorithms",
-      "TensorFlow / PyTorch (Basics)",
+      "Keras / TensorFlow (Basics)",
+      "Matplotlib / Seaborn",
     ],
   },
   {
-    title: "Backend & Databases",
+    title: "Databases & CS",
+    subtitle: "Stocxsim · CampusConnect",
     icon: Database,
-    skills: ["Java", "Python", "Flask", "PostgreSQL", "MySQL"],
+    skills: ["PostgreSQL", "MySQL", "SQLite", "Supabase", "Java", "JavaFX", "JDBC", "DSA"],
   },
 ];
 
 const tools = [
-  { name: "Analytics", icon: LayoutDashboard, items: ["Power BI", "Jupyter Notebook", "Excel"] },
-  { name: "Web", icon: Globe, items: ["Vite", "Vercel"] },
+  { name: "Frontend", icon: LayoutDashboard, items: ["Vite", "Next.js", "Tailwind"] },
+  { name: "Backend & Data", icon: Terminal, items: ["Django", "Flask", "PostgreSQL"] },
+  { name: "Deploy", icon: Globe, items: ["Vercel", "Supabase", "Cloudinary"] },
   { name: "Version Control", icon: GitBranch, items: ["Git", "GitHub", "GitLab"] },
-  { name: "Dev Environment", icon: Terminal, items: ["VS Code", "PyCharm", "Anaconda"] },
 ];
 
 export function Skills() {
@@ -51,7 +69,7 @@ export function Skills() {
         </SectionHeading>
 
         {/* Skill categories */}
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {skillCategories.map((category, index) => (
             <ScrollReveal key={category.title} delay={index * 0.08} className="h-full">
               <div className="flex h-full flex-col rounded-[32px] border border-line bg-paper-2 p-7 transition-colors duration-300 hover:border-ink md:p-8">
@@ -62,7 +80,7 @@ export function Skills() {
                   <span className="eyebrow-muted">({String(index + 1).padStart(2, "0")})</span>
                 </div>
 
-                <div className="mt-8 lg:min-h-[8.75rem]">
+                <div className="mt-8 lg:min-h-[11rem]">
                   <h3 className="font-serif text-3xl leading-tight text-ink md:text-4xl">{category.title}</h3>
                   {category.subtitle && <p className="eyebrow-muted mt-2">{category.subtitle}</p>}
                 </div>
@@ -87,7 +105,7 @@ export function Skills() {
           <div className="rounded-[32px] bg-ink p-8 text-paper md:p-12">
             <div className="mb-10 flex items-center justify-between gap-4">
               <h3 className="font-serif text-3xl md:text-4xl">Tools &amp; Technologies</h3>
-              <span className="font-mono text-xs uppercase tracking-[0.12em] text-paper/50">(04)</span>
+              <span className="font-mono text-xs uppercase tracking-[0.12em] text-paper/50">(05)</span>
             </div>
 
             <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4 lg:gap-x-0 lg:divide-x lg:divide-paper/15">
