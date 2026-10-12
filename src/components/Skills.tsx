@@ -1,166 +1,130 @@
-import React from "react";
-import { motion } from "motion/react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import {
-  BarChart3,
-  BrainCircuit,
-  Database,
-  Globe,
-  GitBranch,
-  LayoutDashboard,
-  Terminal,
-} from "lucide-react";
+import { BarChart3, BrainCircuit, Database, GitBranch, Globe, LayoutDashboard, Terminal } from "lucide-react";
+import { SectionHeading } from "./SectionHeading";
 import { ScrollReveal } from "./effects/ScrollReveal";
 
 const skillCategories = [
   {
+    title: "Web Development",
+    subtitle: "Syntra · HackHub · Stocxsim · Orbito",
+    icon: Globe,
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Django REST Framework",
+      "Flask",
+      "Node.js / Express",
+      "REST APIs",
+      "WebSockets",
+    ],
+  },
+  {
     title: "Data Analytics",
+    subtitle: "Stock & IPL Dashboards",
     icon: BarChart3,
     skills: [
-      "Exploratory Data Analysis (EDA)",
-      "Microsoft Excel",
       "Power BI",
       "SQL",
+      "Python (Pandas / NumPy)",
+      "Exploratory Data Analysis",
+      "Microsoft Excel",
       "Data Cleaning & Wrangling",
-      "Statistical Analysis",
     ],
   },
   {
-    title: "AI & Machine Learning",
-    subtitle: "Learning & Building",
+    title: "AI & ML",
+    subtitle: "Transcriber · OmniDoc AI · Mockly",
     icon: BrainCircuit,
     skills: [
-      "Python (Pandas / NumPy)",
-      "Matplotlib / Seaborn",
+      "Gemini API",
+      "Streamlit",
+      "FastAPI",
       "Scikit-learn",
-      "Data Preprocessing",
-      "ML Algorithms",
-      "TensorFlow / PyTorch (Basics)",
+      "Keras / TensorFlow (Basics)",
+      "Matplotlib / Seaborn",
     ],
   },
   {
-    title: "Backend & Databases",
+    title: "Databases & CS",
+    subtitle: "Stocxsim · CampusConnect",
     icon: Database,
-    skills: [
-      "Java",
-      "Python",
-      "Flask",
-      "PostgreSQL",
-      "MySQL",
-    ],
+    skills: ["PostgreSQL", "MySQL", "SQLite", "Supabase", "Java", "JavaFX", "JDBC", "DSA"],
   },
 ];
 
 const tools = [
-  {
-    name: "Analytics",
-    icon: LayoutDashboard,
-    items: ["Power BI", "Jupyter Notebook", "Excel"],
-  },
-  { name: "Web", icon: Globe, items: ["Vite", "Vercel"] },
-  {
-    name: "Version Control",
-    icon: GitBranch,
-    items: ["Git", "GitHub", "GitLab"],
-  },
-  {
-    name: "Dev Environment",
-    icon: Terminal,
-    items: ["VS Code", "PyCharm", "Anaconda"],
-  },
+  { name: "Frontend", icon: LayoutDashboard, items: ["Vite", "Next.js", "Tailwind"] },
+  { name: "Backend & Data", icon: Terminal, items: ["Django", "Flask", "PostgreSQL"] },
+  { name: "Deploy", icon: Globe, items: ["Vercel", "Supabase", "Cloudinary"] },
+  { name: "Version Control", icon: GitBranch, items: ["Git", "GitHub", "GitLab"] },
 ];
 
 export function Skills() {
   return (
-    <section
-      id="skills"
-      className="py-20 bg-[#0A0A0A]"
-    >
-      <div className="container px-6 max-w-6xl mx-auto">
-        <ScrollReveal className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl mb-4 text-[#FAFAFA] font-semibold tracking-tight">
-            Skills & Expertise
-          </h2>
-          <div className="w-24 h-1 bg-[#2563EB] mx-auto rounded-full" />
-          <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto">
-            Passionate about turning data into insights and building intelligent
-            systems — here's my current toolkit.
-          </p>
-        </ScrollReveal>
+    <section id="skills" className="section">
+      <div className="container-page">
+        <SectionHeading eyebrow="(03) SKILLS & EXPERTISE" title="Skills & Expertise">
+          Passionate about turning data into insights and building intelligent systems — here's my current toolkit.
+        </SectionHeading>
 
-        {/* Technical Skills */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {skillCategories.map((category, categoryIndex) => (
-            <ScrollReveal key={category.title} delay={categoryIndex * 0.06}>
-              <Card className="bg-[#111111] border border-[#262626] rounded-xl hover:shadow-lg hover:border-[#3b82f6]/40 hover:-translate-y-1 transition-all duration-300 h-full">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-3 text-xl text-[#FAFAFA]">
-                    <div className="p-2 bg-[#2563EB] rounded-lg">
-                      <category.icon className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      {category.title}
-                      {category.subtitle && (
-                        <span className="block text-xs text-muted-foreground font-normal mt-0.5">
-                          {category.subtitle}
-                        </span>
-                      )}
-                    </div>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill, skillIndex) => (
-                      <motion.span
-                        key={skill}
-                        className="inline-flex items-center px-4 py-2 bg-[#161616] text-[#FAFAFA] border border-[#262626] rounded-full text-sm font-medium hover:border-[#2563EB] hover:text-[#2563EB] transition-colors duration-300 cursor-default"
-                        initial={{ opacity: 0, scale: 0.85 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{
-                          duration: 0.4,
-                          delay:
-                            categoryIndex * 0.06 + skillIndex * 0.05,
-                        }}
-                        viewport={{ once: true }}
-                      >
-                        {skill}
-                      </motion.span>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+        {/* Skill categories */}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {skillCategories.map((category, index) => (
+            <ScrollReveal key={category.title} delay={index * 0.08} className="h-full">
+              <div className="flex h-full flex-col rounded-[32px] border border-line bg-paper-2 p-7 transition-colors duration-300 hover:border-ink md:p-8">
+                <div className="flex items-start justify-between">
+                  <span className="grid h-14 w-14 place-items-center rounded-full bg-accent text-paper">
+                    <category.icon className="h-6 w-6" />
+                  </span>
+                  <span className="eyebrow-muted">({String(index + 1).padStart(2, "0")})</span>
+                </div>
+
+                <div className="mt-8 lg:min-h-[11rem]">
+                  <h3 className="font-serif text-3xl leading-tight text-ink md:text-4xl">{category.title}</h3>
+                  {category.subtitle && <p className="eyebrow-muted mt-2">{category.subtitle}</p>}
+                </div>
+
+                <ul className="mt-6 flex flex-wrap gap-2">
+                  {category.skills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="rounded-full border border-line bg-paper px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </ScrollReveal>
           ))}
         </div>
 
-        {/* Tools & Technologies */}
-        <ScrollReveal>
-          <h3 className="text-2xl md:text-3xl text-center mb-8 text-[#FAFAFA]">
-            Tools & Technologies
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {tools.map((tool, index) => (
-              <ScrollReveal key={tool.name} delay={index * 0.05}>
-                <Card className="text-center p-6 bg-[#111111] border border-[#262626] rounded-xl hover:shadow-lg hover:border-[#3b82f6]/40 hover:-translate-y-1 transition-all duration-300">
-                  <div className="flex flex-col items-center space-y-4">
-                    <div className="p-3 bg-[#2563EB] rounded-xl">
-                      <tool.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <h4 className="text-lg text-foreground">{tool.name}</h4>
-                    <div className="space-y-1">
-                      {tool.items.map((item) => (
-                        <p
-                          key={item}
-                          className="text-sm text-muted-foreground"
-                        >
-                          {item}
-                        </p>
-                      ))}
-                    </div>
+        {/* Tools & technologies */}
+        <ScrollReveal className="mt-6">
+          <div className="rounded-[32px] bg-ink p-8 text-paper md:p-12">
+            <div className="mb-10 flex items-center justify-between gap-4">
+              <h3 className="font-serif text-3xl md:text-4xl">Tools &amp; Technologies</h3>
+              <span className="font-mono text-xs uppercase tracking-[0.12em] text-paper/50">(05)</span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4 lg:gap-x-0 lg:divide-x lg:divide-paper/15">
+              {tools.map((tool) => (
+                <div key={tool.name} className="lg:px-8 lg:first:pl-0 lg:last:pr-0">
+                  <div className="flex items-center gap-2.5 text-accent-light">
+                    <tool.icon className="h-4 w-4" />
+                    <h4 className="font-mono text-xs uppercase tracking-[0.12em]">{tool.name}</h4>
                   </div>
-                </Card>
-              </ScrollReveal>
-            ))}
+                  <ul className="mt-5 space-y-2">
+                    {tool.items.map((item) => (
+                      <li key={item} className="font-serif text-2xl text-paper">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
         </ScrollReveal>
       </div>

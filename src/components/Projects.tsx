@@ -1,380 +1,384 @@
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { motion, AnimatePresence } from "motion/react";
-import { Button } from "./ui/button";
-import { Badge } from "./ui/badge";
-import { ExternalLink, Github, X, Info } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { ArrowUpRight, Github, Lock, X } from "lucide-react";
+import { categories, projects, type Category, type Project } from "../data/projects";
+import { SectionHeading } from "./SectionHeading";
 import { ScrollReveal } from "./effects/ScrollReveal";
 
-/* ------------------------------------------------------------------ */
-/*  Project data                                                       */
-/* ------------------------------------------------------------------ */
-const projects = [
-	{
-		title: "IPL Analytics Dashboard",
-		createdAt: "2026-06-01",
-		priority: 15,
-		description:
-			"An interactive and dynamic **Power BI Dashboard** that provides comprehensive insights into Indian Premier League (IPL) matches, team performances, and player statistics across multiple seasons.\n\n" +
-			"This dashboard is designed to analyze IPL historical data to help cricket enthusiasts, analysts, and franchise managers gain deep insights into match trends, player profiles, and team statistics.\n\n" +
-			"The dashboard leverages **Power Query** for data transformation, **DAX (Data Analysis Expressions)** for advanced calculations/measures, and modern **Power BI visuals** for interactive storytelling.",
-		image:
-			"https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1400&q=80",
-		tags: ["Power BI", "Data Analytics", "EDA", "SQL"],
-		githubUrl: "https://github.com/Ansh-Patoliya/IPL-Dashboard",
-	},
-	{
-		title: "Stock Market Analytics Dashboard",
-		createdAt: "2026-06-15",
-		priority: 16,
-		description:
-			"The **Stock Market Analytics Dashboard** is a comprehensive, interactive Power BI suite designed to analyze stock market behavior. Utilizing **5-minute OHLCV (Open, High, Low, Close, Volume)** historical data, it computes and visualizes trend metrics, momentum indicators, volatility indices, and key candlestick statistical behaviors to empower traders and analysts with actionable market insights.\n\n" +
-			"Key Objectives:\n" +
-			"* **Price Analysis**: Track intraday trend cycles and micro-movements.\n" +
-			"* **Trend Detection**: Highlight market directions using multi-interval Moving Averages and Cross-over markers.\n" +
-			"* **Momentum Monitoring**: Gauge oversold and overbought conditions.\n" +
-			"* **Volatility Analysis**: Quantify risk parameters using price deviations.\n" +
-			"* **Candlestick Statistics**: Measure structural candle configurations (wicks, body proportions).\n" +
-			"* **Interactive Design**: Deliver a modern dashboard optimized for performance.",
-		image:
-			"https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1400&q=80",
-		tags: ["Power BI", "Python", "Data Analytics", "Finance", "SQL"],
-		githubUrl: "https://github.com/Ansh-Patoliya/Stock-Market-Analytics-Dashboard",
-	},
-];
+/** First paragraph, with the **bold** markers removed. */
+const getShortDescription = (description: string) =>
+  (description.split("\n\n")[0] || description).replace(/\*\*/g, "").replace(/\n/g, " ");
 
-type Project = (typeof projects)[number];
-
-/* Helper to parse bold markdown tags (**text**) into <strong> components */
+/** Turns **text** into <strong>. */
 function formatBoldText(text: string) {
-	const parts = text.split(/\*\*([^*]+)\*\*/g);
-	return parts.map((part, i) => {
-		if (i % 2 === 1) {
-			return <strong key={i} className="font-semibold text-[#FAFAFA]">{part}</strong>;
-		}
-		return part;
-	});
+  return text.split(/\*\*([^*]+)\*\*/g).map((part, i) =>
+    i % 2 === 1 ? (
+      <strong key={i} className="font-semibold text-ink">
+        {part}
+      </strong>
+    ) : (
+      part
+    ),
+  );
+}
+
+/** "(A)", "(B)" ... */
+const groupLetter = (index: number) => String.fromCharCode(65 + index);
+
+/* ------------------------------------------------------------------ */
+/*  Details modal                                                      */
+/* ------------------------------------------------------------------ */
+function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    },
+    [onClose],
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [handleKeyDown]);
+
+  const categoryLabel = categories.find((c) => c.id === project.category)?.label;
+
+  return createPortal(
+    <motion.div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-ink/50 backdrop-blur-sm" onClick={onClose} />
+
+      {/* Panel */}
+      <motion.div
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${project.title} details`}
+        className="relative flex max-h-[88vh] w-full max-w-3xl flex-col overflow-hidden rounded-[28px] border border-line bg-paper shadow-2xl"
+        initial={{ opacity: 0, y: 24, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 24, scale: 0.97 }}
+        transition={{ type: "spring", damping: 28, stiffness: 320 }}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full bg-paper text-ink shadow transition-colors hover:bg-ink hover:text-paper"
+        >
+          <X className="h-5 w-5" />
+        </button>
+
+        <div className="overflow-y-auto">
+          {project.image && (
+            <img src={project.image} alt={project.title} className="aspect-[16/8] w-full bg-ink object-cover" />
+          )}
+
+          <div className="p-6 sm:p-10">
+            {categoryLabel && <p className="eyebrow mb-4 pr-12">{categoryLabel}</p>}
+            <h3 className="pr-10 font-serif text-4xl leading-tight text-ink sm:text-5xl">{project.title}</h3>
+
+            <ul className="mt-5 flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <li key={tag} className="chip">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+
+            <div className="my-8 h-px bg-line" />
+
+            <p className="eyebrow mb-4">About this project</p>
+            <div className="space-y-3 text-base leading-relaxed text-ink/80 sm:text-lg">
+              {project.description.split("\n").map((line, idx) => {
+                const text = line.trim();
+                if (text === "") return null;
+                if (text.startsWith("*") || text.startsWith("-")) {
+                  return (
+                    <div key={idx} className="flex items-start gap-3 pl-1">
+                      <span aria-hidden="true" className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                      <span>{formatBoldText(text.substring(1).trim())}</span>
+                    </div>
+                  );
+                }
+                return <p key={idx}>{formatBoldText(text)}</p>;
+              })}
+            </div>
+
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              {project.liveUrl && (
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn flex-1">
+                  Live Demo <ArrowUpRight className="h-4 w-4" />
+                </a>
+              )}
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`View ${project.title} on GitHub`}
+                  className={project.liveUrl ? "btn-outline" : "btn flex-1"}
+                >
+                  <Github className="h-4 w-4" /> View on GitHub
+                </a>
+              )}
+              {!project.liveUrl && !project.githubUrl && (
+                <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.1em] text-muted">
+                  <Lock className="h-4 w-4" /> Private repository. Happy to walk through it on request.
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>,
+    document.body,
+  );
 }
 
 /* ------------------------------------------------------------------ */
-/*  Project Detail Modal                                               */
+/*  Project card                                                       */
 /* ------------------------------------------------------------------ */
-function ProjectModal({
-	project,
-	onClose,
+function ProjectCard({ project, index, onSelect }: { project: Project; index: number; onSelect: () => void }) {
+  return (
+    <article
+      role="button"
+      tabIndex={0}
+      aria-label={`View details for ${project.title}`}
+      onClick={onSelect}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onSelect();
+        }
+      }}
+      className="group flex h-full flex-col rounded-[28px] border border-line bg-paper-2 p-3 transition duration-300 hover:-translate-y-1 hover:border-ink hover:shadow-[0_28px_56px_-28px_rgba(20,19,15,0.35)]"
+    >
+      {project.image && (
+        <div className="relative mb-2 aspect-[16/9] overflow-hidden rounded-[20px] bg-ink">
+          <img
+            src={project.image}
+            alt={project.title}
+            loading="lazy"
+            className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+          />
+        </div>
+      )}
+
+      <div className="flex flex-1 flex-col px-4 pb-3 pt-4 sm:px-5">
+        <div className="flex min-h-7 items-center justify-between gap-3">
+          <span className="eyebrow-muted">({String(index + 1).padStart(2, "0")})</span>
+          <div className="flex items-center gap-2">
+            {project.liveUrl && (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-accent">
+                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
+                Live
+              </span>
+            )}
+            {project.isPrivate && (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
+                <Lock className="h-3 w-3" />
+                Private
+              </span>
+            )}
+          </div>
+        </div>
+
+        <h4 className="mt-4 font-serif text-3xl leading-tight text-ink transition-colors group-hover:text-accent">
+          {project.title}
+        </h4>
+
+        <p className="mt-3 line-clamp-3 text-base leading-relaxed text-muted">
+          {getShortDescription(project.description)}
+        </p>
+
+        <ul className="mt-5 flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <li key={tag} className="chip">
+              {tag}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-auto pt-6">
+          <div className="flex items-center justify-between gap-4 border-t border-line pt-4">
+            <span className="eyebrow">View details</span>
+            <div className="flex items-center gap-4">
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.1em] text-muted transition-colors hover:text-accent"
+                >
+                  Live <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              )}
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  aria-label={`${project.title} on GitHub`}
+                  className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.1em] text-muted transition-colors hover:text-accent"
+                >
+                  <Github className="h-4 w-4" /> Repo
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Compact row (Learning & Academic)                                  */
+/* ------------------------------------------------------------------ */
+function ProjectRow({ project, index }: { project: Project; index: number }) {
+  return (
+    <a
+      href={project.githubUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${project.title} on GitHub`}
+      className="group grid gap-3 border-b border-line py-6 transition-colors md:grid-cols-[3rem_minmax(0,1fr)_minmax(0,1.3fr)_17rem] md:items-center md:gap-8"
+    >
+      <span className="eyebrow-muted">({String(index + 1).padStart(2, "0")})</span>
+      <h4 className="font-serif text-2xl leading-snug text-ink transition-colors group-hover:text-accent md:text-3xl">
+        {project.title}
+      </h4>
+      <p className="line-clamp-2 text-sm leading-relaxed text-muted md:text-base">
+        {getShortDescription(project.description)}
+      </p>
+      <span className="flex items-center justify-between gap-4">
+        <ul className="flex flex-wrap gap-1.5 md:hidden lg:flex lg:flex-1 lg:justify-end">
+          {project.tags.slice(0, 3).map((tag) => (
+            <li key={tag} className="chip">
+              {tag}
+            </li>
+          ))}
+        </ul>
+        <span
+          aria-hidden="true"
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line text-ink transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-paper"
+        >
+          <ArrowUpRight className="h-4 w-4" />
+        </span>
+      </span>
+    </a>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  One category                                                       */
+/* ------------------------------------------------------------------ */
+function CategoryGroup({
+  category,
+  letter,
+  items,
+  onSelect,
 }: {
-	project: Project;
-	onClose: () => void;
+  category: Category;
+  letter: string;
+  items: Project[];
+  onSelect: (project: Project) => void;
 }) {
-	// Close on Escape key
-	const handleKeyDown = useCallback(
-		(e: KeyboardEvent) => {
-			if (e.key === "Escape") onClose();
-		},
-		[onClose],
-	);
+  const isList = category.id === "learning";
+  // 3 columns when the count divides evenly, otherwise 2 (avoids a lonely orphan card).
+  const columns = items.length % 3 === 0 ? "lg:grid-cols-3" : "lg:grid-cols-2";
 
-	useEffect(() => {
-		document.addEventListener("keydown", handleKeyDown);
-		document.body.style.overflow = "hidden";
+  return (
+    <div id={`projects-${category.id}`} className="scroll-mt-24 border-t border-line pt-10 first:border-t-0 first:pt-0">
+      <header className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-12">
+        <div>
+          <p className="eyebrow-muted mb-3">
+            ({letter}) · {String(items.length).padStart(2, "0")} {items.length === 1 ? "project" : "projects"}
+          </p>
+          <h3 className="font-serif text-4xl leading-tight tracking-tight text-ink md:text-5xl">{category.label}</h3>
+        </div>
+        <p className="max-w-xs text-base leading-relaxed text-muted md:text-right">{category.blurb}</p>
+      </header>
 
-		return () => {
-			document.removeEventListener("keydown", handleKeyDown);
-			document.body.style.overflow = "";
-		};
-	}, [handleKeyDown]);
-
-	if (typeof document === "undefined") return null;
-
-	return createPortal(
-		<motion.div
-			className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-			exit={{ opacity: 0 }}
-			transition={{ duration: 0.3 }}
-		>
-			{/* Backdrop – blur the page behind the modal */}
-			<motion.div
-				className="absolute inset-0 bg-black/45 backdrop-blur-lg"
-				onClick={onClose}
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				exit={{ opacity: 0 }}
-				transition={{ duration: 0.3 }}
-			/>
-
-			{/* Modal content */}
-			<motion.div
-				className="relative w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col border border-[#262626] live-blue-glow"
-				style={{ maxHeight: "85vh", backgroundColor: "#111111" }}
-				initial={{ scale: 0.95, opacity: 0, y: 20 }}
-				animate={{ scale: 1, opacity: 1, y: 0 }}
-				exit={{ scale: 0.95, opacity: 0, y: 20 }}
-				transition={{ type: "spring", damping: 25, stiffness: 300 }}
-				role="dialog"
-				aria-modal="true"
-				aria-label={`${project.title} details`}
-			>
-				{/* Close button */}
-				<button
-					onClick={onClose}
-					className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:bg-black/80 transition-all duration-200 cursor-pointer"
-					aria-label="Close modal"
-				>
-					<X className="w-5 h-5" />
-				</button>
-
-				{/* Scrollable Container */}
-				<div className="w-full overflow-y-auto flex-grow rounded-2xl">
-					{/* Image Header */}
-					<div className="relative shrink-0 w-full overflow-hidden">
-						<img
-							src={project.image}
-							alt={project.title}
-							className="w-full h-48 sm:h-64 object-cover"
-							loading="lazy"
-						/>
-						<div className="absolute inset-0 bg-[#111111]/40" />
-					</div>
-
-					{/* Content Body */}
-					<div className="px-6 pt-6 pb-6 sm:px-8 sm:pt-8 sm:pb-8 relative z-10">
-						{/* Title */}
-						<h3 className="text-2xl sm:text-3xl font-bold mb-4 text-[#FAFAFA]">
-							{project.title}
-						</h3>
-
-						{/* Tech stack */}
-						<div className="flex flex-wrap gap-2 mb-6">
-							{project.tags.map((tag) => (
-								<Badge
-									key={tag}
-									variant="secondary"
-									className="bg-[#161616] text-[#2563EB] border border-[#262626] px-3 py-1 text-sm rounded-md"
-								>
-									{tag}
-								</Badge>
-							))}
-						</div>
-
-						{/* Divider */}
-						<div className="w-full h-px bg-[#262626] mb-6" />
-
-						{/* Description */}
-						<div className="mb-8">
-							<h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-								About this project
-							</h4>
-							<div className="text-[#FAFAFA]/80 leading-relaxed text-base space-y-3">
-								{project.description.split("\n").map((line, idx) => {
-									const trimmed = line.trim();
-									if (trimmed.startsWith("*") || trimmed.startsWith("-")) {
-										return (
-											<div key={idx} className="flex items-start gap-2 pl-4">
-												<span className="text-[#2563EB] mt-1.5">•</span>
-												<span>{formatBoldText(trimmed.substring(1).trim())}</span>
-											</div>
-										);
-									}
-									if (trimmed === "") {
-										return <div key={idx} className="h-2" />;
-									}
-									return (
-										<p key={idx}>
-											{formatBoldText(trimmed)}
-										</p>
-									);
-								})}
-							</div>
-						</div>
-
-						{/* Divider before buttons */}
-						<div className="w-full h-px bg-[#262626] mb-6" />
-
-						{/* Action buttons */}
-						<div className="flex flex-col sm:flex-row gap-3">
-							<Button
-								className="modal-btn-primary flex-grow cursor-pointer"
-								asChild
-							>
-								<a
-									href={project.githubUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									<ExternalLink className="w-5 h-5 mr-2" />
-									View Project
-								</a>
-							</Button>
-							<Button
-								className="modal-btn-secondary cursor-pointer"
-								asChild
-							>
-								<a
-									href={project.githubUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-									aria-label={`View ${project.title} on GitHub`}
-								>
-									<Github className="w-5 h-5" />
-								</a>
-							</Button>
-						</div>
-						{/* Spacer to prevent browser scroll padding cutoffs */}
-						<div className="h-6" />
-					</div>
-				</div>
-			</motion.div>
-		</motion.div>,
-		document.body
-	);
+      {isList ? (
+        <div className="border-t border-line">
+          {items.map((project, index) => (
+            <ProjectRow key={project.title} project={project} index={index} />
+          ))}
+        </div>
+      ) : (
+        <div className={`grid gap-6 md:grid-cols-2 ${columns}`}>
+          {items.map((project, index) => (
+            <ScrollReveal key={project.title} delay={(index % 3) * 0.08} className="h-full">
+              <ProjectCard project={project} index={index} onSelect={() => onSelect(project)} />
+            </ScrollReveal>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 /* ------------------------------------------------------------------ */
-/*  Project Card (simplified – no description)                         */
-/* ------------------------------------------------------------------ */
-function ProjectCard({
-	project,
-	onSelect,
-}: {
-	project: Project;
-	onSelect: () => void;
-}) {
-	return (
-		<div
-			className="group relative live-blue-glow-card overflow-hidden h-full flex flex-col cursor-pointer rounded-2xl"
-			onClick={onSelect}
-			role="button"
-			tabIndex={0}
-			aria-label={`View details for ${project.title}`}
-			onKeyDown={(e) => {
-				if (e.key === "Enter" || e.key === " ") {
-					e.preventDefault();
-					onSelect();
-				}
-			}}
-			style={{ position: "relative", zIndex: 2 }}
-		>
-			{/* Image */}
-			<div className="relative overflow-hidden">
-				<img
-					src={project.image}
-					alt={project.title}
-					className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-					loading="lazy"
-				/>
-
-				{/* "More info" hint on hover */}
-				<div
-					className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0"
-					style={{ pointerEvents: "none" }}
-				>
-					<div className="flex items-center gap-1.5 bg-[#0A0A0A]/90 backdrop-blur-sm text-[#FAFAFA] text-xs font-medium px-3 py-1.5 rounded-full border border-[#262626]">
-						<Info className="w-3 h-3 text-[#2563EB]" />
-						Click for details
-					</div>
-				</div>
-			</div>
-
-			{/* Card body */}
-			<div className="p-5 flex flex-col flex-grow">
-				{/* Title */}
-				<h3 className="text-lg font-semibold mb-3 text-[#FAFAFA] group-hover:text-[#2563EB] transition-colors duration-300 line-clamp-1">
-					{project.title}
-				</h3>
-
-				{/* Tech stack */}
-				<div className="flex flex-wrap gap-1.5 mb-5">
-					{project.tags.map((tag) => (
-						<Badge
-							key={tag}
-							variant="secondary"
-							className="bg-[#161616] text-[#A1A1AA] border border-[#262626] group-hover:border-[#A1A1AA]/30 transition-colors duration-300 text-xs px-2.5 py-0.5 rounded-md"
-						>
-							{tag}
-						</Badge>
-					))}
-				</div>
-
-				{/* Spacer */}
-				<div className="flex-grow" />
-
-				{/* View Project button */}
-				<Button
-					size="sm"
-					className="w-full bg-[#2563EB] hover:bg-gradient-to-r hover:from-[#2563EB] hover:to-[#3b82f6] text-[#FAFAFA] hover:shadow-[0_0_15px_rgba(37,99,235,0.4)] transition-all duration-300 rounded-lg border-0"
-					asChild
-				>
-					<a
-						href={project.githubUrl}
-						target="_blank"
-						rel="noopener noreferrer"
-						onClick={(e) => e.stopPropagation()}
-						style={{ position: "relative", zIndex: 5, pointerEvents: "auto" }}
-					>
-						<ExternalLink className="w-4 h-4 mr-2" />
-						View Project
-					</a>
-				</Button>
-			</div>
-		</div>
-	);
-}
-
-/* ------------------------------------------------------------------ */
-/*  Projects Section                                                   */
+/*  Section                                                            */
 /* ------------------------------------------------------------------ */
 export function Projects() {
-	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-	const orderedProjects = [...projects].sort((a, b) => {
-		// Higher priority first (optional)
-		const priorityDiff = (b.priority ?? 0) - (a.priority ?? 0);
-		if (priorityDiff !== 0) return priorityDiff;
+  const [selected, setSelected] = useState<Project | null>(null);
 
-		// Newest first
-		return new Date(b.createdAt ?? 0).getTime() - new Date(a.createdAt ?? 0).getTime();
-	});
+  const groups = categories
+    .map((category) => ({ category, items: projects.filter((p) => p.category === category.id) }))
+    .filter((group) => group.items.length > 0);
 
-	return (
-		<section id="projects" className="py-20 bg-[#0D0D0D]">
-			<div className="container px-6 max-w-6xl mx-auto">
-				<ScrollReveal className="text-center mb-16">
-					<h2 className="text-4xl md:text-5xl mb-4 text-[#FAFAFA] font-semibold tracking-tight">
-						Featured Projects
-					</h2>
-					<div className="w-24 h-1 bg-[#2563EB] mx-auto rounded-full" />
-					<p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto">
-						Here are some of my recent projects that showcase my skills and passion for creating innovative
-						solutions.
-					</p>
-				</ScrollReveal>
+  return (
+    <section id="projects" className="section">
+      <div className="container-page">
+        <SectionHeading eyebrow="(02) PROJECTS" title="Projects">
+          A growing collection of dashboards, AI tools, web platforms and apps, grouped by what they do.
+        </SectionHeading>
 
-				<div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
-					{orderedProjects.map((project, index) => (
-						<ScrollReveal
-							key={project.title}
-							delay={index * 0.06}
-							className="h-full"
-						>
-							<ProjectCard
-								project={project}
-								onSelect={() => setSelectedProject(project)}
-							/>
-						</ScrollReveal>
-					))}
-				</div>
-			</div>
+        {/* Jump links */}
+        <nav aria-label="Project categories" className="-mt-4 mb-14 flex flex-wrap gap-2 md:-mt-8">
+          {groups.map(({ category, items }) => (
+            <a
+              key={category.id}
+              href={`#projects-${category.id}`}
+              className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+            >
+              {category.label}
+              <span className="font-mono text-xs text-muted">{String(items.length).padStart(2, "0")}</span>
+            </a>
+          ))}
+        </nav>
 
-			{/* Modal */}
-			<AnimatePresence>
-				{selectedProject && (
-					<ProjectModal
-						project={selectedProject}
-						onClose={() => setSelectedProject(null)}
-					/>
-				)}
-			</AnimatePresence>
-		</section>
-	);
+        <div className="flex flex-col gap-16 md:gap-20">
+          {groups.map(({ category, items }, index) => (
+            <CategoryGroup
+              key={category.id}
+              category={category}
+              letter={groupLetter(index)}
+              items={items}
+              onSelect={setSelected}
+            />
+          ))}
+        </div>
+      </div>
+
+      <AnimatePresence>
+        {selected && <ProjectModal project={selected} onClose={() => setSelected(null)} />}
+      </AnimatePresence>
+    </section>
+  );
 }

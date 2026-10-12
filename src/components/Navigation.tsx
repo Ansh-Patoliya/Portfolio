@@ -1,133 +1,106 @@
-import { useState, useEffect } from "react";
-import { motion } from "motion/react";
-import { Button } from "./ui/button";
-import { Menu, X, Moon, Sun } from "lucide-react";
-import { useTheme } from "./ThemeProvider";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { name: "Home", href: "#hero" },
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Contact", href: "#contact" }
+  { name: "Home", id: "hero" },
+  { name: "About", id: "about" },
+  { name: "Projects", id: "projects" },
+  { name: "Skills", id: "skills" },
+  { name: "Contact", id: "contact" },
 ];
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+  const scrollToSection = (id: string) => {
+    const scroll = () => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToSection = (href: string) => {
-    const targetId = href.replace("#", "");
-    const element = targetId === "hero" ? document.body : document.getElementById(targetId);
-    
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (isOpen) {
+      // Closing the mobile menu cancels an in-flight smooth scroll, so wait for it to finish.
+      setIsOpen(false);
+      window.setTimeout(scroll, 260);
+    } else {
+      scroll();
     }
-    setIsOpen(false);
   };
 
   return (
-    <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? "bg-background/80 backdrop-blur-lg border-b border-[#262626] shadow-lg" 
-          : "bg-transparent"
-      }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-16 md:h-20">
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-line bg-paper">
+      <div className="container-page">
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <motion.div
-            className="text-xl md:text-2xl text-[#FAFAFA] hover:text-[#2563EB] transition-colors cursor-pointer font-semibold"
-            whileHover={{ scale: 1.05 }}
-            onClick={() => scrollToSection("#hero")}
+          <button
+            type="button"
+            className="text-left font-serif text-2xl text-ink transition-colors hover:text-accent md:text-3xl"
+            onClick={() => scrollToSection("hero")}
           >
             Ansh Patoliya
-          </motion.div>
+          </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          {/* Desktop navigation */}
+          <div className="hidden items-center gap-8 md:flex">
             {navItems.map((item) => (
-              <motion.button
+              <button
                 key={item.name}
-                className="text-foreground hover:text-chart-1 transition-colors relative group font-medium"
-                onClick={() => scrollToSection(item.href)}
-                whileHover={{ scale: 1.05 }}
+                type="button"
+                className="eyebrow-muted transition-colors hover:text-ink"
+                onClick={() => scrollToSection(item.id)}
               >
                 {item.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2563EB] group-hover:w-full transition-all duration-300" />
-              </motion.button>
+              </button>
             ))}
-            <Button
-              className="nav-resume-btn cursor-pointer"
-              asChild
-            >
-              <a href="/Ansh_Patoliya_Resume.pdf" target="_blank" rel="noopener noreferrer">
-                Resume
-              </a>
-            </Button>
+            <a href="/Ansh_Patoliya_Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn">
+              Resume
+            </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-foreground hover:text-chart-1"
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </Button>
-          </div>
+          {/* Mobile menu button */}
+          <button
+            type="button"
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2 text-ink transition-colors hover:text-accent md:hidden"
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isOpen}
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <motion.div
-            className="md:hidden bg-background/95 backdrop-blur-lg border-t border-border"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="py-4 space-y-4 px-4">
-              <div className="space-y-2">
+        {/* Mobile navigation */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className="overflow-hidden md:hidden"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="flex flex-col gap-1 pb-6 pt-2">
                 {navItems.map((item) => (
-                  <motion.button
+                  <button
                     key={item.name}
-                    className="block w-full text-left py-3 text-foreground hover:text-chart-1 hover:bg-accent/50 transition-colors rounded-lg"
-                    onClick={() => scrollToSection(item.href)}
-                    whileTap={{ scale: 0.95 }}
+                    type="button"
+                    className="border-b border-line/60 py-3 text-left font-mono text-sm uppercase tracking-[0.1em] text-ink transition-colors hover:text-accent"
+                    onClick={() => scrollToSection(item.id)}
                   >
                     {item.name}
-                  </motion.button>
+                  </button>
                 ))}
-              </div>
-              <Button
-                className="nav-resume-btn-mobile cursor-pointer"
-                asChild
-              >
-                <a href="/Ansh_Patoliya_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="/Ansh_Patoliya_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn mt-4 w-full"
+                >
                   Resume
                 </a>
-              </Button>
-            </div>
-          </motion.div>
-        )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </motion.nav>
+    </nav>
   );
 }

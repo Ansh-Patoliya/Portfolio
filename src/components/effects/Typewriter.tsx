@@ -66,10 +66,10 @@ export function Typewriter({
   return (
     <span className={className}>
       {prefix}{" "}
-      <span className="text-transparent bg-gradient-to-r from-chart-1 via-chart-2 to-chart-1 bg-clip-text">
+      <span className="text-accent font-semibold">
         {typed}
       </span>
-      <span className="type-caret" aria-hidden="true">
+      <span className="type-caret text-accent" aria-hidden="true">
         |
       </span>
     </span>

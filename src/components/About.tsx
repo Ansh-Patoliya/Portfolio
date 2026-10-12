@@ -1,62 +1,68 @@
-import React from "react";
+import { SectionHeading } from "./SectionHeading";
 import { ScrollReveal } from "./effects/ScrollReveal";
 
+const profilePhoto = new URL("../assets/photo.jpg", import.meta.url).href;
+
+const facts = [
+  { label: "Location", value: "Ahmedabad ,Gujrat" },
+  { label: "Experience", value: "19+ Projects" },
+  { label: "Availability", value: "Open to opportunities" },
+  { label: "Focus", value: "Full-stack, Data & AI/ML" },
+];
+
 export function About() {
-  const profilePhoto = new URL("../assets/photo.jpg", import.meta.url).href;
-
   return (
-    <section id="about" className="py-20 bg-[#0A0A0A]">
-      <div className="container px-6 max-w-6xl mx-auto">
-        <ScrollReveal className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl mb-4 text-[#FAFAFA] font-semibold tracking-tight">
-            About Me
-          </h2>
-          <div className="w-24 h-1 bg-[#2563EB] mx-auto rounded-full" />
-        </ScrollReveal>
+    <section id="about" className="section">
+      <div className="container-page">
+        <SectionHeading eyebrow="(01) ABOUT" title="About Me">
+          <p className="eyebrow-muted">01 / 04</p>
+        </SectionHeading>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <ScrollReveal className="order-2 lg:order-1" delay={0.05}>
-            <div className="space-y-6">
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Hi! I'm a 2nd-year Computer Engineering student with a passion for data analytics and AI/ML.
-                I enjoy uncovering patterns in data, building insightful dashboards, and growing my skills in machine learning every day.
-              </p>
+        <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
+          {/* Text */}
+          <ScrollReveal className="lg:col-span-7">
+            <p className="font-serif text-2xl leading-snug text-ink sm:text-3xl md:text-[2.125rem]">
+              Hi! I'm a 3rd-year Computer Engineering student who builds full-stack products and turns data into
+              insight. From hackathon platforms and trading simulators to Power BI dashboards and Gemini-powered AI
+              tools, I like shipping things people can actually use.
+            </p>
 
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                When I'm not analyzing datasets, you'll find me exploring new technologies, learning
-                machine learning algorithms, or working on open source projects. I believe in continuous learning
-                and staying current with the ever-evolving data science landscape.
-              </p>
+            <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
+              Right now I'm working across Django, Next.js and Flask on the web side, and Python, SQL and Power BI on
+              the data side, while going deeper into machine learning. I believe in learning by building.
+            </p>
 
-              <div className="grid grid-cols-2 gap-6 pt-6">
-                <div className="space-y-2">
-                  <h4 className="text-chart-1 font-medium">Location</h4>
-                  <p className="text-muted-foreground">Ahmedabad ,Gujrat</p>
+            <dl className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+              {facts.map((fact) => (
+                <div key={fact.label} className="border-t border-ink pt-4">
+                  <dt className="eyebrow">{fact.label}</dt>
+                  <dd className="mt-2 font-serif text-2xl text-ink md:text-3xl">{fact.value}</dd>
                 </div>
-                <div className="space-y-2">
-                  <h4 className="text-chart-1 font-medium">Experience</h4>
-                  <p className="text-muted-foreground">6+ Projects</p>
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-chart-1 font-medium">Availability</h4>
-                  <p className="text-muted-foreground">Open to opportunities</p>
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-chart-1 font-medium">Focus</h4>
-                  <p className="text-muted-foreground">Data Analytics & AI/ML</p>
-                </div>
-              </div>
-            </div>
+              ))}
+            </dl>
           </ScrollReveal>
 
-          <ScrollReveal className="order-1 lg:order-2 flex justify-center" delay={0.12}>
-            <div className="relative bg-[#111111] border border-[#262626] hover:border-[#3b82f6]/40 hover:-translate-y-1 transition-all duration-300 rounded-2xl p-2 shadow-2xl overflow-hidden max-w-sm">
-              <img
-                src={profilePhoto}
-                alt="Profile"
-                className="w-80 h-80 object-cover rounded-[14px] transition-transform duration-500"
-              />
-            </div>
+          {/* Portrait */}
+          <ScrollReveal delay={0.1} className="mx-auto w-full max-w-sm lg:col-span-5 lg:mx-0 lg:justify-self-end">
+            <figure>
+              <div className="relative">
+                {/* Offset outline behind the photo */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 translate-x-3 translate-y-3 rounded-[32px] border border-line"
+                />
+                <img
+                  src={profilePhoto}
+                  alt="Ansh Patoliya"
+                  className="relative aspect-[4/5] w-full rounded-[32px] object-cover object-top grayscale transition duration-700 hover:grayscale-0"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption className="eyebrow-muted mt-8 flex items-center justify-between px-1">
+                <span>Portrait</span>
+                <span>Ansh Patoliya</span>
+              </figcaption>
+            </figure>
           </ScrollReveal>
         </div>
       </div>
