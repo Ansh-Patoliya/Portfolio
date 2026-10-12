@@ -1,17 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowUpRight, Github, X } from "lucide-react";
-import { projects, type Project } from "../data/projects";
+import { ArrowUpRight, Github, Lock, X } from "lucide-react";
+import { categories, projects, type Category, type Project } from "../data/projects";
 import { SectionHeading } from "./SectionHeading";
 import { ScrollReveal } from "./effects/ScrollReveal";
-
-/* Newest / highest priority first */
-const orderedProjects = [...projects].sort((a, b) => {
-  const priorityDiff = (b.priority ?? 0) - (a.priority ?? 0);
-  if (priorityDiff !== 0) return priorityDiff;
-  return new Date(b.createdAt ?? 0).getTime() - new Date(a.createdAt ?? 0).getTime();
-});
 
 /** First paragraph, with the **bold** markers removed. */
 const getShortDescription = (description: string) =>
@@ -29,6 +22,9 @@ function formatBoldText(text: string) {
     ),
   );
 }
+
+/** "(A)", "(B)" ... */
+const groupLetter = (index: number) => String.fromCharCode(65 + index);
 
 /* ------------------------------------------------------------------ */
 /*  Details modal                                                      */
@@ -49,6 +45,8 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
       document.body.style.overflow = "";
     };
   }, [handleKeyDown]);
+
+  const categoryLabel = categories.find((c) => c.id === project.category)?.label;
 
   return createPortal(
     <motion.div
@@ -82,10 +80,13 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         </button>
 
         <div className="overflow-y-auto">
-          <img src={project.image} alt={project.title} className="aspect-[16/8] w-full bg-ink object-cover" />
+          {project.image && (
+            <img src={project.image} alt={project.title} className="aspect-[16/8] w-full bg-ink object-cover" />
+          )}
 
           <div className="p-6 sm:p-10">
-            <h3 className="font-serif text-4xl leading-tight text-ink sm:text-5xl">{project.title}</h3>
+            {categoryLabel && <p className="eyebrow mb-4 pr-12">{categoryLabel}</p>}
+            <h3 className="pr-10 font-serif text-4xl leading-tight text-ink sm:text-5xl">{project.title}</h3>
 
             <ul className="mt-5 flex flex-wrap gap-2">
               {project.tags.map((tag) => (
@@ -115,18 +116,27 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
             </div>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn flex-1">
-                View Project <ArrowUpRight className="h-4 w-4" />
-              </a>
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`View ${project.title} on GitHub`}
-                className="btn-outline"
-              >
-                <Github className="h-4 w-4" /> GitHub
-              </a>
+              {project.liveUrl && (
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn flex-1">
+                  Live Demo <ArrowUpRight className="h-4 w-4" />
+                </a>
+              )}
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`View ${project.title} on GitHub`}
+                  className={project.liveUrl ? "btn-outline" : "btn flex-1"}
+                >
+                  <Github className="h-4 w-4" /> View on GitHub
+                </a>
+              )}
+              {!project.liveUrl && !project.githubUrl && (
+                <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.1em] text-muted">
+                  <Lock className="h-4 w-4" /> Private repository. Happy to walk through it on request.
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -152,42 +162,47 @@ function ProjectCard({ project, index, onSelect }: { project: Project; index: nu
           onSelect();
         }
       }}
-      className="group flex h-full flex-col rounded-[32px] border border-line bg-paper-2 p-3 transition duration-300 hover:-translate-y-1 hover:border-ink hover:shadow-[0_28px_56px_-28px_rgba(20,19,15,0.35)]"
+      className="group flex h-full flex-col rounded-[28px] border border-line bg-paper-2 p-3 transition duration-300 hover:-translate-y-1 hover:border-ink hover:shadow-[0_28px_56px_-28px_rgba(20,19,15,0.35)]"
     >
-      {/* Image */}
-      <div className="relative aspect-[16/10] overflow-hidden rounded-[24px] bg-ink">
-        <img
-          src={project.image}
-          alt={project.title}
-          loading="lazy"
-          className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-        />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent" />
+      {project.image && (
+        <div className="relative mb-2 aspect-[16/9] overflow-hidden rounded-[20px] bg-ink">
+          <img
+            src={project.image}
+            alt={project.title}
+            loading="lazy"
+            className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+          />
+        </div>
+      )}
 
-        <span className="absolute left-4 top-4 rounded-full bg-paper px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-ink">
-          {String(index + 1).padStart(2, "0")}
-          {index === 0 && " · Featured"}
-        </span>
+      <div className="flex flex-1 flex-col px-4 pb-3 pt-4 sm:px-5">
+        <div className="flex min-h-7 items-center justify-between gap-3">
+          <span className="eyebrow-muted">({String(index + 1).padStart(2, "0")})</span>
+          <div className="flex items-center gap-2">
+            {project.liveUrl && (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-accent">
+                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
+                Live
+              </span>
+            )}
+            {project.isPrivate && (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
+                <Lock className="h-3 w-3" />
+                Private
+              </span>
+            )}
+          </div>
+        </div>
 
-        <span
-          aria-hidden="true"
-          className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-paper text-ink transition-colors duration-300 group-hover:bg-accent group-hover:text-paper"
-        >
-          <ArrowUpRight className="h-5 w-5" />
-        </span>
-      </div>
-
-      {/* Body */}
-      <div className="flex flex-1 flex-col px-4 pb-3 pt-7 sm:px-5">
-        <h3 className="font-serif text-3xl leading-tight text-ink transition-colors group-hover:text-accent sm:text-4xl">
+        <h4 className="mt-4 font-serif text-3xl leading-tight text-ink transition-colors group-hover:text-accent">
           {project.title}
-        </h3>
+        </h4>
 
-        <p className="mt-4 line-clamp-3 text-base leading-relaxed text-muted">
+        <p className="mt-3 line-clamp-3 text-base leading-relaxed text-muted">
           {getShortDescription(project.description)}
         </p>
 
-        <ul className="mt-6 flex flex-wrap gap-2">
+        <ul className="mt-5 flex flex-wrap gap-2">
           {project.tags.map((tag) => (
             <li key={tag} className="chip">
               {tag}
@@ -195,22 +210,125 @@ function ProjectCard({ project, index, onSelect }: { project: Project; index: nu
           ))}
         </ul>
 
-        <div className="mt-auto pt-8">
-          <div className="flex items-center justify-between gap-4 border-t border-line pt-5">
+        <div className="mt-auto pt-6">
+          <div className="flex items-center justify-between gap-4 border-t border-line pt-4">
             <span className="eyebrow">View details</span>
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.1em] text-muted transition-colors hover:text-accent"
-            >
-              <Github className="h-4 w-4" /> GitHub Repo
-            </a>
+            <div className="flex items-center gap-4">
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.1em] text-muted transition-colors hover:text-accent"
+                >
+                  Live <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              )}
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  aria-label={`${project.title} on GitHub`}
+                  className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.1em] text-muted transition-colors hover:text-accent"
+                >
+                  <Github className="h-4 w-4" /> Repo
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
     </article>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Compact row (Learning & Academic)                                  */
+/* ------------------------------------------------------------------ */
+function ProjectRow({ project, index }: { project: Project; index: number }) {
+  return (
+    <a
+      href={project.githubUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${project.title} on GitHub`}
+      className="group grid gap-3 border-b border-line py-6 transition-colors md:grid-cols-[3rem_minmax(0,1fr)_minmax(0,1.3fr)_17rem] md:items-center md:gap-8"
+    >
+      <span className="eyebrow-muted">({String(index + 1).padStart(2, "0")})</span>
+      <h4 className="font-serif text-2xl leading-snug text-ink transition-colors group-hover:text-accent md:text-3xl">
+        {project.title}
+      </h4>
+      <p className="line-clamp-2 text-sm leading-relaxed text-muted md:text-base">
+        {getShortDescription(project.description)}
+      </p>
+      <span className="flex items-center justify-between gap-4">
+        <ul className="flex flex-wrap gap-1.5 md:hidden lg:flex lg:flex-1 lg:justify-end">
+          {project.tags.slice(0, 3).map((tag) => (
+            <li key={tag} className="chip">
+              {tag}
+            </li>
+          ))}
+        </ul>
+        <span
+          aria-hidden="true"
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line text-ink transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-paper"
+        >
+          <ArrowUpRight className="h-4 w-4" />
+        </span>
+      </span>
+    </a>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  One category                                                       */
+/* ------------------------------------------------------------------ */
+function CategoryGroup({
+  category,
+  letter,
+  items,
+  onSelect,
+}: {
+  category: Category;
+  letter: string;
+  items: Project[];
+  onSelect: (project: Project) => void;
+}) {
+  const isList = category.id === "learning";
+  // 3 columns when the count divides evenly, otherwise 2 (avoids a lonely orphan card).
+  const columns = items.length % 3 === 0 ? "lg:grid-cols-3" : "lg:grid-cols-2";
+
+  return (
+    <div id={`projects-${category.id}`} className="scroll-mt-24 border-t border-line pt-10 first:border-t-0 first:pt-0">
+      <header className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-12">
+        <div>
+          <p className="eyebrow-muted mb-3">
+            ({letter}) · {String(items.length).padStart(2, "0")} {items.length === 1 ? "project" : "projects"}
+          </p>
+          <h3 className="font-serif text-4xl leading-tight tracking-tight text-ink md:text-5xl">{category.label}</h3>
+        </div>
+        <p className="max-w-xs text-base leading-relaxed text-muted md:text-right">{category.blurb}</p>
+      </header>
+
+      {isList ? (
+        <div className="border-t border-line">
+          {items.map((project, index) => (
+            <ProjectRow key={project.title} project={project} index={index} />
+          ))}
+        </div>
+      ) : (
+        <div className={`grid gap-6 md:grid-cols-2 ${columns}`}>
+          {items.map((project, index) => (
+            <ScrollReveal key={project.title} delay={(index % 3) * 0.08} className="h-full">
+              <ProjectCard project={project} index={index} onSelect={() => onSelect(project)} />
+            </ScrollReveal>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -220,18 +338,40 @@ function ProjectCard({ project, index, onSelect }: { project: Project; index: nu
 export function Projects() {
   const [selected, setSelected] = useState<Project | null>(null);
 
+  const groups = categories
+    .map((category) => ({ category, items: projects.filter((p) => p.category === category.id) }))
+    .filter((group) => group.items.length > 0);
+
   return (
     <section id="projects" className="section">
       <div className="container-page">
-        <SectionHeading eyebrow="(02) PROJECTS" title="Featured Projects">
-          Here are some of my recent projects that showcase my skills and passion for creating innovative solutions.
+        <SectionHeading eyebrow="(02) PROJECTS" title="Projects">
+          A growing collection of dashboards, AI tools, web platforms and apps, grouped by what they do.
         </SectionHeading>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
-          {orderedProjects.map((project, index) => (
-            <ScrollReveal key={project.title} delay={index * 0.08} className="h-full">
-              <ProjectCard project={project} index={index} onSelect={() => setSelected(project)} />
-            </ScrollReveal>
+        {/* Jump links */}
+        <nav aria-label="Project categories" className="-mt-4 mb-14 flex flex-wrap gap-2 md:-mt-8">
+          {groups.map(({ category, items }) => (
+            <a
+              key={category.id}
+              href={`#projects-${category.id}`}
+              className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+            >
+              {category.label}
+              <span className="font-mono text-xs text-muted">{String(items.length).padStart(2, "0")}</span>
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex flex-col gap-16 md:gap-20">
+          {groups.map(({ category, items }, index) => (
+            <CategoryGroup
+              key={category.id}
+              category={category}
+              letter={groupLetter(index)}
+              items={items}
+              onSelect={setSelected}
+            />
           ))}
         </div>
       </div>
