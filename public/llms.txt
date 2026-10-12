@@ -1,0 +1,21 @@
+# Ansh Patoliya
+
+> Full-stack developer and data analyst, 3rd-year Computer Engineering student in Ahmedabad, Gujarat, India. Builds web apps, Power BI dashboards and AI tools.
+
+## Links
+- [Portfolio](https://ansh-patoliya.vercel.app/): projects, skills and contact
+- [GitHub](https://github.com/Ansh-Patoliya)
+- [LinkedIn](https://www.linkedin.com/in/ansh-patoliya)
+- [Resume](https://ansh-patoliya.vercel.app/Ansh_Patoliya_Resume.pdf)
+
+## Skills
+Django REST Framework, Next.js, React, TypeScript, Flask, Node.js, PostgreSQL, Python (pandas, NumPy), SQL, Power BI, Gemini API, scikit-learn, Java.
+
+## Notable projects
+- Syntra: hackathon management platform (Django REST + Next.js)
+- Stocxsim: paper trading simulator with live NSE/BSE data
+- Stock Market and IPL analytics dashboards (Power BI)
+- AI Video & Voice Transcriber, OmniDoc AI, Mockly (Gemini-powered)
+
+## Contact
+anshpatoliya1408@gmail.com
