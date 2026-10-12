@@ -6,12 +6,11 @@ import { Skills } from "./components/Skills";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 
-
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#F4EFE4] text-[#14130F] selection:bg-[#1F5C45] selection:text-[#F4EFE4] font-sans antialiased">
+    <div className="min-h-screen bg-paper text-ink">
       <Navigation />
-      <main className="site-main">
+      <main className="pt-20">
         <Hero />
         <About />
         <Projects />

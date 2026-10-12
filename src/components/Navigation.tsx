@@ -1,114 +1,98 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { name: "Home", href: "#hero" },
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Contact", href: "#contact" }
+  { name: "Home", id: "hero" },
+  { name: "About", id: "about" },
+  { name: "Projects", id: "projects" },
+  { name: "Skills", id: "skills" },
+  { name: "Contact", id: "contact" },
 ];
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
-    };
+  const scrollToSection = (id: string) => {
+    const scroll = () => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToSection = (href: string) => {
-    const targetId = href.replace("#", "");
-    const element = targetId === "hero" ? document.body : document.getElementById(targetId);
-    
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (isOpen) {
+      // Closing the mobile menu cancels an in-flight smooth scroll, so wait for it to finish.
+      setIsOpen(false);
+      window.setTimeout(scroll, 260);
+    } else {
+      scroll();
     }
-    setIsOpen(false);
   };
 
   return (
-    <nav className="site-navbar">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-line bg-paper">
+      <div className="container-page">
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <button
             type="button"
-            className="font-serif text-2xl md:text-3xl text-[#14130F] hover:text-[#1F5C45] transition-colors cursor-pointer text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F5C45]"
-            onClick={() => scrollToSection("#hero")}
+            className="text-left font-serif text-2xl text-ink transition-colors hover:text-accent md:text-3xl"
+            onClick={() => scrollToSection("hero")}
           >
             Ansh Patoliya
           </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop navigation */}
+          <div className="hidden items-center gap-8 md:flex">
             {navItems.map((item) => (
               <button
                 key={item.name}
                 type="button"
-                className="font-mono text-xs uppercase tracking-[0.1em] text-[#6B665A] hover:text-[#14130F] transition-colors cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-[#1F5C45]"
-                onClick={() => scrollToSection(item.href)}
+                className="eyebrow-muted transition-colors hover:text-ink"
+                onClick={() => scrollToSection(item.id)}
               >
                 {item.name}
               </button>
             ))}
-            <a
-              href="/Ansh_Patoliya_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="editorial-pill-btn text-xs py-2 px-5"
-            >
+            <a href="/Ansh_Patoliya_Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn">
               Resume
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
-            <button
-              type="button"
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-[#14130F] hover:text-[#1F5C45] transition-colors focus:outline-none"
-              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+          {/* Mobile menu button */}
+          <button
+            type="button"
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2 text-ink transition-colors hover:text-accent md:hidden"
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isOpen}
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile navigation */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="md:hidden bg-[#F4EFE4] border-b border-[#D9D2C0] py-6 space-y-4"
+              className="overflow-hidden md:hidden"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <div className="flex flex-col space-y-3">
+              <div className="flex flex-col gap-1 pb-6 pt-2">
                 {navItems.map((item) => (
                   <button
                     key={item.name}
                     type="button"
-                    className="font-mono text-sm uppercase tracking-[0.1em] text-[#14130F] hover:text-[#1F5C45] text-left py-2 border-b border-[#D9D2C0]/60 transition-colors"
-                    onClick={() => scrollToSection(item.href)}
+                    className="border-b border-line/60 py-3 text-left font-mono text-sm uppercase tracking-[0.1em] text-ink transition-colors hover:text-accent"
+                    onClick={() => scrollToSection(item.id)}
                   >
                     {item.name}
                   </button>
                 ))}
-              </div>
-              <div className="pt-2">
                 <a
                   href="/Ansh_Patoliya_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="editorial-pill-btn w-full text-center text-xs py-3"
+                  className="btn mt-4 w-full"
                 >
                   Resume
                 </a>

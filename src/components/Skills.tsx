@@ -1,17 +1,7 @@
-import React from "react";
-import {
-  BarChart3,
-  BrainCircuit,
-  Database,
-  Globe,
-  GitBranch,
-  LayoutDashboard,
-  Terminal,
-} from "lucide-react";
+import { BarChart3, BrainCircuit, Database, GitBranch, Globe, LayoutDashboard, Terminal } from "lucide-react";
+import { SectionHeading } from "./SectionHeading";
+import { ScrollReveal } from "./effects/ScrollReveal";
 
-/* ------------------------------------------------------------------ */
-/*  Skill Categories & Tools Data (verbatim)                          */
-/* ------------------------------------------------------------------ */
 const skillCategories = [
   {
     title: "Data Analytics",
@@ -41,137 +31,84 @@ const skillCategories = [
   {
     title: "Backend & Databases",
     icon: Database,
-    skills: [
-      "Java",
-      "Python",
-      "Flask",
-      "PostgreSQL",
-      "MySQL",
-    ],
+    skills: ["Java", "Python", "Flask", "PostgreSQL", "MySQL"],
   },
 ];
 
 const tools = [
-  {
-    name: "Analytics",
-    icon: LayoutDashboard,
-    items: ["Power BI", "Jupyter Notebook", "Excel"],
-  },
+  { name: "Analytics", icon: LayoutDashboard, items: ["Power BI", "Jupyter Notebook", "Excel"] },
   { name: "Web", icon: Globe, items: ["Vite", "Vercel"] },
-  {
-    name: "Version Control",
-    icon: GitBranch,
-    items: ["Git", "GitHub", "GitLab"],
-  },
-  {
-    name: "Dev Environment",
-    icon: Terminal,
-    items: ["VS Code", "PyCharm", "Anaconda"],
-  },
+  { name: "Version Control", icon: GitBranch, items: ["Git", "GitHub", "GitLab"] },
+  { name: "Dev Environment", icon: Terminal, items: ["VS Code", "PyCharm", "Anaconda"] },
 ];
 
 export function Skills() {
   return (
-    <section id="skills" className="editorial-section">
-      <div className="section-container">
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-16 pb-6 border-b border-[#D9D2C0]">
-          <div>
-            <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45] block mb-2">
-              (03) SKILLS & EXPERTISE
-            </span>
-            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#14130F] font-normal tracking-tight">
-              Skills & Expertise
-            </h2>
-          </div>
-          <p className="font-sans text-sm sm:text-base text-[#6B665A] max-w-md text-left sm:text-right">
-            Passionate about turning data into insights and building intelligent systems — here's my current toolkit.
-          </p>
-        </div>
+    <section id="skills" className="section">
+      <div className="container-page">
+        <SectionHeading eyebrow="(03) SKILLS & EXPERTISE" title="Skills & Expertise">
+          Passionate about turning data into insights and building intelligent systems — here's my current toolkit.
+        </SectionHeading>
 
-        {/* Hairline Rows */}
-        <div className="border-t border-[#D9D2C0]">
-          {skillCategories.map((category, index) => {
-            const formattedIndex = String(index + 1).padStart(2, "0");
-            return (
-              <div
-                key={category.title}
-                className="skills-row"
-              >
-                {/* Left: Mono Label with Subtitle */}
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45]">
-                      ({formattedIndex})
-                    </span>
-                    <h3 className="font-mono text-xs uppercase tracking-[0.1em] text-[#14130F] font-semibold">
-                      {category.title}
-                    </h3>
-                  </div>
-                  {category.subtitle && (
-                    <span className="skill-subtitle">
-                      {category.subtitle}
-                    </span>
-                  )}
+        {/* Skill categories */}
+        <div className="grid gap-6 lg:grid-cols-3">
+          {skillCategories.map((category, index) => (
+            <ScrollReveal key={category.title} delay={index * 0.08} className="h-full">
+              <div className="flex h-full flex-col rounded-[32px] border border-line bg-paper-2 p-7 transition-colors duration-300 hover:border-ink md:p-8">
+                <div className="flex items-start justify-between">
+                  <span className="grid h-14 w-14 place-items-center rounded-full bg-accent text-paper">
+                    <category.icon className="h-6 w-6" />
+                  </span>
+                  <span className="eyebrow-muted">({String(index + 1).padStart(2, "0")})</span>
                 </div>
 
-                {/* Right: Skills with natural wrapping and " · " separator */}
-                <div>
-                  <div className="flex flex-wrap items-center">
-                    {category.skills.map((skill, sIdx) => (
-                      <span key={skill} className="inline-flex items-center whitespace-nowrap">
-                        <span className="font-serif text-2xl sm:text-3xl text-[#14130F] hover:text-[#1F5C45] transition-colors duration-200">
-                          {skill}
-                        </span>
-                        {sIdx < category.skills.length - 1 && (
-                          <span className="skill-dot" aria-hidden="true">
-                            ·
-                          </span>
-                        )}
-                      </span>
+                <div className="mt-8 lg:min-h-[8.75rem]">
+                  <h3 className="font-serif text-3xl leading-tight text-ink md:text-4xl">{category.title}</h3>
+                  {category.subtitle && <p className="eyebrow-muted mt-2">{category.subtitle}</p>}
+                </div>
+
+                <ul className="mt-6 flex flex-wrap gap-2">
+                  {category.skills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="rounded-full border border-line bg-paper px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        {/* Tools & technologies */}
+        <ScrollReveal className="mt-6">
+          <div className="rounded-[32px] bg-ink p-8 text-paper md:p-12">
+            <div className="mb-10 flex items-center justify-between gap-4">
+              <h3 className="font-serif text-3xl md:text-4xl">Tools &amp; Technologies</h3>
+              <span className="font-mono text-xs uppercase tracking-[0.12em] text-paper/50">(04)</span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4 lg:gap-x-0 lg:divide-x lg:divide-paper/15">
+              {tools.map((tool) => (
+                <div key={tool.name} className="lg:px-8 lg:first:pl-0 lg:last:pr-0">
+                  <div className="flex items-center gap-2.5 text-accent-light">
+                    <tool.icon className="h-4 w-4" />
+                    <h4 className="font-mono text-xs uppercase tracking-[0.12em]">{tool.name}</h4>
+                  </div>
+                  <ul className="mt-5 space-y-2">
+                    {tool.items.map((item) => (
+                      <li key={item} className="font-serif text-2xl text-paper">
+                        {item}
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
-              </div>
-            );
-          })}
-
-          {/* Tools & Technologies Row */}
-          <div className="skills-row">
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45]">
-                  (04)
-                </span>
-                <h3 className="font-mono text-xs uppercase tracking-[0.1em] text-[#14130F] font-semibold">
-                  Tools & Technologies
-                </h3>
-              </div>
-            </div>
-
-            <div>
-              <div className="tools-subgrid">
-                {tools.map((tool) => (
-                  <div key={tool.name} className="space-y-2.5">
-                    <h4 className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45]">
-                      {tool.name}
-                    </h4>
-                    <ul className="space-y-1">
-                      {tool.items.map((item) => (
-                        <li
-                          key={item}
-                          className="font-serif text-xl sm:text-2xl text-[#14130F] hover:text-[#1F5C45] transition-colors"
-                        >
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -1,59 +1,49 @@
-import { Heart, Github, Linkedin, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github, Heart, Linkedin } from "lucide-react";
+
+const navLinks = [
+  { label: "Home", id: "hero" },
+  { label: "About", id: "about" },
+  { label: "Projects", id: "projects" },
+  { label: "Skills", id: "skills" },
+  { label: "Contact", id: "contact" },
+];
 
 const socialLinks = [
-  {
-    icon: Github,
-    href: "https://github.com/Ansh-Patoliya",
-    label: "GitHub"
-  },
-  {
-    icon: Linkedin,
-    href: "https://www.linkedin.com/in/ansh-patoliya",
-    label: "LinkedIn"
-  }
+  { icon: Github, href: "https://github.com/Ansh-Patoliya", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/ansh-patoliya", label: "LinkedIn" },
 ];
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#F4EFE4] border-t border-[#D9D2C0] py-16 sm:py-20">
-      <div className="section-container">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 pb-12 border-b border-[#D9D2C0]">
-          {/* Brand & Subtext */}
-          <div className="space-y-3">
-            <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45] block">
-              PORTFOLIO / ARCHIVE
-            </span>
-            <div className="font-serif text-3xl sm:text-4xl text-[#14130F]">
-              Ansh Patoliya
-            </div>
-            <p className="font-sans text-sm text-[#6B665A] max-w-sm">
-              Data Analyst & Aspiring AI/ML Engineer based in Ahmedabad, India.
+    <footer className="border-t border-line">
+      <div className="container-page py-16 md:py-20">
+        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr] md:gap-16">
+          {/* Brand */}
+          <div>
+            <p className="eyebrow">PORTFOLIO / ARCHIVE</p>
+            <p className="mt-4 font-serif text-5xl leading-none tracking-tight text-ink md:text-6xl">Ansh Patoliya</p>
+            <p className="mt-5 max-w-sm text-base leading-relaxed text-muted">
+              Data Analyst &amp; Aspiring AI/ML Engineer based in Ahmedabad, India.
             </p>
           </div>
 
-          {/* Nav & Socials */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-8">
-            {/* Quick Links */}
-            <div className="flex flex-wrap gap-6 text-sm">
-              {["Home", "About", "Projects", "Skills", "Contact"].map((link) => (
+          {/* Navigation + socials */}
+          <div className="flex flex-col gap-8 md:items-end">
+            <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-3 md:justify-end">
+              {navLinks.map((link) => (
                 <button
-                  key={link}
+                  key={link.label}
                   type="button"
-                  className="font-mono text-xs uppercase tracking-[0.1em] text-[#6B665A] hover:text-[#14130F] transition-colors cursor-pointer"
-                  onClick={() => {
-                    const targetId = link.toLowerCase() === "home" ? "hero" : link.toLowerCase();
-                    const element = targetId === "hero" ? document.body : document.getElementById(targetId);
-                    element?.scrollIntoView({ behavior: "smooth" });
-                  }}
+                  className="eyebrow-muted transition-colors hover:text-ink"
+                  onClick={() => document.getElementById(link.id)?.scrollIntoView({ behavior: "smooth" })}
                 >
-                  {link}
+                  {link.label}
                 </button>
               ))}
-            </div>
+            </nav>
 
-            {/* Social Links */}
             <div className="flex items-center gap-3">
               {socialLinks.map((social) => (
                 <a
@@ -61,30 +51,29 @@ export function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full border border-[#D9D2C0] flex items-center justify-center text-[#14130F] hover:border-[#1F5C45] hover:bg-[#1F5C45] hover:text-[#F4EFE4] transition-all"
                   aria-label={social.label}
+                  className="grid h-11 w-11 place-items-center rounded-full border border-line text-ink transition-colors hover:border-accent hover:bg-accent hover:text-paper"
                 >
-                  <social.icon className="w-4 h-4" />
+                  <social.icon className="h-4 w-4" />
                 </a>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar / Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-[#6B665A]">
-          <p className="flex items-center gap-1.5">
-            © {currentYear} Crafted with love 
-            <Heart className="w-3.5 h-3.5 text-[#1F5C45] fill-[#1F5C45]/20 inline" />
+        {/* Bottom bar */}
+        <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-line pt-8 font-mono text-xs text-muted sm:flex-row sm:items-center">
+          <p className="flex flex-wrap items-center gap-1.5">
+            © {currentYear} Crafted with love
+            <Heart className="inline h-3.5 w-3.5 fill-accent/20 text-accent" />
             and just enough ☕ — Ansh Patoliya
           </p>
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="hover:text-[#14130F] transition-colors flex items-center gap-1"
+            className="flex items-center gap-1 uppercase tracking-[0.1em] transition-colors hover:text-ink"
           >
-            <span>BACK TO TOP</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            Back to top <ArrowUpRight className="h-3.5 w-3.5" />
           </button>
         </div>
       </div>

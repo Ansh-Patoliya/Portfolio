@@ -66,10 +66,10 @@ export function Typewriter({
   return (
     <span className={className}>
       {prefix}{" "}
-      <span className="text-[#1F5C45] font-semibold">
+      <span className="text-accent font-semibold">
         {typed}
       </span>
-      <span className="type-caret text-[#1F5C45]" aria-hidden="true">
+      <span className="type-caret text-accent" aria-hidden="true">
         |
       </span>
     </span>

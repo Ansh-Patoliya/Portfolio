@@ -1,94 +1,70 @@
-import React from "react";
+import { SectionHeading } from "./SectionHeading";
+import { ScrollReveal } from "./effects/ScrollReveal";
+
+const profilePhoto = new URL("../assets/photo.jpg", import.meta.url).href;
+
+const facts = [
+  { label: "Location", value: "Ahmedabad ,Gujrat" },
+  { label: "Experience", value: "6+ Projects" },
+  { label: "Availability", value: "Open to opportunities" },
+  { label: "Focus", value: "Data Analytics & AI/ML" },
+];
 
 export function About() {
-  const profilePhoto = new URL("../assets/photo.jpg", import.meta.url).href;
-
   return (
-    <section id="about" className="editorial-section">
-      <div className="section-container">
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-16 pb-6 border-b border-[#D9D2C0]">
-          <div>
-            <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45] block mb-2">
-              (01) ABOUT
-            </span>
-            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#14130F] font-normal tracking-tight">
-              About Me
-            </h2>
-          </div>
-          <p className="font-mono text-xs uppercase tracking-[0.1em] text-[#6B665A]">
-            01 / 04
-          </p>
-        </div>
+    <section id="about" className="section">
+      <div className="container-page">
+        <SectionHeading eyebrow="(01) ABOUT" title="About Me">
+          <p className="eyebrow-muted">01 / 04</p>
+        </SectionHeading>
 
-        <div className="about-grid">
-          {/* Text Content */}
-          <div className="space-y-8">
-            <p className="font-sans text-lg sm:text-xl text-[#14130F] leading-relaxed">
-              Hi! I'm a 2nd-year Computer Engineering student with a passion for data analytics and AI/ML.
-              I enjoy uncovering patterns in data, building insightful dashboards, and growing my skills in machine learning every day.
+        <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
+          {/* Text */}
+          <ScrollReveal className="lg:col-span-7">
+            <p className="font-serif text-2xl leading-snug text-ink sm:text-3xl md:text-[2.125rem]">
+              Hi! I'm a 2nd-year Computer Engineering student with a passion for data analytics and AI/ML. I enjoy
+              uncovering patterns in data, building insightful dashboards, and growing my skills in machine learning
+              every day.
             </p>
 
-            <p className="font-sans text-base sm:text-lg text-[#6B665A] leading-relaxed">
-              When I'm not analyzing datasets, you'll find me exploring new technologies, learning
-              machine learning algorithms, or working on open source projects. I believe in continuous learning
-              and staying current with the ever-evolving data science landscape.
+            <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
+              When I'm not analyzing datasets, you'll find me exploring new technologies, learning machine learning
+              algorithms, or working on open source projects. I believe in continuous learning and staying current with
+              the ever-evolving data science landscape.
             </p>
 
-            {/* Hairline Grid */}
-            <div className="about-meta-grid">
-              <div className="bg-[#FAF7F0] p-6 space-y-1.5">
-                <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45] block">
-                  Location
-                </span>
-                <p className="font-serif text-xl sm:text-2xl text-[#14130F]">
-                  Ahmedabad ,Gujrat
-                </p>
-              </div>
-              <div className="bg-[#FAF7F0] p-6 space-y-1.5">
-                <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45] block">
-                  Experience
-                </span>
-                <p className="font-serif text-xl sm:text-2xl text-[#14130F]">
-                  6+ Projects
-                </p>
-              </div>
-              <div className="bg-[#FAF7F0] p-6 space-y-1.5">
-                <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45] block">
-                  Availability
-                </span>
-                <p className="font-serif text-xl sm:text-2xl text-[#14130F]">
-                  Open to opportunities
-                </p>
-              </div>
-              <div className="bg-[#FAF7F0] p-6 space-y-1.5">
-                <span className="font-mono text-xs uppercase tracking-[0.1em] text-[#1F5C45] block">
-                  Focus
-                </span>
-                <p className="font-serif text-xl sm:text-2xl text-[#14130F]">
-                  Data Analytics & AI/ML
-                </p>
-              </div>
-            </div>
-          </div>
+            <dl className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+              {facts.map((fact) => (
+                <div key={fact.label} className="border-t border-ink pt-4">
+                  <dt className="eyebrow">{fact.label}</dt>
+                  <dd className="mt-2 font-serif text-2xl text-ink md:text-3xl">{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </ScrollReveal>
 
-          {/* Profile Picture */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-sm">
-              <div className="border border-[#D9D2C0] p-3 bg-[#FAF7F0] rounded-2xl shadow-sm">
+          {/* Portrait */}
+          <ScrollReveal delay={0.1} className="mx-auto w-full max-w-sm lg:col-span-5 lg:mx-0 lg:justify-self-end">
+            <figure>
+              <div className="relative">
+                {/* Offset outline behind the photo */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 translate-x-3 translate-y-3 rounded-[32px] border border-line"
+                />
                 <img
                   src={profilePhoto}
-                  alt="Ansh Patoliya Profile"
-                  className="w-full aspect-square object-cover rounded-xl filter grayscale contrast-105 hover:grayscale-0 transition-all duration-500"
+                  alt="Ansh Patoliya"
+                  className="relative aspect-[4/5] w-full rounded-[32px] object-cover object-top grayscale transition duration-700 hover:grayscale-0"
                   loading="lazy"
                 />
               </div>
-              <div className="mt-3 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.1em] text-[#6B665A] px-1">
+              <figcaption className="eyebrow-muted mt-8 flex items-center justify-between px-1">
                 <span>Portrait</span>
                 <span>Ansh Patoliya</span>
-              </div>
-            </div>
-          </div>
+              </figcaption>
+            </figure>
+          </ScrollReveal>
         </div>
       </div>
     </section>
