@@ -11,7 +11,7 @@
     ],
     "image": "/blog/syntra.jpg",
     "readingTime": 1,
-    "html": "<p>Running a hackathon means juggling registrations, teams and a crowd of people on event day. Syntra is a hackathon management platform that brings all of that into one place.</p>\n<h2>What it does</h2>\n<ul>\n<li><strong>Participant console:</strong> participants sign in, register their team and follow the event from one dashboard.</li>\n<li><strong>Team registration:</strong> a simple flow to form a team and sign up for the event.</li>\n<li><strong>QR scanning for volunteers:</strong> on event day, volunteers scan a participant&#39;s QR code to check them in quickly instead of working through a spreadsheet.</li>\n</ul>\n<h2>Who it is for</h2>\n<p>Organisers who want a smoother event, and participants who want a clear, simple experience.</p>\n<p><strong>Live:</strong> <a href=\"https://syntra-blond.vercel.app\">syntra-blond.vercel.app</a></p>\n"
+    "html": "<p>Running a hackathon means juggling registrations, teams and a crowd of people on event day. Syntra is a hackathon management platform that brings all of that into one place.</p>\n<h2>What it does</h2>\n<ul>\n<li><strong>Participant console:</strong> participants sign in, register their team and follow the event from one dashboard.</li>\n<li><strong>Team registration:</strong> a simple flow to form a team and sign up for the event.</li>\n<li><strong>QR scanning for volunteers:</strong> on event day, volunteers scan a participant&#39;s QR code to check them in quickly instead of working through a spreadsheet.</li>\n</ul>\n<h2>Who it is for</h2>\n<p>Organisers who want a smoother event, and participants who want a clear, simple experience.</p>\n"
   },
   {
     "slug": "stocxsim-paper-trading-simulator",
@@ -67,7 +67,7 @@
     ],
     "image": "/blog/ai-transcriber.jpg",
     "readingTime": 1,
-    "html": "<p>This web app turns spoken content into text, quickly and accurately.</p>\n<h2>What it does</h2>\n<ul>\n<li><strong>Accepts</strong> uploaded video or audio files, or a link such as YouTube.</li>\n<li><strong>Creates a timestamped transcript</strong> using Google Gemini.</li>\n<li><strong>Syncs with the video:</strong> the transcript follows the video as it plays.</li>\n<li><strong>Lets you edit</strong> the text inline.</li>\n<li><strong>Generates AI summaries.</strong></li>\n<li><strong>Exports</strong> to SRT, PDF, DOCX, CSV and TXT.</li>\n</ul>\n<h2>Where it helps</h2>\n<p>Lectures, interviews, meetings and subtitles.</p>\n<p><strong>Live demo:</strong> <a href=\"https://ai-video-voice-trans.vercel.app\">ai-video-voice-trans.vercel.app</a></p>\n"
+    "html": "<p>This web app turns spoken content into text, quickly and accurately.</p>\n<h2>What it does</h2>\n<ul>\n<li><strong>Accepts</strong> uploaded video or audio files, or a link such as YouTube.</li>\n<li><strong>Creates a timestamped transcript</strong> using Google Gemini.</li>\n<li><strong>Syncs with the video:</strong> the transcript follows the video as it plays.</li>\n<li><strong>Lets you edit</strong> the text inline.</li>\n<li><strong>Generates AI summaries.</strong></li>\n<li><strong>Exports</strong> to SRT, PDF, DOCX, CSV and TXT.</li>\n</ul>\n<h2>Where it helps</h2>\n<p>Lectures, interviews, meetings and subtitles.</p>\n"
   },
   {
     "slug": "omnidoc-ai-notes-to-pdf",

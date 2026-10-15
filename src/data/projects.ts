@@ -5,7 +5,6 @@
  * Projects are shown grouped by category, in the order they appear in this file.
  *
  *  - githubUrl  link to the repo (leave out for private repos and set isPrivate: true)
- *  - liveUrl    link to a deployed demo (optional)
  *  - image      screenshot shown on the card and in the details popup (optional)
  *  - description supports **bold**, blank lines for paragraphs and "* " bullet lines
  */
@@ -52,7 +51,6 @@ export type Project = {
   description: string;
   tags: string[];
   githubUrl?: string;
-  liveUrl?: string;
   image?: string;
   isPrivate?: boolean;
 };
@@ -95,7 +93,6 @@ export const projects: Project[] = [
       "Built with a **React + TypeScript** frontend, a **FastAPI** backend, the **Google Gemini API** for transcription, and FFmpeg and yt-dlp for media handling.",
     tags: ["React", "TypeScript", "FastAPI", "Gemini API", "FFmpeg"],
     githubUrl: "https://github.com/Ansh-Patoliya/AiVideo_Voice_Trans",
-    liveUrl: "https://ai-video-voice-trans.vercel.app",
   },
   {
     title: "OmniDoc AI",
@@ -126,7 +123,6 @@ export const projects: Project[] = [
       "Includes a participant console with team registration flows and **QR-based scanning** for volunteers on event day.",
     tags: ["Django REST", "Next.js", "QR Scanning"],
     githubUrl: "https://github.com/Tech-Wizards-1331/syntra",
-    liveUrl: "https://syntra-blond.vercel.app",
   },
   {
     title: "HackHub",
@@ -178,7 +174,6 @@ export const projects: Project[] = [
     description: "An interactive web app built with JavaScript and deployed on Vercel.",
     tags: ["JavaScript", "Vercel"],
     githubUrl: "https://github.com/Ansh-Patoliya/Spinner",
-    liveUrl: "https://spinner-three-kappa.vercel.app",
   },
 
   /* ------------------------------ Desktop Apps ------------------------------ */

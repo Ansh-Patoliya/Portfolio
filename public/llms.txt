@@ -1,22 +1,57 @@
 # Ansh Patoliya
 
-> Full-stack developer and data analyst, 3rd-year Computer Engineering student in Ahmedabad, Gujarat, India. Builds web apps, Power BI dashboards and AI tools.
+> Ansh Patoliya is a full-stack developer and data analyst, a 3rd-year Computer Engineering student in Ahmedabad, Gujarat, India. He builds web apps, Power BI dashboards and AI tools.
+
+## About
+- Location: Ahmedabad, Gujarat, India
+- Focus: full-stack web (Django REST Framework, Next.js, Flask, React), data analytics (Power BI, SQL, Python), AI tools (Gemini API)
+- Contact: anshpatoliya1408@gmail.com
 
 ## Links
-- [Portfolio](https://ansh-patoliya.vercel.app/): projects, skills and contact
-- [Blog](https://ansh-patoliya.vercel.app/blog): notes on web development, data and AI
+- [Portfolio](https://ansh-patoliya.vercel.app/)
+- [Blog](https://ansh-patoliya.vercel.app/blog)
 - [GitHub](https://github.com/Ansh-Patoliya)
 - [LinkedIn](https://www.linkedin.com/in/ansh-patoliya)
 - [Resume](https://ansh-patoliya.vercel.app/Ansh_Patoliya_Resume.pdf)
 
-## Skills
-Django REST Framework, Next.js, React, TypeScript, Flask, Node.js, PostgreSQL, Python (pandas, NumPy), SQL, Power BI, Gemini API, scikit-learn, Java.
+## Projects
+### Data Analytics
+- **Stock Market Analytics Dashboard**: The Stock Market Analytics Dashboard is a comprehensive, interactive Power BI suite designed to analyze stock market behavior. Utilizing 5-minute OHLCV (Open, High, Low, Close, Volume) historical data, it computes and visualizes trend metrics, momentum indicators, volatility indices, and key candlestick statistical behaviors to empower traders and analysts with actionable market insights. (https://github.com/Ansh-Patoliya/Stock-Market-Analytics-Dashboard)
+- **IPL Analytics Dashboard**: An interactive and dynamic Power BI Dashboard that provides comprehensive insights into Indian Premier League (IPL) matches, team performances, and player statistics across multiple seasons. (https://github.com/Ansh-Patoliya/IPL-Dashboard)
 
-## Notable projects
-- Syntra: hackathon management platform (Django REST + Next.js)
-- Stocxsim: paper trading simulator with live NSE/BSE data
-- Stock Market and IPL analytics dashboards (Power BI)
-- AI Video & Voice Transcriber, OmniDoc AI, Mockly (Gemini-powered)
+### AI & Machine Learning
+- **AI Video & Voice Transcriber**: A web app that turns uploaded video or audio files, or links such as YouTube, into accurate timestamped transcripts. (https://github.com/Ansh-Patoliya/AiVideo_Voice_Trans)
+- **OmniDoc AI**: A Streamlit app that turns raw text, document photos, handwritten notes and diagrams into styled PDF reports. (https://github.com/Ansh-Patoliya/OmniDoc-AI)
+- **Mockly**: An interview preparation platform where students practice role-specific questions and get personalized feedback. (https://github.com/Mocktra-Forge/Mockly)
 
-## Contact
-anshpatoliya1408@gmail.com
+### Full-stack Web Apps
+- **Syntra**: A hackathon management platform for organizing and running events, built with a Django REST Framework backend and a Next.js frontend. (https://github.com/Tech-Wizards-1331/syntra)
+- **HackHub**: A Flask based hackathon management platform with separate admin, faculty and participant portals and QR-code scanning for check-ins. (https://github.com/Tech-Wizards-1331/HackHub)
+- **Stocxsim**: A web-based paper trading simulator that uses live NSE/BSE market data from Angel One SmartAPI. (https://github.com/Stocxsim/stocxsim)
+- **Stocxsim 2.0**: The second version of Stocxsim, rebuilt around dedicated services: an order-matching engine, a portfolio engine, a brokerage charge engine, watchlists, holdings and transaction history, all on top of live market data.
+- **Orbito (TaskFlow)**: A task management app with categories, subtasks, due-soon reminders, search, date filters and dashboard stats.
+- **Tannu Nail Studio**: A storefront website for a handmade luxury press-on nails brand, with a built-in admin panel for managing the catalogue.
+- **Spinner**: An interactive web app built with JavaScript and deployed on Vercel. (https://github.com/Ansh-Patoliya/Spinner)
+
+### Desktop Apps
+- **Stock Market Simulator**: A real-time stock trading simulator built with Java and JavaFX. (https://github.com/Ansh-Patoliya/Stock-Market-Simulator)
+- **CampusConnect**: A JavaFX desktop application for managing campus events, clubs and users, connecting students, club members and administrators. (https://github.com/Ansh-Patoliya/CampusConnect)
+
+### Learning & Academic
+- **Python Learning Journal**: Day-by-day notes, code and mini projects covering Python basics, data structures, OOP, file handling, NumPy, Pandas and Matplotlib. (https://github.com/Ansh-Patoliya/python_learning)
+- **Data Structures & Algorithms in Java**: Practice problems and implementations in Java: linked lists, stacks, queues, trees and more, with a progress log. (https://github.com/Ansh-Patoliya/DSA)
+- **Machine Learning Notes**: Notes, notebooks and exercise solutions from working through Hands-On Machine Learning (2nd edition) with Scikit-Learn, Keras and TensorFlow. (https://github.com/Ansh-Patoliya/ML_Documentation)
+- **Employee Management System**: A Java application for managing employee details, salaries and leave requests, with role-based access for employees and managers. (https://github.com/Ansh-Patoliya/Sem-1-Project-EmpoyeeManagement)
+- **Online Banking System**: A Java application with account management, loans, fixed deposits and transaction history. Customers register, log in and deposit, withdraw or apply for loans. (https://github.com/Ansh-Patoliya/sem-1-project-OnlineBankingSystem)
+
+## Blog
+- [Syntra: a hackathon management platform](https://ansh-patoliya.vercel.app/blog/syntra-hackathon-management-platform): One place to run a hackathon, from team registration to QR check-ins on event day.
+- [Stocxsim: practise trading without risking money](https://ansh-patoliya.vercel.app/blog/stocxsim-paper-trading-simulator): A paper trading simulator that uses live NSE/BSE prices and virtual money.
+- [Stock Market Analytics Dashboard: trend, momentum and volatility at a glance](https://ansh-patoliya.vercel.app/blog/stock-market-analytics-dashboard-overview): A Power BI dashboard that reads 5-minute stock data and shows market behaviour clearly.
+- [IPL Analytics Dashboard: the numbers behind the game](https://ansh-patoliya.vercel.app/blog/ipl-analytics-dashboard-overview): An interactive Power BI dashboard on IPL matches, teams and players across seasons.
+- [AI Video & Voice Transcriber: from speech to editable text](https://ansh-patoliya.vercel.app/blog/ai-video-voice-transcriber-overview): Upload a video or audio file, or paste a link, and get an editable, timestamped transcript.
+- [OmniDoc AI: from messy notes to a clean PDF](https://ansh-patoliya.vercel.app/blog/omnidoc-ai-notes-to-pdf): Turn raw text, document photos, handwritten notes and diagrams into a styled PDF report.
+- [Mockly: practise interviews, get real feedback](https://ansh-patoliya.vercel.app/blog/mockly-interview-preparation-platform): An interview preparation platform with role-specific questions, scoring and a performance dashboard.
+
+## Full text
+- [llms-full.txt](https://ansh-patoliya.vercel.app/llms-full.txt): all projects and blog posts in plain text
