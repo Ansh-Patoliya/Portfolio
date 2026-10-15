@@ -1,4 +1,6 @@
 import { ArrowUpRight, Github, Heart, Linkedin } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useGoToSection } from "../utils/goToSection";
 
 const navLinks = [
   { label: "Home", id: "hero" },
@@ -15,6 +17,7 @@ const socialLinks = [
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const goToSection = useGoToSection();
 
   return (
     <footer className="border-t border-line">
@@ -37,11 +40,14 @@ export function Footer() {
                   key={link.label}
                   type="button"
                   className="eyebrow-muted transition-colors hover:text-ink"
-                  onClick={() => document.getElementById(link.id)?.scrollIntoView({ behavior: "smooth" })}
+                  onClick={() => goToSection(link.id)}
                 >
                   {link.label}
                 </button>
               ))}
+              <Link to="/blog" className="eyebrow-muted transition-colors hover:text-ink">
+                Blog
+              </Link>
             </nav>
 
             <div className="flex items-center gap-3">

@@ -1,0 +1,100 @@
+[
+  {
+    "slug": "syntra-hackathon-management-platform",
+    "title": "Syntra: a hackathon management platform",
+    "date": "2026-10-14",
+    "summary": "One place to run a hackathon, from team registration to QR check-ins on event day.",
+    "tags": [
+      "Syntra",
+      "Hackathon",
+      "Web App"
+    ],
+    "image": "/blog/syntra.jpg",
+    "readingTime": 1,
+    "html": "<p>Running a hackathon means juggling registrations, teams and a crowd of people on event day. Syntra is a hackathon management platform that brings all of that into one place.</p>\n<h2>What it does</h2>\n<ul>\n<li><strong>Participant console:</strong> participants sign in, register their team and follow the event from one dashboard.</li>\n<li><strong>Team registration:</strong> a simple flow to form a team and sign up for the event.</li>\n<li><strong>QR scanning for volunteers:</strong> on event day, volunteers scan a participant&#39;s QR code to check them in quickly instead of working through a spreadsheet.</li>\n</ul>\n<h2>Who it is for</h2>\n<p>Organisers who want a smoother event, and participants who want a clear, simple experience.</p>\n<p><strong>Live:</strong> <a href=\"https://syntra-blond.vercel.app\">syntra-blond.vercel.app</a></p>\n"
+  },
+  {
+    "slug": "stocxsim-paper-trading-simulator",
+    "title": "Stocxsim: practise trading without risking money",
+    "date": "2026-10-11",
+    "summary": "A paper trading simulator that uses live NSE/BSE prices and virtual money.",
+    "tags": [
+      "Stocxsim",
+      "Stock Market",
+      "Web App"
+    ],
+    "image": "/blog/stocxsim.jpg",
+    "readingTime": 1,
+    "html": "<p>Stocxsim lets you learn how the stock market works without risking a rupee. You trade with virtual money, but the prices are real.</p>\n<h2>What it does</h2>\n<ul>\n<li><strong>Sign up and fund a virtual account</strong> with practice money.</li>\n<li><strong>Place simulated orders</strong> on stocks using live NSE/BSE market data.</li>\n<li><strong>Track your portfolio</strong> and see how your decisions would have played out.</li>\n</ul>\n<h2>Why it matters</h2>\n<p>Beginners often learn trading by losing money. A simulator with real prices lets you make mistakes safely and learn from them.</p>\n<p>A second version, Stocxsim 2.0, adds watchlists, holdings, transaction history and brokerage charge calculation.</p>\n"
+  },
+  {
+    "slug": "stock-market-analytics-dashboard-overview",
+    "title": "Stock Market Analytics Dashboard: trend, momentum and volatility at a glance",
+    "date": "2026-10-08",
+    "summary": "A Power BI dashboard that reads 5-minute stock data and shows market behaviour clearly.",
+    "tags": [
+      "Power BI",
+      "Stock Market",
+      "Data Analytics"
+    ],
+    "image": "/blog/stock-dashboard.jpg",
+    "readingTime": 1,
+    "html": "<p>This Power BI dashboard turns 5-minute OHLCV (Open, High, Low, Close, Volume) stock data into insights you can read quickly.</p>\n<h2>What you can see</h2>\n<ul>\n<li><strong>Price analysis:</strong> intraday trends and small price movements.</li>\n<li><strong>Trend detection:</strong> moving averages and crossover markers show market direction.</li>\n<li><strong>Momentum:</strong> spot overbought and oversold conditions.</li>\n<li><strong>Volatility:</strong> understand how risky the price movement is.</li>\n<li><strong>Candlestick statistics:</strong> body and wick proportions of candles.</li>\n</ul>\n<h2>Who it is for</h2>\n<p>Anyone who wants to understand market behaviour without reading raw tables.</p>\n"
+  },
+  {
+    "slug": "ipl-analytics-dashboard-overview",
+    "title": "IPL Analytics Dashboard: the numbers behind the game",
+    "date": "2026-10-04",
+    "summary": "An interactive Power BI dashboard on IPL matches, teams and players across seasons.",
+    "tags": [
+      "Power BI",
+      "IPL",
+      "Data Analytics"
+    ],
+    "image": "/blog/ipl-dashboard.jpg",
+    "readingTime": 1,
+    "html": "<p>The IPL Analytics Dashboard lets you explore the history of the Indian Premier League in one interactive report.</p>\n<h2>What you can explore</h2>\n<ul>\n<li><strong>Match trends</strong> across multiple seasons</li>\n<li><strong>Team performance:</strong> how teams have done over time</li>\n<li><strong>Player statistics and profiles</strong></li>\n</ul>\n<h2>How it was made</h2>\n<p>Data was cleaned and shaped with Power Query, calculations were written in DAX, and the report uses interactive Power BI visuals so you can filter by season or team.</p>\n<h2>Who it is for</h2>\n<p>Cricket fans, analysts and anyone curious about the numbers behind the game.</p>\n"
+  },
+  {
+    "slug": "ai-video-voice-transcriber-overview",
+    "title": "AI Video & Voice Transcriber: from speech to editable text",
+    "date": "2026-09-30",
+    "summary": "Upload a video or audio file, or paste a link, and get an editable, timestamped transcript.",
+    "tags": [
+      "AI",
+      "Transcription",
+      "Web App"
+    ],
+    "image": "/blog/ai-transcriber.jpg",
+    "readingTime": 1,
+    "html": "<p>This web app turns spoken content into text, quickly and accurately.</p>\n<h2>What it does</h2>\n<ul>\n<li><strong>Accepts</strong> uploaded video or audio files, or a link such as YouTube.</li>\n<li><strong>Creates a timestamped transcript</strong> using Google Gemini.</li>\n<li><strong>Syncs with the video:</strong> the transcript follows the video as it plays.</li>\n<li><strong>Lets you edit</strong> the text inline.</li>\n<li><strong>Generates AI summaries.</strong></li>\n<li><strong>Exports</strong> to SRT, PDF, DOCX, CSV and TXT.</li>\n</ul>\n<h2>Where it helps</h2>\n<p>Lectures, interviews, meetings and subtitles.</p>\n<p><strong>Live demo:</strong> <a href=\"https://ai-video-voice-trans.vercel.app\">ai-video-voice-trans.vercel.app</a></p>\n"
+  },
+  {
+    "slug": "omnidoc-ai-notes-to-pdf",
+    "title": "OmniDoc AI: from messy notes to a clean PDF",
+    "date": "2026-09-25",
+    "summary": "Turn raw text, document photos, handwritten notes and diagrams into a styled PDF report.",
+    "tags": [
+      "AI",
+      "PDF",
+      "Productivity"
+    ],
+    "image": "/blog/omnidoc-ai.jpg",
+    "readingTime": 1,
+    "html": "<p>OmniDoc AI takes whatever you have, a pasted paragraph, a photo of a page, handwritten notes or a diagram, and turns it into a neatly formatted PDF.</p>\n<h2>What it does</h2>\n<ul>\n<li><strong>Reads</strong> text from documents and handwritten notes.</li>\n<li><strong>Structures</strong> the content into clear sections.</li>\n<li><strong>Styles</strong> it automatically.</li>\n<li><strong>Draws diagrams:</strong> flowcharts are rendered straight into the document.</li>\n<li><strong>Exports</strong> a ready-to-share PDF.</li>\n</ul>\n<h2>Who it is for</h2>\n<p>Good for students turning rough notes into clean study material, or anyone who needs a tidy report from scattered inputs.</p>\n"
+  },
+  {
+    "slug": "mockly-interview-preparation-platform",
+    "title": "Mockly: practise interviews, get real feedback",
+    "date": "2026-09-20",
+    "summary": "An interview preparation platform with role-specific questions, scoring and a performance dashboard.",
+    "tags": [
+      "Mockly",
+      "Interview Prep",
+      "AI"
+    ],
+    "image": "/blog/mockly.jpg",
+    "readingTime": 1,
+    "html": "<p>Mockly helps students prepare for placements by practising, not just reading.</p>\n<h2>What it does</h2>\n<ul>\n<li><strong>Role-specific questions</strong> to practise for the job you want.</li>\n<li><strong>Personalised feedback:</strong> answers are scored with a mix of keyword matching, semantic similarity and AI grading.</li>\n<li><strong>Timed mock interviews</strong> to practise under pressure.</li>\n<li><strong>3-round placement simulation</strong> that unlocks step by step.</li>\n<li><strong>Performance dashboard</strong> to track your progress over time.</li>\n</ul>\n<h2>Who it is for</h2>\n<p>Students who want to know where they stand before the real interview, and what to improve next.</p>\n"
+  }
+]

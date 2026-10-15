@@ -4,6 +4,7 @@
 
 ## Links
 - [Portfolio](https://ansh-patoliya.vercel.app/): projects, skills and contact
+- [Blog](https://ansh-patoliya.vercel.app/blog): notes on web development, data and AI
 - [GitHub](https://github.com/Ansh-Patoliya)
 - [LinkedIn](https://www.linkedin.com/in/ansh-patoliya)
 - [Resume](https://ansh-patoliya.vercel.app/Ansh_Patoliya_Resume.pdf)

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useGoToSection } from "../utils/goToSection";
 
 const navItems = [
   { name: "Home", id: "hero" },
@@ -10,11 +12,14 @@ const navItems = [
   { name: "Contact", id: "contact" },
 ];
 
+const blogLinkClass = "eyebrow-muted transition-colors hover:text-ink";
+
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const goToSection = useGoToSection();
 
   const scrollToSection = (id: string) => {
-    const scroll = () => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const scroll = () => goToSection(id);
 
     if (isOpen) {
       // Closing the mobile menu cancels an in-flight smooth scroll, so wait for it to finish.
@@ -50,6 +55,9 @@ export function Navigation() {
                 {item.name}
               </button>
             ))}
+            <Link to="/blog" className={blogLinkClass}>
+              Blog
+            </Link>
             <a href="/Ansh_Patoliya_Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn">
               Resume
             </a>
@@ -88,6 +96,13 @@ export function Navigation() {
                     {item.name}
                   </button>
                 ))}
+                <Link
+                  to="/blog"
+                  onClick={() => setIsOpen(false)}
+                  className="border-b border-line/60 py-3 text-left font-mono text-sm uppercase tracking-[0.1em] text-ink transition-colors hover:text-accent"
+                >
+                  Blog
+                </Link>
                 <a
                   href="/Ansh_Patoliya_Resume.pdf"
                   target="_blank"
