@@ -48,7 +48,9 @@ rows.forEach((row, i) => {
   if (r.image) {
     image = /^(https?:)?\/\//.test(r.image) || r.image.startsWith("/") ? r.image : `/blog/${r.image}`;
     if (image.startsWith("/blog/") && !fs.existsSync(path.join(root, "public", image))) {
-      fail(`Row ${line}: image "${r.image}" not found in public/blog/.`);
+      // Not fatal: lets you list the file name first and drop the image in later.
+      console.warn(`[blog] Row ${line}: image "${r.image}" not found in public/blog/, publishing without it.`);
+      image = undefined;
     }
   }
 

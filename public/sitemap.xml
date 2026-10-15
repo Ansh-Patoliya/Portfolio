@@ -7,7 +7,42 @@
   </url>
   <url>
     <loc>https://ansh-patoliya.vercel.app/blog</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ansh-patoliya.vercel.app/blog/learning-web-data-ml-as-a-ce-student</loc>
+    <lastmod>2026-10-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ansh-patoliya.vercel.app/blog/ai-video-voice-transcriber-gemini-fastapi</loc>
+    <lastmod>2026-10-08</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ansh-patoliya.vercel.app/blog/ipl-analytics-dashboard-eda</loc>
+    <lastmod>2026-10-03</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ansh-patoliya.vercel.app/blog/stock-market-dashboard-power-bi</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ansh-patoliya.vercel.app/blog/building-stocxsim-paper-trading</loc>
+    <lastmod>2026-09-19</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ansh-patoliya.vercel.app/blog/qr-code-check-in-flask-hackhub</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ansh-patoliya.vercel.app/blog/building-syntra-django-rest-nextjs</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.7</priority>
   </url>
 </urlset>
