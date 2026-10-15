@@ -11,38 +11,38 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ansh-patoliya.vercel.app/blog/learning-web-data-ml-as-a-ce-student</loc>
+    <loc>https://ansh-patoliya.vercel.app/blog/syntra-hackathon-management-platform</loc>
     <lastmod>2026-10-14</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ansh-patoliya.vercel.app/blog/ai-video-voice-transcriber-gemini-fastapi</loc>
+    <loc>https://ansh-patoliya.vercel.app/blog/stocxsim-paper-trading-simulator</loc>
+    <lastmod>2026-10-11</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ansh-patoliya.vercel.app/blog/stock-market-analytics-dashboard-overview</loc>
     <lastmod>2026-10-08</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ansh-patoliya.vercel.app/blog/ipl-analytics-dashboard-eda</loc>
-    <lastmod>2026-10-03</lastmod>
+    <loc>https://ansh-patoliya.vercel.app/blog/ipl-analytics-dashboard-overview</loc>
+    <lastmod>2026-10-04</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ansh-patoliya.vercel.app/blog/stock-market-dashboard-power-bi</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://ansh-patoliya.vercel.app/blog/ai-video-voice-transcriber-overview</loc>
+    <lastmod>2026-09-30</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ansh-patoliya.vercel.app/blog/building-stocxsim-paper-trading</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ansh-patoliya.vercel.app/blog/omnidoc-ai-notes-to-pdf</loc>
+    <lastmod>2026-09-25</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ansh-patoliya.vercel.app/blog/qr-code-check-in-flask-hackhub</loc>
-    <lastmod>2026-09-12</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ansh-patoliya.vercel.app/blog/building-syntra-django-rest-nextjs</loc>
-    <lastmod>2026-09-05</lastmod>
+    <loc>https://ansh-patoliya.vercel.app/blog/mockly-interview-preparation-platform</loc>
+    <lastmod>2026-09-20</lastmod>
     <priority>0.7</priority>
   </url>
 </urlset>

@@ -1,93 +1,93 @@
 [
   {
-    "slug": "learning-web-data-ml-as-a-ce-student",
-    "title": "Web, data or ML? How I split my time as a 3rd-year CE student",
+    "slug": "syntra-hackathon-management-platform",
+    "title": "Syntra: a hackathon management platform",
     "date": "2026-10-14",
-    "summary": "There are too many things to learn. Here is the simple rule I use: build projects that force me to learn the next skill.",
+    "summary": "One place to run a hackathon, from team registration to QR check-ins on event day.",
     "tags": [
-      "Learning",
-      "Career",
-      "Computer Engineering"
+      "Syntra",
+      "Hackathon",
+      "Web App"
     ],
-    "readingTime": 2,
-    "html": "<p>I am a 3rd-year Computer Engineering student in Ahmedabad. Like many students, I keep running into the same question: should I focus on web development, data analytics or machine learning? My answer so far is to stop choosing and let <strong>projects</strong> decide.</p>\n<h2>Why one track is not enough for me</h2>\n<p>My own projects already cross these areas:</p>\n<ul>\n<li><strong>Syntra and HackHub</strong> are web platforms (Django, Next.js, Flask).</li>\n<li><strong>Stock and IPL dashboards</strong> are data analytics (Power BI, SQL, Python).</li>\n<li><strong>OmniDoc AI and the video transcriber</strong> use the Gemini API.</li>\n</ul>\n<p>Each area makes the others stronger. Web skills help me ship data and AI work as real products. Data skills help me understand what my apps store. AI features make web apps more useful.</p>\n<h2>The rule I follow</h2>\n<p><strong>Pick a project that is slightly beyond what I know, and learn only what blocks me.</strong></p>\n<p>This avoids two traps:</p>\n<ol>\n<li><strong>Tutorial hell.</strong> Watching courses without building anything.</li>\n<li><strong>Random building.</strong> Making projects that never stretch me.</li>\n</ol>\n<h2>A simple weekly structure</h2>\n<ul>\n<li><strong>Build</strong> (most of my time): one active project with a small goal per week</li>\n<li><strong>Learn on demand</strong>: read docs when I am stuck, not before</li>\n<li><strong>Revise fundamentals</strong> (a little every week): DSA, SQL and Python basics, because everything else sits on them</li>\n<li><strong>Write it down</strong>: a short note after each milestone (this blog is part of that)</li>\n</ul>\n<h2>What I keep from college</h2>\n<p>University subjects can feel disconnected from projects, but they connect more than I expected. DBMS helped me design the Stocxsim tables. Operating systems and multithreading made sense when I built the JavaFX stock simulator. DSA practice makes me notice slow code.</p>\n<h2>What I would tell a first-year student</h2>\n<ul>\n<li>Start building early, even tiny things.</li>\n<li>Put your code on GitHub from day one.</li>\n<li>Finish projects. One finished, deployed project beats five half-done ones.</li>\n<li>Learn SQL. It shows up everywhere.</li>\n</ul>\n<h2>Takeaway</h2>\n<p>You do not need the perfect roadmap. You need a project that is a little too hard, some patience, and the habit of finishing.</p>\n"
+    "readingTime": 1,
+    "html": "<p>Running a hackathon means juggling registrations, teams and a crowd of people on event day. Syntra is a hackathon management platform that brings all of that into one place.</p>\n<h2>What it does</h2>\n<ul>\n<li><strong>Participant console:</strong> participants sign in, register their team and follow the event from one dashboard.</li>\n<li><strong>Team registration:</strong> a simple flow to form a team and sign up for the event.</li>\n<li><strong>QR scanning for volunteers:</strong> on event day, volunteers scan a participant&#39;s QR code to check them in quickly instead of working through a spreadsheet.</li>\n</ul>\n<h2>Who it is for</h2>\n<p>Organisers who want a smoother event, and participants who want a clear, simple experience.</p>\n<p><strong>Live:</strong> <a href=\"https://syntra-blond.vercel.app\">syntra-blond.vercel.app</a></p>\n"
   },
   {
-    "slug": "ai-video-voice-transcriber-gemini-fastapi",
-    "title": "How an AI video and voice transcriber works: FFmpeg, FastAPI and Gemini",
+    "slug": "stocxsim-paper-trading-simulator",
+    "title": "Stocxsim: practise trading without risking money",
+    "date": "2026-10-11",
+    "summary": "A paper trading simulator that uses live NSE/BSE prices and virtual money.",
+    "tags": [
+      "Stocxsim",
+      "Stock Market",
+      "Web App"
+    ],
+    "readingTime": 1,
+    "html": "<p>Stocxsim lets you learn how the stock market works without risking a rupee. You trade with virtual money, but the prices are real.</p>\n<h2>What it does</h2>\n<ul>\n<li><strong>Sign up and fund a virtual account</strong> with practice money.</li>\n<li><strong>Place simulated orders</strong> on stocks using live NSE/BSE market data.</li>\n<li><strong>Track your portfolio</strong> and see how your decisions would have played out.</li>\n</ul>\n<h2>Why it matters</h2>\n<p>Beginners often learn trading by losing money. A simulator with real prices lets you make mistakes safely and learn from them.</p>\n<p>A second version, Stocxsim 2.0, adds watchlists, holdings, transaction history and brokerage charge calculation.</p>\n"
+  },
+  {
+    "slug": "stock-market-analytics-dashboard-overview",
+    "title": "Stock Market Analytics Dashboard: trend, momentum and volatility at a glance",
     "date": "2026-10-08",
-    "summary": "The pipeline behind my AI Video & Voice Transcriber: extract audio with FFmpeg, send it to Gemini, and return timestamped text to a React UI.",
+    "summary": "A Power BI dashboard that reads 5-minute stock data and shows market behaviour clearly.",
+    "tags": [
+      "Power BI",
+      "Stock Market",
+      "Data Analytics"
+    ],
+    "readingTime": 1,
+    "html": "<p>This Power BI dashboard turns 5-minute OHLCV (Open, High, Low, Close, Volume) stock data into insights you can read quickly.</p>\n<h2>What you can see</h2>\n<ul>\n<li><strong>Price analysis:</strong> intraday trends and small price movements.</li>\n<li><strong>Trend detection:</strong> moving averages and crossover markers show market direction.</li>\n<li><strong>Momentum:</strong> spot overbought and oversold conditions.</li>\n<li><strong>Volatility:</strong> understand how risky the price movement is.</li>\n<li><strong>Candlestick statistics:</strong> body and wick proportions of candles.</li>\n</ul>\n<h2>Who it is for</h2>\n<p>Anyone who wants to understand market behaviour without reading raw tables.</p>\n"
+  },
+  {
+    "slug": "ipl-analytics-dashboard-overview",
+    "title": "IPL Analytics Dashboard: the numbers behind the game",
+    "date": "2026-10-04",
+    "summary": "An interactive Power BI dashboard on IPL matches, teams and players across seasons.",
+    "tags": [
+      "Power BI",
+      "IPL",
+      "Data Analytics"
+    ],
+    "readingTime": 1,
+    "html": "<p>The IPL Analytics Dashboard lets you explore the history of the Indian Premier League in one interactive report.</p>\n<h2>What you can explore</h2>\n<ul>\n<li><strong>Match trends</strong> across multiple seasons</li>\n<li><strong>Team performance:</strong> how teams have done over time</li>\n<li><strong>Player statistics and profiles</strong></li>\n</ul>\n<h2>How it was made</h2>\n<p>Data was cleaned and shaped with Power Query, calculations were written in DAX, and the report uses interactive Power BI visuals so you can filter by season or team.</p>\n<h2>Who it is for</h2>\n<p>Cricket fans, analysts and anyone curious about the numbers behind the game.</p>\n"
+  },
+  {
+    "slug": "ai-video-voice-transcriber-overview",
+    "title": "AI Video & Voice Transcriber: from speech to editable text",
+    "date": "2026-09-30",
+    "summary": "Upload a video or audio file, or paste a link, and get an editable, timestamped transcript.",
     "tags": [
       "AI",
-      "FastAPI",
-      "Gemini API"
+      "Transcription",
+      "Web App"
     ],
-    "readingTime": 2,
-    "html": "<p>The AI Video &amp; Voice Transcriber turns uploaded video or audio files, or links such as YouTube, into accurate timestamped transcripts. It uses <strong>React</strong> and <strong>TypeScript</strong> on the frontend, <strong>FastAPI</strong> on the backend, <strong>FFmpeg</strong> for media handling and the <strong>Gemini API</strong> for transcription. Here is the pipeline in plain steps.</p>\n<h2>The pipeline</h2>\n<ol>\n<li>The user uploads a file or pastes a link.</li>\n<li>The backend downloads or stores the media.</li>\n<li><strong>FFmpeg</strong> extracts a small mono audio file.</li>\n<li>The audio is sent to <strong>Gemini</strong> with a clear prompt.</li>\n<li>The transcript with timestamps goes back to the frontend.</li>\n</ol>\n<h2>Why extract audio first</h2>\n<p>Video files are large and most of the data is pictures you do not need for transcription. A mono, 16 kHz audio file is much smaller and faster to upload.</p>\n<pre><code class=\"language-bash\">ffmpeg -i input.mp4 -vn -ac 1 -ar 16000 -b:a 64k audio.mp3\n</code></pre>\n<ul>\n<li><code>-vn</code> drops the video</li>\n<li><code>-ac 1</code> makes it mono</li>\n<li><code>-ar 16000</code> sets a 16 kHz sample rate</li>\n</ul>\n<h2>A small FastAPI endpoint</h2>\n<pre><code class=\"language-python\">@app.post(&quot;/transcribe&quot;)\nasync def transcribe(file: UploadFile):\n    path = save_temp(file)\n    audio = extract_audio(path)       # runs FFmpeg\n    text = call_gemini(audio)         # sends audio + prompt\n    return {&quot;transcript&quot;: text}\n</code></pre>\n<p>Keeping each step in its own function makes it easy to test, and easy to swap one part later.</p>\n<h2>Prompting matters</h2>\n<p>Transcription quality depends on the instructions. Ask clearly for:</p>\n<ul>\n<li>the exact words spoken, without summarising</li>\n<li>a timestamp at the start of each paragraph</li>\n<li>a fixed format, so the frontend can parse it</li>\n</ul>\n<p>A consistent output format is what lets the React side render clickable timestamps.</p>\n<h2>Long files</h2>\n<p>Very long recordings can hit size or time limits. The usual fix is to split the audio into chunks (for example 10 minutes each), transcribe them one by one, and add the chunk&#39;s start time to each timestamp when joining.</p>\n<h2>Things to handle properly</h2>\n<ul>\n<li><strong>Loading states.</strong> Transcription takes time, so show progress.</li>\n<li><strong>Errors.</strong> Bad links, unsupported files and API failures should give clear messages.</li>\n<li><strong>Cleanup.</strong> Delete temporary files after processing.</li>\n<li><strong>API keys.</strong> Keep the Gemini key on the server, never in the React code.</li>\n</ul>\n<h2>Takeaway</h2>\n<p>An AI feature is mostly normal engineering around one model call: prepare the input, call the model with a clear prompt, and present the output well.</p>\n"
+    "readingTime": 1,
+    "html": "<p>This web app turns spoken content into text, quickly and accurately.</p>\n<h2>What it does</h2>\n<ul>\n<li><strong>Accepts</strong> uploaded video or audio files, or a link such as YouTube.</li>\n<li><strong>Creates a timestamped transcript</strong> using Google Gemini.</li>\n<li><strong>Syncs with the video:</strong> the transcript follows the video as it plays.</li>\n<li><strong>Lets you edit</strong> the text inline.</li>\n<li><strong>Generates AI summaries.</strong></li>\n<li><strong>Exports</strong> to SRT, PDF, DOCX, CSV and TXT.</li>\n</ul>\n<h2>Where it helps</h2>\n<p>Lectures, interviews, meetings and subtitles.</p>\n<p><strong>Live demo:</strong> <a href=\"https://ai-video-voice-trans.vercel.app\">ai-video-voice-trans.vercel.app</a></p>\n"
   },
   {
-    "slug": "ipl-analytics-dashboard-eda",
-    "title": "From raw IPL data to insights: how I approach a cricket dashboard",
-    "date": "2026-10-03",
-    "summary": "A practical workflow for IPL analytics: clean the data, explore it in Python, and present batting and bowling insights in Power BI.",
+    "slug": "omnidoc-ai-notes-to-pdf",
+    "title": "OmniDoc AI: from messy notes to a clean PDF",
+    "date": "2026-09-25",
+    "summary": "Turn raw text, document photos, handwritten notes and diagrams into a styled PDF report.",
     "tags": [
-      "Power BI",
-      "EDA",
-      "Cricket"
+      "AI",
+      "PDF",
+      "Productivity"
     ],
-    "readingTime": 2,
-    "html": "<p>Cricket generates a huge amount of data, and the IPL is a great practice ground for data analytics. My IPL Analytics Dashboard is an interactive Power BI report on matches, team performance and player statistics. This is the workflow I follow for a project like this.</p>\n<h2>1. Understand the dataset</h2>\n<p>IPL datasets usually have two main tables:</p>\n<ul>\n<li><strong>Matches</strong>: one row per match (season, teams, venue, toss, winner)</li>\n<li><strong>Deliveries</strong>: one row per ball (batter, bowler, runs, wickets, extras)</li>\n</ul>\n<p>Join them using the match ID. Before doing anything else, check row counts, nulls and team names. Teams get renamed over the years (for example, a franchise name change), so standardise them early.</p>\n<h2>2. Explore in Python</h2>\n<p>Quick EDA answers &quot;is this data trustworthy?&quot; before you build visuals.</p>\n<pre><code class=\"language-python\">import pandas as pd\n\nmatches = pd.read_csv(&quot;matches.csv&quot;)\nprint(matches[&quot;season&quot;].value_counts().sort_index())\nprint(matches.isna().sum())\n</code></pre>\n<p>Then try simple questions: does winning the toss help, which venues favour chasing, who scores the most in the powerplay.</p>\n<h2>3. Define metrics carefully</h2>\n<p>Cricket metrics are easy to get wrong.</p>\n<ul>\n<li><strong>Strike rate</strong> = runs ÷ legal balls faced × 100. Wides do not count as balls faced.</li>\n<li><strong>Economy rate</strong> = runs conceded ÷ overs bowled. Count overs from legal balls.</li>\n<li><strong>Batting average</strong> needs a rule for not-outs.</li>\n</ul>\n<p>In DAX, a strike rate measure looks like this (column names depend on your data):</p>\n<pre><code class=\"language-dax\">Strike Rate =\nDIVIDE ( SUM ( Deliveries[batsman_runs] ), COUNTROWS ( FILTER ( Deliveries, Deliveries[is_wide] = 0 ) ) ) * 100\n</code></pre>\n<h2>4. Design the report</h2>\n<p>I like one page per question:</p>\n<ol>\n<li><strong>Overview</strong>: seasons, matches, top teams</li>\n<li><strong>Batting</strong>: top run scorers, strike rate by phase</li>\n<li><strong>Bowling</strong>: wickets, economy by phase</li>\n<li><strong>Teams and venues</strong>: win rates, toss impact</li>\n</ol>\n<p>Slicers for season and team let readers explore on their own.</p>\n<h2>5. Watch out for small samples</h2>\n<p>A batter with 20 balls faced can show a strike rate of 250. Add a minimum-balls filter so leaderboards stay meaningful.</p>\n<h2>Takeaway</h2>\n<p>Good sports analytics is 70 percent data cleaning and metric definitions, and 30 percent charts. Get the definitions right and the visuals become straightforward.</p>\n"
+    "readingTime": 1,
+    "html": "<p>OmniDoc AI takes whatever you have, a pasted paragraph, a photo of a page, handwritten notes or a diagram, and turns it into a neatly formatted PDF.</p>\n<h2>What it does</h2>\n<ul>\n<li><strong>Reads</strong> text from documents and handwritten notes.</li>\n<li><strong>Structures</strong> the content into clear sections.</li>\n<li><strong>Styles</strong> it automatically.</li>\n<li><strong>Draws diagrams:</strong> flowcharts are rendered straight into the document.</li>\n<li><strong>Exports</strong> a ready-to-share PDF.</li>\n</ul>\n<h2>Who it is for</h2>\n<p>Good for students turning rough notes into clean study material, or anyone who needs a tidy report from scattered inputs.</p>\n"
   },
   {
-    "slug": "stock-market-dashboard-power-bi",
-    "title": "Turning 5-minute stock data into a Power BI dashboard",
-    "date": "2026-09-26",
-    "summary": "How to model intraday OHLCV data in Power BI, which measures to write, and the mistakes that make stock dashboards misleading.",
+    "slug": "mockly-interview-preparation-platform",
+    "title": "Mockly: practise interviews, get real feedback",
+    "date": "2026-09-20",
+    "summary": "An interview preparation platform with role-specific questions, scoring and a performance dashboard.",
     "tags": [
-      "Power BI",
-      "Data Analytics",
-      "DAX"
+      "Mockly",
+      "Interview Prep",
+      "AI"
     ],
-    "readingTime": 2,
-    "html": "<p>My Stock Market Analytics Dashboard is a Power BI report built on 5-minute <strong>OHLCV</strong> data (Open, High, Low, Close, Volume). Intraday data is large and noisy, so how you model it decides whether the dashboard is useful or just busy.</p>\n<h2>Start with questions</h2>\n<p>Before touching Power BI, write down what you want to answer:</p>\n<ul>\n<li>How volatile was the stock today?</li>\n<li>When does volume peak during the day?</li>\n<li>How does today compare with the last 10 days?</li>\n</ul>\n<p>Every visual should answer one of these. If it does not, remove it.</p>\n<h2>Clean data first</h2>\n<p>Intraday files often have gaps, duplicate timestamps or rows outside market hours. I prepare the data in Python (pandas) or Power Query before loading it:</p>\n<pre><code class=\"language-python\">df = df.drop_duplicates(subset=[&quot;datetime&quot;, &quot;symbol&quot;])\ndf = df[(df[&quot;datetime&quot;].dt.time &gt;= time(9, 15)) &amp; (df[&quot;datetime&quot;].dt.time &lt;= time(15, 30))]\n</code></pre>\n<p>NSE trades from 9:15 to 15:30 IST, so anything outside that window is a red flag.</p>\n<h2>A simple model</h2>\n<ul>\n<li>A <strong>Prices</strong> fact table (one row per symbol per 5 minutes)</li>\n<li>A <strong>Calendar</strong> table for dates</li>\n<li>A <strong>Time</strong> table if you want to group by hour or session</li>\n</ul>\n<p>Relate Prices to Calendar by date. A proper calendar table makes &quot;last 10 days&quot; and &quot;same day last week&quot; much easier.</p>\n<h2>Measures worth writing</h2>\n<pre><code class=\"language-dax\">Day Range = MAX ( Prices[High] ) - MIN ( Prices[Low] )\n\nTotal Volume = SUM ( Prices[Volume] )\n\nVWAP =\nDIVIDE (\n    SUMX ( Prices, ( Prices[High] + Prices[Low] + Prices[Close] ) / 3 * Prices[Volume] ),\n    SUM ( Prices[Volume] )\n)\n</code></pre>\n<p>Column names depend on your dataset. VWAP (volume weighted average price) is a good one to learn because it shows why you should not just average prices.</p>\n<h2>Mistakes to avoid</h2>\n<ol>\n<li><strong>Averaging percentages.</strong> Calculate the return from the first open and last close instead.</li>\n<li><strong>Too many colours.</strong> Use one colour for up and one for down, and keep the rest neutral.</li>\n<li><strong>No context.</strong> A number without a comparison (yesterday, 10-day average) tells you little.</li>\n<li><strong>Ignoring slicer interactions.</strong> Test that every visual reacts correctly when you filter by date or symbol.</li>\n</ol>\n<h2>Takeaway</h2>\n<p>A good dashboard is a set of answered questions on one page. Clean the data, build a small proper model, and write a few meaningful measures.</p>\n"
-  },
-  {
-    "slug": "building-stocxsim-paper-trading",
-    "title": "Building Stocxsim: a paper trading simulator with live market data",
-    "date": "2026-09-19",
-    "summary": "How a web paper trading app is put together: live prices, a Socket.IO feed, order handling and a PostgreSQL ledger.",
-    "tags": [
-      "Flask",
-      "PostgreSQL",
-      "WebSockets"
-    ],
-    "readingTime": 2,
-    "html": "<p>Stocxsim is a web-based paper trading simulator. You trade with virtual money, but the prices come from live NSE/BSE market data through Angel One&#39;s SmartAPI. It is built with <strong>Flask</strong>, <strong>Socket.IO</strong>, <strong>PostgreSQL</strong> and <strong>Plotly</strong>. Here is how the pieces fit together.</p>\n<h2>The big picture</h2>\n<ol>\n<li>A backend job fetches live prices from SmartAPI.</li>\n<li>The server pushes price updates to the browser over <strong>Socket.IO</strong>.</li>\n<li>The user places a virtual order.</li>\n<li>The server checks balance and holdings, records the trade, and updates the portfolio.</li>\n<li>Plotly charts show prices and portfolio value.</li>\n</ol>\n<h2>Why WebSockets instead of polling</h2>\n<p>If every browser asked the server for new prices every second, the server would be busy answering mostly unchanged data. With Socket.IO the server pushes only when there is something new.</p>\n<pre><code class=\"language-python\">@socketio.on(&quot;subscribe&quot;)\ndef subscribe(data):\n    join_room(data[&quot;symbol&quot;])\n\ndef publish_tick(symbol, price):\n    socketio.emit(&quot;tick&quot;, {&quot;symbol&quot;: symbol, &quot;price&quot;: price}, to=symbol)\n</code></pre>\n<p>Using <strong>rooms</strong> per symbol means a user only receives updates for the stocks they are watching.</p>\n<h2>Treat money like a ledger</h2>\n<p>Even with fake money, the database should behave like a real one. I think of it as two rules:</p>\n<ul>\n<li><strong>Never edit a balance directly.</strong> Record each trade as a row and derive the balance from it.</li>\n<li><strong>Do the check and the update in one transaction.</strong> Otherwise two quick orders could both pass the balance check.</li>\n</ul>\n<pre><code class=\"language-python\">wallet = Wallet.query.with_for_update().get(user_id)  # locks the row\nif wallet.balance &lt; cost:\n    raise ValueError(&quot;Insufficient balance&quot;)\nwallet.balance -= cost\ndb.session.add(Trade(user_id=user_id, symbol=symbol, qty=qty, price=price))\ndb.session.commit()  # lock is released here\n</code></pre>\n<p><code>with_for_update()</code> locks the wallet row until the transaction finishes, which prevents the double-spend problem.</p>\n<h2>Keep market data and trading logic apart</h2>\n<p>The part that talks to SmartAPI can fail (network, rate limits, market closed). The part that handles orders should not depend on it directly. A small price service in the middle makes it easy to test the trading logic with fake prices.</p>\n<h2>What I like about this project</h2>\n<p>It touches many real backend topics at once: external APIs, real-time updates, transactions and charts. It is a good way to practise those without risking real money.</p>\n<h2>Takeaway</h2>\n<p>For a trading app, correctness of the ledger matters more than any chart. Get the transaction logic right first, then make it look good.</p>\n"
-  },
-  {
-    "slug": "qr-code-check-in-flask-hackhub",
-    "title": "How QR code check-in works in a Flask hackathon app",
-    "date": "2026-09-12",
-    "summary": "A simple, reliable design for QR check-ins: one secret token per participant, one scan endpoint, and no double check-ins.",
-    "tags": [
-      "Flask",
-      "QR Code",
-      "HackHub"
-    ],
-    "readingTime": 2,
-    "html": "<p>HackHub is a Flask-based hackathon management platform with separate admin, faculty and participant portals. One of its most useful features is <strong>QR code check-in</strong>. This post explains the design in simple terms, so you can build the same thing in any web framework.</p>\n<h2>The idea</h2>\n<p>Every participant gets a QR code. At the venue, a volunteer scans it. The server marks that person as present. That is all, but a few details decide whether it works smoothly with 300 people in a queue.</p>\n<h2>1. Encode a random token, not an ID</h2>\n<p>Do not put a sequential ID like <code>/checkin/42</code> in the QR code. Anyone could guess other numbers. Generate a random token for each participant and store it.</p>\n<pre><code class=\"language-python\">import secrets\n\nparticipant.qr_token = secrets.token_urlsafe(16)\n</code></pre>\n<p>The QR code simply contains that token. It is hard to guess, and you can regenerate it if it leaks.</p>\n<h2>2. One endpoint, three possible answers</h2>\n<p>The scan endpoint should be tiny and predictable.</p>\n<pre><code class=\"language-python\">@app.post(&quot;/api/checkin&quot;)\ndef checkin():\n    token = request.json.get(&quot;token&quot;, &quot;&quot;)\n    p = Participant.query.filter_by(qr_token=token).first()\n\n    if p is None:\n        return {&quot;status&quot;: &quot;invalid&quot;}, 404\n    if p.checked_in_at:\n        return {&quot;status&quot;: &quot;already&quot;, &quot;at&quot;: p.checked_in_at.isoformat()}, 200\n\n    p.checked_in_at = datetime.utcnow()\n    db.session.commit()\n    return {&quot;status&quot;: &quot;ok&quot;, &quot;name&quot;: p.name}, 200\n</code></pre>\n<p>The three states (<code>ok</code>, <code>already</code>, <code>invalid</code>) let the scanner screen show a clear green, yellow or red result. The <code>already</code> case matters because people do scan twice.</p>\n<h2>3. Make it idempotent</h2>\n<p>If the volunteer&#39;s phone has a bad connection and retries the request, the participant should not be checked in twice or get an error. Checking <code>checked_in_at</code> first makes the endpoint safe to call again.</p>\n<h2>4. Role-based access</h2>\n<p>Only volunteers and admins should be able to call the endpoint. In HackHub the portals are separate, so the scan page lives in the admin side and is protected by login.</p>\n<h2>5. Plan for bad Wi-Fi</h2>\n<p>Event Wi-Fi is usually poor. Keep the scanner page light, show the result instantly, and keep a manual search by name as a fallback.</p>\n<h2>Takeaway</h2>\n<p>QR check-in looks like a small feature, but a random token, a three-state response and an idempotent endpoint make it reliable on event day.</p>\n"
-  },
-  {
-    "slug": "building-syntra-django-rest-nextjs",
-    "title": "Building a hackathon platform with Django REST and Next.js",
-    "date": "2026-09-05",
-    "summary": "Why Syntra splits into a Django REST Framework API and a Next.js frontend, and the decisions that matter when a hackathon runs on it.",
-    "tags": [
-      "Django",
-      "Next.js",
-      "Syntra"
-    ],
-    "readingTime": 2,
-    "html": "<p>Syntra is a hackathon management platform I&#39;m building. It handles the boring but critical parts of running an event: registrations, teams, check-ins and organiser tools. The backend is <strong>Django REST Framework</strong> and the frontend is <strong>Next.js</strong>. This post explains why I split it that way and what I would plan for first if I started again.</p>\n<h2>Why two separate apps</h2>\n<p>A hackathon platform has two very different audiences. Participants want a fast, clean site on their phone. Organisers want dense admin screens. Keeping the API separate from the UI means both can use the same rules without duplicating them.</p>\n<ul>\n<li><strong>Django REST Framework</strong> gives me models, validation, permissions and an admin panel with very little code.</li>\n<li><strong>Next.js</strong> gives me routing, server rendering for public pages and a good developer experience for the UI.</li>\n</ul>\n<p>The API becomes the single source of truth. If a rule changes (for example, team size limit), it changes in one place.</p>\n<h2>Model the event first, not the screens</h2>\n<p>The easiest mistake is to start with pages. I find it better to start with the nouns: <code>Event</code>, <code>Participant</code>, <code>Team</code>, <code>Submission</code>. Once the relationships are clear, the endpoints almost write themselves.</p>\n<pre><code class=\"language-python\">class Team(models.Model):\n    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name=&quot;teams&quot;)\n    name = models.CharField(max_length=80)\n    created_at = models.DateTimeField(auto_now_add=True)\n\n    class Meta:\n        unique_together = (&quot;event&quot;, &quot;name&quot;)\n</code></pre>\n<p>The <code>unique_together</code> line is small, but it removes a whole class of &quot;two teams with the same name&quot; bugs at the database level instead of in the UI.</p>\n<h2>Permissions are the real feature</h2>\n<p>For an event tool, <em>who can do what</em> matters more than any chart. Participants can edit their own team. Organisers can see everyone. Volunteers can only check people in. In DRF this maps nicely to permission classes, so each viewset states its rule explicitly instead of hiding it in the frontend.</p>\n<h2>What I would plan early</h2>\n<ol>\n<li><strong>Auth and roles</strong> before any feature. Adding roles later touches everything.</li>\n<li><strong>Pagination and filtering</strong> on every list endpoint, since registrations can grow quickly right before the deadline.</li>\n<li><strong>A clear error format</strong> so the Next.js side can show useful messages.</li>\n<li><strong>QR check-in</strong> as a first-class flow, not an afterthought. On event day it is the feature people actually use.</li>\n</ol>\n<h2>Takeaway</h2>\n<p>Splitting the backend and frontend costs a bit more setup, but it pays back as soon as there is more than one kind of user. If you are building something similar, start with the data model and the permissions, then let the UI follow.</p>\n"
+    "readingTime": 1,
+    "html": "<p>Mockly helps students prepare for placements by practising, not just reading.</p>\n<h2>What it does</h2>\n<ul>\n<li><strong>Role-specific questions</strong> to practise for the job you want.</li>\n<li><strong>Personalised feedback:</strong> answers are scored with a mix of keyword matching, semantic similarity and AI grading.</li>\n<li><strong>Timed mock interviews</strong> to practise under pressure.</li>\n<li><strong>3-round placement simulation</strong> that unlocks step by step.</li>\n<li><strong>Performance dashboard</strong> to track your progress over time.</li>\n</ul>\n<h2>Who it is for</h2>\n<p>Students who want to know where they stand before the real interview, and what to improve next.</p>\n"
   }
 ]
