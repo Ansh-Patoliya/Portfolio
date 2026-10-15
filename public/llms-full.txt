@@ -1,0 +1,320 @@
+# Ansh Patoliya
+
+> Ansh Patoliya is a full-stack developer and data analyst, a 3rd-year Computer Engineering student in Ahmedabad, Gujarat, India. He builds web apps, Power BI dashboards and AI tools.
+
+## About
+- Location: Ahmedabad, Gujarat, India
+- Focus: full-stack web (Django REST Framework, Next.js, Flask, React), data analytics (Power BI, SQL, Python), AI tools (Gemini API)
+- Contact: anshpatoliya1408@gmail.com
+
+## Links
+- [Portfolio](https://ansh-patoliya.vercel.app/)
+- [Blog](https://ansh-patoliya.vercel.app/blog)
+- [GitHub](https://github.com/Ansh-Patoliya)
+- [LinkedIn](https://www.linkedin.com/in/ansh-patoliya)
+- [Resume](https://ansh-patoliya.vercel.app/Ansh_Patoliya_Resume.pdf)
+
+## Projects
+
+### Stock Market Analytics Dashboard
+Tags: Power BI, Python, Data Analytics, Finance, SQL
+Repository: https://github.com/Ansh-Patoliya/Stock-Market-Analytics-Dashboard
+
+The Stock Market Analytics Dashboard is a comprehensive, interactive Power BI suite designed to analyze stock market behavior. Utilizing 5-minute OHLCV (Open, High, Low, Close, Volume) historical data, it computes and visualizes trend metrics, momentum indicators, volatility indices, and key candlestick statistical behaviors to empower traders and analysts with actionable market insights.
+Key Objectives:
+- Price Analysis: Track intraday trend cycles and micro-movements.
+- Trend Detection: Highlight market directions using multi-interval Moving Averages and Cross-over markers.
+- Momentum Monitoring: Gauge oversold and overbought conditions.
+- Volatility Analysis: Quantify risk parameters using price deviations.
+- Candlestick Statistics: Measure structural candle configurations (wicks, body proportions).
+- Interactive Design: Deliver a modern dashboard optimized for performance.
+
+### IPL Analytics Dashboard
+Tags: Power BI, Data Analytics, EDA, SQL
+Repository: https://github.com/Ansh-Patoliya/IPL-Dashboard
+
+An interactive and dynamic Power BI Dashboard that provides comprehensive insights into Indian Premier League (IPL) matches, team performances, and player statistics across multiple seasons.
+This dashboard is designed to analyze IPL historical data to help cricket enthusiasts, analysts, and franchise managers gain deep insights into match trends, player profiles, and team statistics.
+The dashboard leverages Power Query for data transformation, DAX (Data Analysis Expressions) for advanced calculations/measures, and modern Power BI visuals for interactive storytelling.
+
+### AI Video & Voice Transcriber
+Tags: React, TypeScript, FastAPI, Gemini API, FFmpeg
+Repository: https://github.com/Ansh-Patoliya/AiVideo_Voice_Trans
+
+A web app that turns uploaded video or audio files, or links such as YouTube, into accurate timestamped transcripts.
+An interactive studio keeps the transcript in sync with the video, supports inline editing and AI-generated summaries, and exports to SRT, PDF, DOCX, CSV and TXT.
+Built with a React + TypeScript frontend, a FastAPI backend, the Google Gemini API for transcription, and FFmpeg and yt-dlp for media handling.
+
+### OmniDoc AI
+Tags: Python, Streamlit, Gemini API, ReportLab
+Repository: https://github.com/Ansh-Patoliya/OmniDoc-AI
+
+A Streamlit app that turns raw text, document photos, handwritten notes and diagrams into styled PDF reports.
+Google Gemini handles text extraction, document structuring and automatic styling, ReportLab generates the PDF, and Mermaid flowcharts are rendered straight into the document.
+
+### Mockly
+Tags: React, Node.js, MongoDB, Gemini API
+Repository: https://github.com/Mocktra-Forge/Mockly
+
+An interview preparation platform where students practice role-specific questions and get personalized feedback.
+Answers are scored with a hybrid method: keyword matching, semantic embeddings and LLM grading. It includes timed mock interviews, a gated 3-round placement simulation and a performance dashboard.
+Built with React, Node.js + Express, MongoDB and the Google Gemini API.
+
+### Syntra
+Tags: Django REST, Next.js, QR Scanning
+Repository: https://github.com/Tech-Wizards-1331/syntra
+
+A hackathon management platform for organizing and running events, built with a Django REST Framework backend and a Next.js frontend.
+Includes a participant console with team registration flows and QR-based scanning for volunteers on event day.
+
+### HackHub
+Tags: Flask, PostgreSQL, SQLAlchemy, QR Code
+Repository: https://github.com/Tech-Wizards-1331/HackHub
+
+A Flask based hackathon management platform with separate admin, faculty and participant portals and QR-code scanning for check-ins.
+Uses SQLAlchemy with PostgreSQL and is organized into blueprints for auth, API, admin, faculty, participant and QR flows.
+
+### Stocxsim
+Tags: Flask, Socket.IO, PostgreSQL, SmartAPI, Plotly
+Repository: https://github.com/Stocxsim/stocxsim
+
+A web-based paper trading simulator that uses live NSE/BSE market data from Angel One SmartAPI.
+Users can sign up, fund a virtual account, place simulated orders and track their portfolio without risking real money.
+
+### Stocxsim 2.0
+Tags: Python, Flask, PostgreSQL, WebSockets
+
+The second version of Stocxsim, rebuilt around dedicated services: an order-matching engine, a portfolio engine, a brokerage charge engine, watchlists, holdings and transaction history, all on top of live market data.
+
+### Orbito (TaskFlow)
+Tags: Next.js, TypeScript, Express, PostgreSQL
+
+A task management app with categories, subtasks, due-soon reminders, search, date filters and dashboard stats.
+Built with a Next.js + TypeScript frontend and an Express + PostgreSQL backend, set up for deployment on Vercel, Railway and Supabase.
+
+### Tannu Nail Studio
+Tags: JavaScript, Supabase, Cloudinary, Admin Panel
+
+A storefront website for a handmade luxury press-on nails brand, with a built-in admin panel for managing the catalogue.
+Data lives in Supabase and product images are hosted on Cloudinary.
+
+### Spinner
+Tags: JavaScript, Vercel
+Repository: https://github.com/Ansh-Patoliya/Spinner
+
+An interactive web app built with JavaScript and deployed on Vercel.
+
+### Stock Market Simulator
+Tags: Java, JavaFX, PostgreSQL, JDBC
+Repository: https://github.com/Ansh-Patoliya/Stock-Market-Simulator
+
+A real-time stock trading simulator built with Java and JavaFX.
+Users can register, log in, add wallet balance, and buy and sell stocks while prices update dynamically through multithreading. Data is stored in PostgreSQL via JDBC.
+
+### CampusConnect
+Tags: Java, JavaFX, PostgreSQL, JDBC
+Repository: https://github.com/Ansh-Patoliya/CampusConnect
+
+A JavaFX desktop application for managing campus events, clubs and users, connecting students, club members and administrators.
+Includes event registration, club membership, approval workflows, notifications and reporting, backed by PostgreSQL.
+
+### Python Learning Journal
+Tags: Python, NumPy, Pandas, Matplotlib
+Repository: https://github.com/Ansh-Patoliya/python_learning
+
+Day-by-day notes, code and mini projects covering Python basics, data structures, OOP, file handling, NumPy, Pandas and Matplotlib.
+
+### Data Structures & Algorithms in Java
+Tags: Java, DSA
+Repository: https://github.com/Ansh-Patoliya/DSA
+
+Practice problems and implementations in Java: linked lists, stacks, queues, trees and more, with a progress log.
+
+### Machine Learning Notes
+Tags: Scikit-Learn, Keras, TensorFlow, Jupyter
+Repository: https://github.com/Ansh-Patoliya/ML_Documentation
+
+Notes, notebooks and exercise solutions from working through Hands-On Machine Learning (2nd edition) with Scikit-Learn, Keras and TensorFlow.
+
+### Employee Management System
+Tags: Java, Sem-1 Project
+Repository: https://github.com/Ansh-Patoliya/Sem-1-Project-EmpoyeeManagement
+
+A Java application for managing employee details, salaries and leave requests, with role-based access for employees and managers.
+
+### Online Banking System
+Tags: Java, Sem-1 Project
+Repository: https://github.com/Ansh-Patoliya/sem-1-project-OnlineBankingSystem
+
+A Java application with account management, loans, fixed deposits and transaction history. Customers register, log in and deposit, withdraw or apply for loans.
+
+## Blog posts
+
+### Syntra: a hackathon management platform
+URL: https://ansh-patoliya.vercel.app/blog/syntra-hackathon-management-platform
+Date: 2026-10-14
+Tags: Syntra, Hackathon, Web App
+
+Running a hackathon means juggling registrations, teams and a crowd of people on event day. Syntra is a hackathon management platform that brings all of that into one place.
+
+## What it does
+
+- Participant console: participants sign in, register their team and follow the event from one dashboard.
+
+- Team registration: a simple flow to form a team and sign up for the event.
+
+- QR scanning for volunteers: on event day, volunteers scan a participant's QR code to check them in quickly instead of working through a spreadsheet.
+
+## Who it is for
+
+Organisers who want a smoother event, and participants who want a clear, simple experience.
+
+---
+
+### Stocxsim: practise trading without risking money
+URL: https://ansh-patoliya.vercel.app/blog/stocxsim-paper-trading-simulator
+Date: 2026-10-11
+Tags: Stocxsim, Stock Market, Web App
+
+Stocxsim lets you learn how the stock market works without risking a rupee. You trade with virtual money, but the prices are real.
+
+## What it does
+
+- Sign up and fund a virtual account with practice money.
+
+- Place simulated orders on stocks using live NSE/BSE market data.
+
+- Track your portfolio and see how your decisions would have played out.
+
+## Why it matters
+
+Beginners often learn trading by losing money. A simulator with real prices lets you make mistakes safely and learn from them.
+
+A second version, Stocxsim 2.0, adds watchlists, holdings, transaction history and brokerage charge calculation.
+
+---
+
+### Stock Market Analytics Dashboard: trend, momentum and volatility at a glance
+URL: https://ansh-patoliya.vercel.app/blog/stock-market-analytics-dashboard-overview
+Date: 2026-10-08
+Tags: Power BI, Stock Market, Data Analytics
+
+This Power BI dashboard turns 5-minute OHLCV (Open, High, Low, Close, Volume) stock data into insights you can read quickly.
+
+## What you can see
+
+- Price analysis: intraday trends and small price movements.
+
+- Trend detection: moving averages and crossover markers show market direction.
+
+- Momentum: spot overbought and oversold conditions.
+
+- Volatility: understand how risky the price movement is.
+
+- Candlestick statistics: body and wick proportions of candles.
+
+## Who it is for
+
+Anyone who wants to understand market behaviour without reading raw tables.
+
+---
+
+### IPL Analytics Dashboard: the numbers behind the game
+URL: https://ansh-patoliya.vercel.app/blog/ipl-analytics-dashboard-overview
+Date: 2026-10-04
+Tags: Power BI, IPL, Data Analytics
+
+The IPL Analytics Dashboard lets you explore the history of the Indian Premier League in one interactive report.
+
+## What you can explore
+
+- Match trends across multiple seasons
+
+- Team performance: how teams have done over time
+
+- Player statistics and profiles
+
+## How it was made
+
+Data was cleaned and shaped with Power Query, calculations were written in DAX, and the report uses interactive Power BI visuals so you can filter by season or team.
+
+## Who it is for
+
+Cricket fans, analysts and anyone curious about the numbers behind the game.
+
+---
+
+### AI Video & Voice Transcriber: from speech to editable text
+URL: https://ansh-patoliya.vercel.app/blog/ai-video-voice-transcriber-overview
+Date: 2026-09-30
+Tags: AI, Transcription, Web App
+
+This web app turns spoken content into text, quickly and accurately.
+
+## What it does
+
+- Accepts uploaded video or audio files, or a link such as YouTube.
+
+- Creates a timestamped transcript using Google Gemini.
+
+- Syncs with the video: the transcript follows the video as it plays.
+
+- Lets you edit the text inline.
+
+- Generates AI summaries.
+
+- Exports to SRT, PDF, DOCX, CSV and TXT.
+
+## Where it helps
+
+Lectures, interviews, meetings and subtitles.
+
+---
+
+### OmniDoc AI: from messy notes to a clean PDF
+URL: https://ansh-patoliya.vercel.app/blog/omnidoc-ai-notes-to-pdf
+Date: 2026-09-25
+Tags: AI, PDF, Productivity
+
+OmniDoc AI takes whatever you have, a pasted paragraph, a photo of a page, handwritten notes or a diagram, and turns it into a neatly formatted PDF.
+
+## What it does
+
+- Reads text from documents and handwritten notes.
+
+- Structures the content into clear sections.
+
+- Styles it automatically.
+
+- Draws diagrams: flowcharts are rendered straight into the document.
+
+- Exports a ready-to-share PDF.
+
+## Who it is for
+
+Good for students turning rough notes into clean study material, or anyone who needs a tidy report from scattered inputs.
+
+---
+
+### Mockly: practise interviews, get real feedback
+URL: https://ansh-patoliya.vercel.app/blog/mockly-interview-preparation-platform
+Date: 2026-09-20
+Tags: Mockly, Interview Prep, AI
+
+Mockly helps students prepare for placements by practising, not just reading.
+
+## What it does
+
+- Role-specific questions to practise for the job you want.
+
+- Personalised feedback: answers are scored with a mix of keyword matching, semantic similarity and AI grading.
+
+- Timed mock interviews to practise under pressure.
+
+- 3-round placement simulation that unlocks step by step.
+
+- Performance dashboard to track your progress over time.
+
+## Who it is for
+
+Students who want to know where they stand before the real interview, and what to improve next.

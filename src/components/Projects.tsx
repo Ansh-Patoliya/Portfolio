@@ -116,23 +116,18 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
             </div>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn flex-1">
-                  Live Demo <ArrowUpRight className="h-4 w-4" />
-                </a>
-              )}
               {project.githubUrl && (
                 <a
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`View ${project.title} on GitHub`}
-                  className={project.liveUrl ? "btn-outline" : "btn flex-1"}
+                  className="btn flex-1"
                 >
                   <Github className="h-4 w-4" /> View on GitHub
                 </a>
               )}
-              {!project.liveUrl && !project.githubUrl && (
+              {!project.githubUrl && (
                 <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.1em] text-muted">
                   <Lock className="h-4 w-4" /> Private repository. Happy to walk through it on request.
                 </p>
@@ -179,12 +174,6 @@ function ProjectCard({ project, index, onSelect }: { project: Project; index: nu
         <div className="flex min-h-7 items-center justify-between gap-3">
           <span className="eyebrow-muted">({String(index + 1).padStart(2, "0")})</span>
           <div className="flex items-center gap-2">
-            {project.liveUrl && (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-accent">
-                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
-                Live
-              </span>
-            )}
             {project.isPrivate && (
               <span className="inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
                 <Lock className="h-3 w-3" />
@@ -214,17 +203,6 @@ function ProjectCard({ project, index, onSelect }: { project: Project; index: nu
           <div className="flex items-center justify-between gap-4 border-t border-line pt-4">
             <span className="eyebrow">View details</span>
             <div className="flex items-center gap-4">
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.1em] text-muted transition-colors hover:text-accent"
-                >
-                  Live <ArrowUpRight className="h-3.5 w-3.5" />
-                </a>
-              )}
               {project.githubUrl && (
                 <a
                   href={project.githubUrl}

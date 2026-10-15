@@ -8,6 +8,7 @@ import path from "node:path";
 import XLSX from "xlsx";
 import { marked } from "marked";
 import { AUTHOR, SITE_URL } from "./blog-config.mjs";
+import { categories, firstPara, plain, projects } from "./load-projects.mjs";
 
 const root = process.cwd();
 const xlsxPath = path.join(root, "content", "blog.xlsx");
@@ -100,6 +101,38 @@ fs.writeFileSync(
       )
       .join("\n") +
     `\n</channel></rss>\n`,
+);
+
+// ---- llms.txt + llms-full.txt (for AI assistants / answer engines) ----
+const strip = (html) => html.replace(/<h[1-6][^>]*>(.*?)<\/h[1-6]>/g, "\n## $1\n").replace(/<li>/g, "- ").replace(/<\/(p|li|ul|ol)>/g, "\n").replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/\n{3,}/g, "\n\n").trim();
+const intro = `# ${AUTHOR}
+
+> ${AUTHOR} is a full-stack developer and data analyst, a 3rd-year Computer Engineering student in Ahmedabad, Gujarat, India. He builds web apps, Power BI dashboards and AI tools.
+
+## About
+- Location: Ahmedabad, Gujarat, India
+- Focus: full-stack web (Django REST Framework, Next.js, Flask, React), data analytics (Power BI, SQL, Python), AI tools (Gemini API)
+- Contact: anshpatoliya1408@gmail.com
+
+## Links
+- [Portfolio](${SITE_URL}/)
+- [Blog](${SITE_URL}/blog)
+- [GitHub](https://github.com/Ansh-Patoliya)
+- [LinkedIn](https://www.linkedin.com/in/ansh-patoliya)
+- [Resume](${SITE_URL}/Ansh_Patoliya_Resume.pdf)
+`;
+const projectLines = categories
+  .map((c) => `### ${c.label}\n` + projects.filter((p) => p.category === c.id).map((p) => `- **${p.title}**: ${firstPara(p.description)}${p.githubUrl ? ` (${p.githubUrl})` : ""}`).join("\n"))
+  .join("\n\n");
+const postLines = posts.map((p) => `- [${p.title}](${SITE_URL}/blog/${p.slug}): ${p.summary}`).join("\n");
+fs.writeFileSync(path.join(root, "public", "llms.txt"), `${intro}\n## Projects\n${projectLines}\n\n## Blog\n${postLines || "- (no posts yet)"}\n\n## Full text\n- [llms-full.txt](${SITE_URL}/llms-full.txt): all projects and blog posts in plain text\n`);
+fs.writeFileSync(
+  path.join(root, "public", "llms-full.txt"),
+  `${intro}\n## Projects\n\n` +
+    projects.map((p) => `### ${p.title}\nTags: ${p.tags.join(", ")}\n${p.githubUrl ? `Repository: ${p.githubUrl}\n` : ""}\n${plain(p.description)}`).join("\n\n") +
+    `\n\n## Blog posts\n\n` +
+    posts.map((p) => `### ${p.title}\nURL: ${SITE_URL}/blog/${p.slug}\nDate: ${p.date}\nTags: ${p.tags.join(", ")}\n\n${strip(p.html)}`).join("\n\n---\n\n") +
+    "\n",
 );
 
 console.log(`[blog] ${posts.length} post(s) published.`);
