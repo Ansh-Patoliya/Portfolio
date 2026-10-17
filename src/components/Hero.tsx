@@ -16,6 +16,13 @@ export function Hero() {
           I build web apps, dashboards and AI tools.
         </p>
 
+        <p className="text-base text-muted sm:text-lg">
+          Co-founder of Vidhyantu{" "}
+          <a href="https://vidhyantu.com" target="_blank" rel="noopener noreferrer" className="text-link">
+            Visit ↗
+          </a>
+        </p>
+
         {/* Actions */}
         <div className="flex flex-wrap items-center justify-center gap-6 pt-4 sm:gap-8">
           <button
