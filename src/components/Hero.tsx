@@ -16,12 +16,17 @@ export function Hero() {
           I build web apps, dashboards and AI tools.
         </p>
 
-        <p className="text-base text-muted sm:text-lg">
-          Co-founder of Vidhyantu{" "}
-          <a href="https://vidhyantu.com" target="_blank" rel="noopener noreferrer" className="text-link">
-            Visit ↗
-          </a>
-        </p>
+        <a
+          href="https://vidhyantu.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-4 rounded-full bg-accent py-1.5 pl-5 pr-1.5 text-[0.9375rem] font-medium text-paper transition-opacity duration-200 hover:opacity-90 sm:gap-5 sm:pl-7 sm:text-base"
+        >
+          <span>Co-founder of Vidhyantu</span>
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-paper px-4 py-2.5 text-sm font-semibold text-accent sm:px-[18px] sm:py-3">
+            Visit <span aria-hidden="true">↗</span>
+          </span>
+        </a>
 
         {/* Actions */}
         <div className="flex flex-wrap items-center justify-center gap-6 pt-4 sm:gap-8">
