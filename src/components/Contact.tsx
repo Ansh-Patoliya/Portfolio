@@ -51,10 +51,9 @@ export function Contact() {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    const accessKey = import.meta.env.VITE_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE";
-    if (accessKey === "YOUR_ACCESS_KEY_HERE") {
-      console.warn('Web3Forms access key is not set. Please define VITE_WEB3FORMS_KEY in .env');
-    }
+    // Web3Forms access keys are public by design (they ship in client code), so a default is fine.
+    // VITE_WEB3FORMS_KEY, if set, overrides it.
+    const accessKey = import.meta.env.VITE_WEB3FORMS_KEY || "f0841338-343a-441d-8aea-bab37fcd5b7e";
 
     const contactData = {
       ...formData,
